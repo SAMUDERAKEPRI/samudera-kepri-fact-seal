@@ -497,4 +497,197 @@
           category: "Investigasi",
           publishState: "Sudah Tayang",
           dataType: "Uji Coba Awal",
-          referenceUri: "
+          referenceUri: "https://www.samuderakepri.co.id/uji-coba-investigasi",
+          contentHash: "0x3333333333333333333333333333333333333333333333333333333333333333",
+          verifier: "0x7f8684CE32BC602D01B431c1f064f3838dF580eF",
+          timestamp: 1795284500,
+          txHash: ""
+        }
+      ];
+
+      function esc(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      function resolveArticleUrl(item) {
+        const rawUrl = item.referenceUri || "";
+        if (item.dataType === "Uji Coba Awal" && CATEGORY_REDIRECTS[item.category]) {
+          return CATEGORY_REDIRECTS[item.category];
+        }
+        return rawUrl;
+      }
+
+      function loadArticles() {
+        try {
+          const raw = localStorage.getItem(STORAGE_KEY);
+          if (!raw) return DEFAULT_ARTICLES.slice();
+          const parsed = JSON.parse(raw);
+          if (!Array.isArray(parsed) || !parsed.length) return DEFAULT_ARTICLES.slice();
+          return parsed;
+        } catch (err) {
+          return DEFAULT_ARTICLES.slice();
+        }
+      }
+
+      async function getReadContract() {
+        if (!window.ethers) return null;
+        for (const rpc of RPC_URLS) {
+          try {
+            const provider = new window.ethers.JsonRpcProvider(rpc);
+            return new window.ethers.Contract(FACT_SEAL_ADDR, ABI, provider);
+          } catch (err) {
+            // Coba RPC cadangan berikutnya
+          }
+        }
+        return null;
+      }
+
+      function renderPreview(item, chainStatus) {
+        const box = document.getElementById("sk-pub-preview");
+        if (!item) {
+          box.innerHTML = `<div class="sk-preview-card"><p class="sk-empty-msg">Judul berita tidak ditemukan dalam registri lokal.</p></div>`;
+          return;
+        }
+
+        const targetUrl = resolveArticleUrl(item);
+        const isRedirected = item.dataType === "Uji Coba Awal" && Boolean(CATEGORY_REDIRECTS[item.category]);
+        const badgeHtml = chainStatus && chainStatus.exists
+          ? `<span class="sk-badge-ok">TERCATAT ON-CHAIN</span>`
+          : `<span class="sk-badge-warn">ARSIP LOKAL / BELUM TERKONFIRMASI CHAIN</span>`;
+
+        box.innerHTML = `
+          <div class="sk-preview-card">
+            <div class="sk-preview-head">
+              <strong>Pratinjau Hash &amp; Bukti Kontrak</strong>
+              ${badgeHtml}
+            </div>
+            <table class="sk-table">
+              <tr><td>Judul Berita</td><td>${esc(item.title)}</td></tr>
+              <tr><td>Kategori</td><td>${esc(item.category || "-")}</td></tr>
+              <tr><td>Content Hash (bytes32)</td><td>${esc(item.contentHash || "-")}</td></tr>
+              <tr><td>Alamat Verifikator</td><td>${esc((chainStatus && chainStatus.verifier) || item.verifier || "-")}</td></tr>
+              <tr><td>Kontrak FactSeal</td><td>${esc(FACT_SEAL_ADDR)}</td></tr>
+              <tr>
+                <td>Bukti / TX Hash</td>
+                <td>${esc(item.txHash || (chainStatus && chainStatus.exists ? "Tercatat di kontrak FactSeal (tanpa TX hash lokal)" : "Belum ada TX hash tercatat"))}</td>
+              </tr>
+              <tr>
+                <td>Tautan Berita</td>
+                <td>
+                  ${targetUrl ? `<a href="${esc(targetUrl)}" target="_blank" rel="noopener noreferrer">${esc(targetUrl)}</a>` : "-"}
+                  ${isRedirected ? `<div class="sk-redirect-note">Dialihkan ke halaman kategori aktif (${esc(item.category)}).</div>` : ""}
+                </td>
+              </tr>
+            </table>
+          </div>
+        `;
+      }
+
+      async function inspectArticle(item) {
+        renderPreview(item, null);
+        const contract = await getReadContract();
+        if (!contract || !item.contentHash || !/^0x[0-9a-fA-F]{64}$/.test(item.contentHash)) {
+          return;
+        }
+        try {
+          const res = await contract.verifyFact(item.contentHash);
+          renderPreview(item, {
+            exists: Boolean(res[0]),
+            isValid: Boolean(res[1]),
+            verifier: res[4]
+          });
+        } catch (err) {
+          // Pertahankan pratinjau lokal jika pembacaan RPC gagal
+        }
+      }
+
+      function renderList(items) {
+        const listEl = document.getElementById("sk-pub-list");
+        const published = items.filter((item) => item.publishState !== "Akan Tayang");
+
+        if (!published.length) {
+          listEl.innerHTML = `<p class="sk-empty-msg">Belum ada berita yang cocok dengan pencarian.</p>`;
+          return;
+        }
+
+        listEl.innerHTML = published
+          .map((item, idx) => {
+            const targetUrl = resolveArticleUrl(item);
+            return `
+              <div class="sk-list-item">
+                <div>
+                  <strong>${esc(item.title)}</strong>
+                  <div class="sk-list-meta">
+                    Kategori: ${esc(item.category || "-")} · Hash: ${esc((item.contentHash || "").slice(0, 18))}...
+                  </div>
+                </div>
+                <div class="sk-row">
+                  <button type="button" class="sk-sec sk-btn-inspect" data-idx="${idx}">Lihat Hash &amp; Bukti</button>
+                  ${targetUrl ? `<a href="${esc(targetUrl)}" target="_blank" rel="noopener noreferrer"><button type="button">Buka Berita</button></a>` : ""}
+                </div>
+              </div>
+            `;
+          })
+          .join("");
+
+        listEl.querySelectorAll(".sk-btn-inspect").forEach((btn) => {
+          btn.addEventListener("click", function () {
+            const idx = Number(this.getAttribute("data-idx"));
+            if (published[idx]) {
+              inspectArticle(published[idx]);
+              document.getElementById("sk-pub-preview").scrollIntoView({ behavior: "smooth", block: "nearest" });
+            }
+          });
+        });
+      }
+
+      async function loadTotalSealed() {
+        const el = document.getElementById("sk-pub-total-sealed");
+        const contract = await getReadContract();
+        if (!contract) {
+          el.textContent = "Sepolia Active";
+          return;
+        }
+        try {
+          const total = await contract.totalSealed();
+          el.textContent = `${total.toString()} Catatan`;
+        } catch (err) {
+          el.textContent = "Sepolia Active";
+        }
+      }
+
+      function runSearch() {
+        const q = document.getElementById("sk-pub-search").value.trim().toLowerCase();
+        const all = loadArticles();
+        const filtered = q
+          ? all.filter((item) => String(item.title || "").toLowerCase().includes(q))
+          : all;
+        renderList(filtered);
+        if (q && filtered.length) {
+          inspectArticle(filtered[0]);
+        }
+      }
+
+      document.getElementById("sk-pub-search-btn").addEventListener("click", runSearch);
+      document.getElementById("sk-pub-reset-btn").addEventListener("click", function () {
+        document.getElementById("sk-pub-search").value = "";
+        document.getElementById("sk-pub-preview").innerHTML = "";
+        renderList(loadArticles());
+      });
+      document.getElementById("sk-pub-search").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          runSearch();
+        }
+      });
+
+      renderList(loadArticles());
+      loadTotalSealed();
+    })();
+  </script>
+</body>
+</html>
