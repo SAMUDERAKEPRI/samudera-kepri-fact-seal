@@ -1,0 +1,592 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Explorer Blockchain — Samudera Kepri (MSK) &amp; FactSeal</title>
+  <style>
+    @keyframes skFadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(8px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    #sk-explorer {
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      max-width: 1020px;
+      margin: 24px auto;
+      padding: 0 12px;
+      color: #0f172a;
+      animation: skFadeIn 0.4s ease-out;
+    }
+
+    #sk-explorer .sk-top {
+      background: linear-gradient(125deg, #0f172a 0%, #311042 52%, #0c4a6e 100%);
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 24px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(125, 211, 252, 0.3);
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.18);
+    }
+
+    #sk-explorer .sk-top-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 16px;
+      flex-wrap: wrap;
+    }
+
+    #sk-explorer .sk-brand {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    #sk-explorer .sk-logo {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      background: #09090b;
+      border: 2px solid #facc15;
+      flex-shrink: 0;
+    }
+
+    #sk-explorer .sk-tag {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.05em;
+      color: #fde68a;
+      background: rgba(255, 255, 255, 0.12);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    #sk-explorer h1 {
+      margin: 0;
+      font-size: 22px;
+      color: #ffffff;
+    }
+
+    #sk-explorer .sk-sub {
+      margin: 4px 0 0;
+      font-size: 13px;
+      color: #e2e8f0;
+    }
+
+    #sk-explorer .sk-net-pill {
+      background: rgba(16, 185, 129, 0.16);
+      border: 1px solid rgba(52, 211, 153, 0.5);
+      color: #a7f3d0;
+      padding: 8px 14px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    #sk-explorer .sk-stats {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    #sk-explorer .sk-stat {
+      background: rgba(15, 23, 42, 0.52);
+      border: 1px solid rgba(255, 255, 255, 0.16);
+      border-radius: 12px;
+      padding: 12px 14px;
+    }
+
+    #sk-explorer .sk-stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      margin-bottom: 4px;
+    }
+
+    #sk-explorer .sk-stat-val {
+      font-size: 14px;
+      font-weight: 700;
+      color: #ffffff;
+      word-break: break-all;
+    }
+
+    #sk-explorer .sk-card {
+      background: #ffffff;
+      border: 1px solid #cbd5e1;
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 4px 14px rgba(15, 23, 42, 0.04);
+    }
+
+    #sk-explorer h2 {
+      margin: 0 0 8px;
+      font-size: 17px;
+      color: #0f172a;
+    }
+
+    #sk-explorer p.sk-desc {
+      margin: 0 0 14px;
+      font-size: 13px;
+      color: #475569;
+    }
+
+    #sk-explorer .sk-form-row {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    #sk-explorer input[type="text"] {
+      flex: 1 1 360px;
+      padding: 10px 12px;
+      border: 1px solid #94a3b8;
+      border-radius: 8px;
+      font-size: 13.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    #sk-explorer input[type="text"]:focus {
+      outline: none;
+      border-color: #0284c7;
+      box-shadow: 0 0 0 3px rgba(2, 132, 199, 0.15);
+    }
+
+    #sk-explorer button,
+    #sk-explorer a.sk-btn-link {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      text-decoration: none;
+      background: linear-gradient(135deg, #0369a1 0%, #581c87 100%);
+      color: #ffffff;
+      border: none;
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 600;
+      cursor: pointer;
+    }
+
+    #sk-explorer button.sk-alt,
+    #sk-explorer a.sk-btn-link.sk-alt {
+      background: #e2e8f0;
+      color: #0f172a;
+    }
+
+    #sk-explorer .sk-result {
+      margin-top: 14px;
+      border: 1px solid #e2e8f0;
+      background: #f8fafc;
+      border-radius: 10px;
+      padding: 14px;
+      font-size: 13px;
+    }
+
+    #sk-explorer table.sk-kv {
+      width: 100%;
+      border-collapse: collapse;
+      background: #ffffff;
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #sk-explorer table.sk-kv td {
+      border-bottom: 1px solid #e2e8f0;
+      padding: 8px 10px;
+      vertical-align: top;
+      word-break: break-all;
+    }
+
+    #sk-explorer table.sk-kv td:first-child {
+      width: 190px;
+      font-weight: 700;
+      color: #334155;
+    }
+
+    #sk-explorer .sk-badge-valid {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #dcfce7;
+      color: #166534;
+    }
+
+    #sk-explorer .sk-badge-revoked {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #fee2e2;
+      color: #991b1b;
+    }
+
+    #sk-explorer .sk-badge-none {
+      display: inline-block;
+      padding: 3px 10px;
+      border-radius: 999px;
+      font-size: 12px;
+      font-weight: 700;
+      background: #fef3c7;
+      color: #92400e;
+    }
+
+    #sk-explorer .sk-sample-btns {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-top: 10px;
+    }
+  </style>
+</head>
+<body>
+  <div id="sk-explorer">
+    <header class="sk-top">
+      <div class="sk-top-head">
+        <div class="sk-brand">
+          <img
+            src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png"
+            alt="Logo Coin Samudera Kepri"
+            class="sk-logo"
+            loading="lazy"
+          />
+          <div>
+            <div class="sk-tag">MEDIA SAMUDERA KEPRI · BLOCKCHAIN EXPLORER</div>
+            <h1>Samudera Kepri (MSK) &amp; FactSeal Explorer</h1>
+            <p class="sk-sub">Penelusuran segel fakta berita, saldo token MSK, dan tautan Sepolia Etherscan.</p>
+          </div>
+        </div>
+        <div class="sk-net-pill" id="sk-rpc-status">Ethereum Sepolia · Chain ID 11155111</div>
+      </div>
+
+      <div class="sk-stats">
+        <div class="sk-stat">
+          <div class="sk-stat-label">Latest Block (Sepolia)</div>
+          <div class="sk-stat-val" id="sk-latest-block">Memuat...</div>
+        </div>
+        <div class="sk-stat">
+          <div class="sk-stat-label">Total Fact Tersegel</div>
+          <div class="sk-stat-val" id="sk-total-sealed">Memuat...</div>
+        </div>
+        <div class="sk-stat">
+          <div class="sk-stat-label">Total Supply MSK</div>
+          <div class="sk-stat-val" id="sk-msk-supply">Memuat...</div>
+        </div>
+      </div>
+    </header>
+
+    <section class="sk-card">
+      <h2>1. Verifikasi Content Hash (`bytes32`) di Kontrak FactSeal</h2>
+      <p class="sk-desc">
+        Masukkan <code>contentHash</code> (66 karakter diawali <code>0x</code>) untuk membaca status segel langsung dari kontrak <code>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</code>.
+      </p>
+      <div class="sk-form-row">
+        <input
+          type="text"
+          id="sk-hash-input"
+          placeholder="0x2beb6b90e77ece32e5296b3e8c4f90fb4eee6b4e86532e132fab4b36d0fb3e76"
+        />
+        <button type="button" id="sk-verify-hash-btn">Cek On-Chain</button>
+      </div>
+      <div class="sk-sample-btns">
+        <button type="button" class="sk-alt sk-sample-hash" data-hash="0x2beb6b90e77ece32e5296b3e8c4f90fb4eee6b4e86532e132fab4b36d0fb3e76">
+          Contoh Hash Produksi
+        </button>
+        <button type="button" class="sk-alt sk-sample-hash" data-hash="0x1111111111111111111111111111111111111111111111111111111111111111">
+          Contoh Hash Uji Coba #1
+        </button>
+      </div>
+      <div id="sk-hash-result"></div>
+    </section>
+
+    <section class="sk-card">
+      <h2>2. Cek Saldo Token MSK &amp; Buka di Sepolia Etherscan</h2>
+      <p class="sk-desc">
+        Masukkan alamat <code>0x...</code> (wallet atau kontrak) untuk melihat saldo <code>MSK</code> dan membuka tautan langsung di Sepolia Etherscan, atau masukkan <code>TX Hash</code> untuk membuka detail transaksi di Etherscan.
+      </p>
+      <div class="sk-form-row">
+        <input
+          type="text"
+          id="sk-addr-tx-input"
+          placeholder="Alamat 0x7f8684CE32BC602D01B431c1f064f3838dF580eF atau TX Hash 0x..."
+        />
+        <button type="button" id="sk-lookup-btn">Cek &amp; Siapkan Link Etherscan</button>
+      </div>
+      <div class="sk-sample-btns">
+        <a
+          class="sk-btn-link sk-alt"
+          href="https://sepolia.etherscan.io/address/0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Etherscan: FactSeal
+        </a>
+        <a
+          class="sk-btn-link sk-alt"
+          href="https://sepolia.etherscan.io/token/0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Etherscan: Token MSK
+        </a>
+        <a
+          class="sk-btn-link sk-alt"
+          href="https://sepolia.etherscan.io/address/0x7f8684CE32BC602D01B431c1f064f3838dF580eF"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Etherscan: Akun Verifikator
+        </a>
+      </div>
+      <div id="sk-lookup-result"></div>
+    </section>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script>
+    (function () {
+      const RPC_URLS = [
+        "https://rpc.sepolia.org",
+        "https://ethereum-sepolia-rpc.publicnode.com"
+      ];
+      const ETHERSCAN_BASE = "https://sepolia.etherscan.io";
+      const FACT_SEAL_ADDR = "0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033";
+      const MSK_TOKEN_ADDR = "0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d";
+
+      const FACT_SEAL_ABI = [
+        "function totalSealed() view returns (uint256)",
+        "function verifyFact(bytes32 contentHash) view returns (bool exists, bool isValid, string referenceUri, string category, address verifier, uint64 timestamp, string revokeReason)"
+      ];
+
+      const ERC20_ABI = [
+        "function symbol() view returns (string)",
+        "function decimals() view returns (uint8)",
+        "function totalSupply() view returns (uint256)",
+        "function balanceOf(address account) view returns (uint256)"
+      ];
+
+      let cachedProvider = null;
+
+      function esc(str) {
+        return String(str || "")
+          .replace(/&/g, "&amp;")
+          .replace(/</g, "&lt;")
+          .replace(/>/g, "&gt;")
+          .replace(/"/g, "&quot;");
+      }
+
+      async function getProvider() {
+        if (cachedProvider) return cachedProvider;
+        if (!window.ethers) return null;
+        for (const url of RPC_URLS) {
+          try {
+            const p = new window.ethers.JsonRpcProvider(url);
+            await p.getBlockNumber();
+            cachedProvider = p;
+            return p;
+          } catch (e) {
+            // Coba RPC berikutnya
+          }
+        }
+        return null;
+      }
+
+      function formatTs(ts) {
+        const num = Number(ts || 0);
+        if (!num) return "Tidak tercatat / 0";
+        const d = new Date(num * 1000);
+        return `${d.toLocaleString("id-ID")} (${num})`;
+      }
+
+      async function loadChainOverview() {
+        const blockEl = document.getElementById("sk-latest-block");
+        const sealedEl = document.getElementById("sk-total-sealed");
+        const supplyEl = document.getElementById("sk-msk-supply");
+        const statusEl = document.getElementById("sk-rpc-status");
+
+        const provider = await getProvider();
+        if (!provider) {
+          blockEl.textContent = "RPC Sibuk";
+          sealedEl.textContent = "-";
+          supplyEl.textContent = "-";
+          statusEl.textContent = "Sepolia · Mode Tautan Etherscan";
+          return;
+        }
+
+        try {
+          const blockNum = await provider.getBlockNumber();
+          blockEl.textContent = `#${blockNum.toLocaleString("id-ID")}`;
+        } catch (e) {
+          blockEl.textContent = "Tidak tersedia";
+        }
+
+        try {
+          const seal = new window.ethers.Contract(FACT_SEAL_ADDR, FACT_SEAL_ABI, provider);
+          const total = await seal.totalSealed();
+          sealedEl.textContent = `${total.toString()} Data`;
+        } catch (e) {
+          sealedEl.textContent = "Cek Kontrak";
+        }
+
+        try {
+          const token = new window.ethers.Contract(MSK_TOKEN_ADDR, ERC20_ABI, provider);
+          const [sym, dec, rawSupply] = await Promise.all([
+            token.symbol().catch(() => "MSK"),
+            token.decimals().catch(() => 18),
+            token.totalSupply()
+          ]);
+          const formatted = Number(window.ethers.formatUnits(rawSupply, dec)).toLocaleString("id-ID", {
+            maximumFractionDigits: 4
+          });
+          supplyEl.textContent = `${formatted} ${sym}`;
+        } catch (e) {
+          supplyEl.textContent = "Cek Token MSK";
+        }
+      }
+
+      async function verifyContentHash() {
+        const input = document.getElementById("sk-hash-input").value.trim();
+        const box = document.getElementById("sk-hash-result");
+
+        if (!/^0x[0-9a-fA-F]{64}$/.test(input)) {
+          box.innerHTML = `<div class="sk-result"><span class="sk-badge-none">FORMAT TIDAK VALID</span> — Masukkan <code>bytes32</code> sepanjang 66 karakter diawali <code>0x</code>.</div>`;
+          return;
+        }
+
+        box.innerHTML = `<div class="sk-result">Membaca data <code>verifyFact</code> dari kontrak FactSeal di Sepolia...</div>`;
+        const provider = await getProvider();
+        if (!provider) {
+          box.innerHTML = `<div class="sk-result"><span class="sk-badge-none">RPC TIDAK TERJANGKAU</span> — Anda tetap dapat meninjau kontrak di <a href="${ETHERSCAN_BASE}/address/${FACT_SEAL_ADDR}" target="_blank" rel="noopener noreferrer">Sepolia Etherscan</a>.</div>`;
+          return;
+        }
+
+        try {
+          const seal = new window.ethers.Contract(FACT_SEAL_ADDR, FACT_SEAL_ABI, provider);
+          const [exists, isValid, referenceUri, category, verifier, timestamp, revokeReason] = await seal.verifyFact(input);
+
+          let badge = `<span class="sk-badge-none">BELUM TERSEGEL ON-CHAIN</span>`;
+          if (exists && isValid) {
+            badge = `<span class="sk-badge-valid">TERSEGEL &amp; VALID</span>`;
+          } else if (exists && !isValid) {
+            badge = `<span class="sk-badge-revoked">TERSEGEL · DICABUT / TIDAK VALID</span>`;
+          }
+
+          box.innerHTML = `
+            <div class="sk-result">
+              <div style="margin-bottom:10px;">${badge}</div>
+              <table class="sk-kv">
+                <tr><td>Content Hash</td><td>${esc(input)}</td></tr>
+                <tr><td>Exists / Valid</td><td>${exists ? "Ya" : "Tidak"} / ${isValid ? "Valid" : "Tidak Valid"}</td></tr>
+                <tr><td>Kategori</td><td>${esc(category || "-")}</td></tr>
+                <tr><td>Reference URI</td><td>${referenceUri ? `<a href="${esc(referenceUri)}" target="_blank" rel="noopener noreferrer">${esc(referenceUri)}</a>` : "-"}</td></tr>
+                <tr><td>Verifier</td><td>${verifier && verifier !== window.ethers.ZeroAddress ? `<a href="${ETHERSCAN_BASE}/address/${esc(verifier)}" target="_blank" rel="noopener noreferrer">${esc(verifier)}</a>` : "-"}</td></tr>
+                <tr><td>Timestamp</td><td>${esc(formatTs(timestamp))}</td></tr>
+                <tr><td>Revoke Reason</td><td>${esc(revokeReason || "-")}</td></tr>
+              </table>
+            </div>
+          `;
+        } catch (err) {
+          box.innerHTML = `<div class="sk-result"><span class="sk-badge-none">GAGAL MEMBACA KONTRAK</span> — Pastikan hash valid atau cek langsung di <a href="${ETHERSCAN_BASE}/address/${FACT_SEAL_ADDR}" target="_blank" rel="noopener noreferrer">Sepolia Etherscan</a>.</div>`;
+        }
+      }
+
+      async function lookupAddressOrTx() {
+        const val = document.getElementById("sk-addr-tx-input").value.trim();
+        const box = document.getElementById("sk-lookup-result");
+
+        if (/^0x[0-9a-fA-F]{64}$/.test(val)) {
+          const txUrl = `${ETHERSCAN_BASE}/tx/${val}`;
+          box.innerHTML = `
+            <div class="sk-result">
+              <strong>TX Hash Terdeteksi:</strong> <code>${esc(val)}</code><br/>
+              <div style="margin-top:8px;">
+                <a class="sk-btn-link" href="${esc(txUrl)}" target="_blank" rel="noopener noreferrer">Buka Transaksi di Sepolia Etherscan</a>
+              </div>
+            </div>
+          `;
+          return;
+        }
+
+        if (!window.ethers || !window.ethers.isAddress(val)) {
+          box.innerHTML = `<div class="sk-result"><span class="sk-badge-none">INPUT TIDAK DIKENALI</span> — Masukkan alamat Ethereum valid (<code>0x...</code> 42 karakter) atau TX Hash (<code>0x...</code> 66 karakter).</div>`;
+          return;
+        }
+
+        const checksumAddr = window.ethers.getAddress(val);
+        const addrUrl = `${ETHERSCAN_BASE}/address/${checksumAddr}`;
+        box.innerHTML = `<div class="sk-result">Memeriksa saldo token <code>MSK</code> untuk <code>${esc(checksumAddr)}</code>...</div>`;
+
+        const provider = await getProvider();
+        let balanceText = "Cek di Etherscan";
+
+        if (provider) {
+          try {
+            const token = new window.ethers.Contract(MSK_TOKEN_ADDR, ERC20_ABI, provider);
+            const [sym, dec, rawBal] = await Promise.all([
+              token.symbol().catch(() => "MSK"),
+              token.decimals().catch(() => 18),
+              token.balanceOf(checksumAddr)
+            ]);
+            const formatted = Number(window.ethers.formatUnits(rawBal, dec)).toLocaleString("id-ID", {
+              maximumFractionDigits: 4
+            });
+            balanceText = `${formatted} ${sym}`;
+          } catch (e) {
+            balanceText = "Tidak dapat membaca saldo via RPC";
+          }
+        }
+
+        box.innerHTML = `
+          <div class="sk-result">
+            <table class="sk-kv">
+              <tr><td>Alamat</td><td>${esc(checksumAddr)}</td></tr>
+              <tr><td>Saldo MSK</td><td><strong>${esc(balanceText)}</strong></td></tr>
+              <tr><td>Sepolia Etherscan</td><td><a href="${esc(addrUrl)}" target="_blank" rel="noopener noreferrer">${esc(addrUrl)}</a></td></tr>
+            </table>
+          </div>
+        `;
+      }
+
+      document.getElementById("sk-verify-hash-btn").addEventListener("click", verifyContentHash);
+      document.getElementById("sk-hash-input").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          verifyContentHash();
+        }
+      });
+
+      document.querySelectorAll(".sk-sample-hash").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          document.getElementById("sk-hash-input").value = this.getAttribute("data-hash") || "";
+          verifyContentHash();
+        });
+      });
+
+      document.getElementById("sk-lookup-btn").addEventListener("click", lookupAddressOrTx);
+      document.getElementById("sk-addr-tx-input").addEventListener("keydown", function (e) {
+        if (e.key === "Enter") {
+          e.preventDefault();
+          lookupAddressOrTx();
+        }
+      });
+
+      loadChainOverview();
+    })();
+  </script>
+</body>
+</html>
