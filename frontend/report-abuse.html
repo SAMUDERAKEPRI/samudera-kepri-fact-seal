@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Report Abuse — Samudera Kepri FactSeal &amp; Coin (MSK)</title>
+  <title>Report Abuse — Samudera Kepri (MSK) &amp; FactSeal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
@@ -11,7 +11,7 @@
     :root {
       --navy-base: #060f1d;
       --prussian: #0a192f;
-      --prussian-panel: rgba(10, 25, 47, 0.88);
+      --prussian-card: rgba(10, 25, 47, 0.88);
       --emerald: #10b981;
       --emerald-bright: #34d399;
       --gold: #eab308;
@@ -23,26 +23,42 @@
       --line-soft: rgba(148, 163, 184, 0.18);
     }
 
-    * { box-sizing: border-box; margin: 0; padding: 0; }
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background:
-        radial-gradient(circle at 14% 12%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 86% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
-        linear-gradient(180deg, #06101f 0%, #0a192f 55%, #050c16 100%);
+        radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        radial-gradient(circle at 50% 85%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 52%, #050c16 100%);
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.65;
     }
 
-    .sk-top-wrap { position: sticky; top: 12px; z-index: 50; padding: 0 14px; }
+    /* Top Navigation Bar */
+    .sk-header-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 60;
+      padding: 0 14px;
+    }
 
     .sk-navbar {
-      max-width: 1120px;
+      max-width: 1140px;
       margin: 0 auto;
       background: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
       border: 1px solid rgba(234, 179, 8, 0.35);
       border-radius: 14px;
       padding: 10px 16px;
@@ -50,8 +66,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
       flex-wrap: wrap;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
     }
 
     .sk-brand {
@@ -63,34 +79,118 @@
     }
 
     .sk-brand img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       object-fit: cover;
       border: 1.5px solid var(--gold);
       background: #ffffff;
     }
 
-    .sk-brand strong {
+    .sk-brand-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
-      font-size: 15px;
+      font-size: 15.5px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      display: block;
+      line-height: 1.1;
     }
 
-    .sk-nav-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+    .sk-brand-sub {
+      font-size: 10.5px;
+      color: var(--gold-soft);
+      letter-spacing: 0.05em;
+      display: block;
+    }
 
-    .sk-nav-links a {
+    .sk-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    .sk-nav > a,
+    .sk-dd-trigger {
       color: #e2e8f0;
       text-decoration: none;
       font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      padding: 6px 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .sk-nav > a:hover,
+    .sk-nav > a.active,
+    .sk-dd-trigger:hover,
+    .sk-dd-trigger.active {
+      color: var(--gold-soft);
+    }
+
+    .sk-dropdown {
+      position: relative;
+    }
+
+    .sk-dd-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      background: #081528;
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.58);
+      z-index: 80;
+    }
+
+    .sk-dropdown.open .sk-dd-menu,
+    .sk-dropdown:hover .sk-dd-menu {
+      display: block;
+    }
+
+    .sk-dd-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sk-dd-menu a:hover,
+    .sk-dd-menu a.current {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-soft);
+    }
+
+    .sk-dd-tag {
+      font-size: 10px;
+      color: var(--emerald-bright);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .sk-nav-links a:hover, .sk-nav-links a.active { color: var(--gold-soft); }
+    .sk-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
 
     .sk-lang-switch {
       display: inline-flex;
@@ -106,7 +206,7 @@
       color: #cbd5e1;
       font-size: 11px;
       font-weight: 800;
-      padding: 5px 8px;
+      padding: 5px 9px;
       border-radius: 6px;
       cursor: pointer;
     }
@@ -116,174 +216,348 @@
       color: #090d16;
     }
 
-    .sk-main { max-width: 980px; margin: 22px auto 0; padding: 0 14px 56px; }
-
-    .sk-hero {
-      background: linear-gradient(125deg, #2e1065 0%, #701a75 45%, #0a192f 82%, #064e3b 100%);
-      border: 1px solid rgba(234, 179, 8, 0.42);
-      border-radius: 18px;
-      padding: 24px;
-      margin-bottom: 20px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.44);
+    .sk-portal-cta {
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
     }
 
-    .sk-kicker {
+    /* Main Container */
+    .sk-main {
+      max-width: 1140px;
+      margin: 22px auto 0;
+      padding: 0 14px 56px;
+    }
+
+    .sk-hero {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.46);
+    }
+
+    .sk-stage-pill {
       display: inline-block;
       font-size: 11px;
       font-weight: 800;
       letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--gold-soft);
-      background: rgba(6, 15, 29, 0.6);
-      padding: 4px 10px;
+      background: rgba(6, 15, 29, 0.62);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      padding: 4px 11px;
       border-radius: 999px;
-      margin-bottom: 8px;
+      margin-bottom: 10px;
     }
 
     .sk-hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.15;
       color: #ffffff;
       margin-bottom: 8px;
     }
 
-    .sk-hero p { font-size: 13.5px; color: #f1f5f9; max-width: 680px; }
+    .sk-hero p {
+      font-size: 13.5px;
+      color: #f1f5f9;
+      max-width: 640px;
+    }
 
-    .sk-panel {
-      background: var(--prussian-panel);
+    .sk-coin-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(6, 15, 29, 0.58);
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      border-radius: 14px;
+      padding: 11px 16px;
+    }
+
+    .sk-coin-box img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: #09090b;
+    }
+
+    .sk-coin-box strong {
+      display: block;
+      font-size: 13px;
+      color: var(--gold-soft);
+    }
+
+    .sk-coin-box span {
+      display: block;
+      font-size: 11.5px;
+      color: #e2e8f0;
+    }
+
+    .sk-section {
+      background: var(--prussian-card);
       border: 1px solid var(--line-soft);
       border-radius: 16px;
       padding: 22px;
-      margin-bottom: 20px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+      margin-bottom: 22px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
     }
 
-    .sk-panel h2 {
+    .sk-section h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+      font-size: 19px;
       color: var(--gold-soft);
-      margin-bottom: 12px;
+      margin-bottom: 14px;
     }
 
-    .sk-field { margin-bottom: 14px; }
+    .sk-field {
+      margin-bottom: 14px;
+    }
 
     label {
       display: block;
-      font-size: 12.5px;
-      font-weight: 700;
-      color: #cbd5e1;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e2e8f0;
       margin-bottom: 6px;
     }
 
-    input[type="text"], select, textarea {
+    select,
+    input[type="text"],
+    textarea {
       width: 100%;
       padding: 10px 12px;
-      border-radius: 8px;
       border: 1px solid rgba(148, 163, 184, 0.35);
+      border-radius: 8px;
       background: rgba(6, 15, 29, 0.85);
       color: #f8fafc;
       font-size: 13.5px;
       font-family: inherit;
     }
 
-    textarea { min-height: 110px; resize: vertical; }
-
-    input:focus, select:focus, textarea:focus {
-      outline: none;
-      border-color: var(--gold);
+    textarea {
+      min-height: 110px;
+      resize: vertical;
     }
 
-    button.sk-submit {
+    select:focus,
+    input[type="text"]:focus,
+    textarea:focus {
+      outline: none;
+      border-color: var(--emerald-bright);
+      box-shadow: 0 0 0 3px rgba(16, 185, 129, 0.18);
+    }
+
+    .sk-btn-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
+    }
+
+    .sk-btn-main {
       background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
       color: #03221e;
       border: none;
-      border-radius: 8px;
-      padding: 10px 18px;
-      font-size: 13px;
+      font-size: 12.5px;
       font-weight: 800;
+      padding: 10px 16px;
+      border-radius: 8px;
       cursor: pointer;
     }
 
-    .sk-notice {
-      margin-top: 14px;
-      padding: 14px;
-      border-radius: 10px;
-      background: rgba(16, 185, 129, 0.14);
-      border: 1px solid rgba(52, 211, 153, 0.4);
-      color: #d1fae5;
-      font-size: 13px;
-      display: none;
-      word-break: break-all;
+    .sk-btn-gold {
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      color: var(--gold-soft);
+      font-size: 12.5px;
+      font-weight: 700;
+      padding: 10px 16px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .sk-summary-box {
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(6, 15, 29, 0.9);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+    }
+
+    .sk-summary-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+      margin-bottom: 10px;
+    }
+
+    .sk-summary-head strong {
+      color: var(--gold-soft);
+      font-size: 14px;
+    }
+
+    .sk-badge {
+      font-size: 11px;
+      font-weight: 800;
+      padding: 3px 10px;
+      border-radius: 999px;
+      background: rgba(16, 185, 129, 0.2);
+      border: 1px solid rgba(52, 211, 153, 0.45);
+      color: #a7f3d0;
+    }
+
+    pre {
+      background: rgba(10, 25, 47, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 8px;
+      padding: 12px;
+      white-space: pre-wrap;
+      word-break: break-word;
+      font-size: 12.5px;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
     .sk-footer {
       text-align: center;
-      padding: 24px 14px;
-      border-top: 1px solid var(--line-soft);
       font-size: 12.5px;
       color: var(--text-muted);
+      padding: 24px 14px 36px;
+      border-top: 1px solid var(--line-soft);
     }
 
-    .sk-footer a { color: var(--gold-soft); text-decoration: none; }
+    .sk-footer a {
+      color: var(--gold-soft);
+      text-decoration: none;
+    }
   </style>
 </head>
 <body>
-  <div class="sk-top-wrap">
+  <div class="sk-header-wrap">
     <header class="sk-navbar">
       <a href="../index.html" class="sk-brand">
         <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
-        <strong>SAMUDERA KEPRI · SAFETY</strong>
+        <div>
+          <span class="sk-brand-title">SAMUDERA KEPRI</span>
+          <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+        </div>
       </a>
-      <div class="sk-nav-links">
+
+      <nav class="sk-nav" aria-label="Navigasi Utama">
         <a href="../index.html" data-i18n="nav_home">BERANDA</a>
-        <a href="./docs.html">DOCS</a>
-        <a href="./whitepaper.pdf" target="_blank" rel="noopener noreferrer">WHITEPAPER.PDF</a>
-        <a href="./faucet.html">FAUCET</a>
-        <a href="./report-abuse.html" class="active">REPORT-ABUSE</a>
-      </div>
-      <div class="sk-lang-switch">
-        <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
-        <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+        <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+        <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+        <a href="./community.html" data-i18n="nav_community">KOMUNITAS</a>
+
+        <div class="sk-dropdown" id="sk-dev-dropdown">
+          <button type="button" class="sk-dd-trigger active" id="sk-dev-btn" aria-expanded="false">
+            <span>DEVELOPERS</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./docs.html" role="menuitem">
+              <span>docs</span>
+              <span class="sk-dd-tag">GUIDE</span>
+            </a>
+            <a href="./Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+              <span>Whitepaper.pdf</span>
+              <span class="sk-dd-tag">PDF</span>
+            </a>
+            <a href="./faucet.html" role="menuitem">
+              <span>faucet</span>
+              <span class="sk-dd-tag">TEST</span>
+            </a>
+            <a href="./report-abuse.html" class="current" role="menuitem">
+              <span>report-abuse</span>
+              <span class="sk-dd-tag">SAFETY</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sk-right-tools">
+        <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
+          <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+          <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="./public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
       </div>
     </header>
   </div>
 
   <main class="sk-main">
     <section class="sk-hero">
-      <div class="sk-kicker" data-i18n="r_kicker">DEVELOPERS SUB-MENU · KEAMANAN &amp; PENGADUAN</div>
-      <h1 data-i18n="r_title">Report Abuse &amp; Verifikasi Pengaduan</h1>
-      <p data-i18n="r_desc">
-        Saluran pelaporan untuk tautan palsu/peniruan identitas, ketidaksesuaian metadata arsip berita, atau isu teknis pada ekosistem Coin MSK, FactSeal, dan NFT Samudera Kepri.
-      </p>
+      <div>
+        <div class="sk-stage-pill" data-i18n="r_pill">DEVELOPERS SUB-MENU · KEAMANAN &amp; PENGADUAN</div>
+        <h1 data-i18n="r_title">Report Abuse &amp; Verifikasi Pengaduan</h1>
+        <p data-i18n="r_desc">
+          Saluran pelaporan untuk tautan palsu/peniruan identitas, ketidaksesuaian metadata arsip berita, atau isu teknis pada ekosistem Coin MSK, FactSeal, dan NFT Samudera Kepri.
+        </p>
+      </div>
+
+      <div class="sk-coin-box">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
+        <div>
+          <strong>KEAMANAN &amp; AUDIT</strong>
+          <span data-i18n="r_coin_sub">Ekosistem Samudera Kepri</span>
+        </div>
+      </div>
     </section>
 
-    <section class="sk-panel">
+    <section class="sk-section">
       <h2 data-i18n="form_title">Formulir Laporan Penyalahgunaan / Isu</h2>
-      <form id="sk-abuse-form">
-        <div class="sk-field">
-          <label for="sk-abuse-type" data-i18n="f_type">Kategori Laporan</label>
-          <select id="sk-abuse-type">
-            <option value="Peniruan / Tautan Palsu">Peniruan Identitas / Tautan Palsu</option>
-            <option value="Ketidaksesuaian Hash / Arsip Berita">Ketidaksesuaian Hash / Arsip Berita</option>
-            <option value="Isu Kontrak / NFT / MSK">Isu Kontrak / NFT / Token MSK</option>
-            <option value="Keamanan Situs">Keamanan Situs / Tautan Rusak</option>
-          </select>
+
+      <div class="sk-field">
+        <label for="sk-abuse-cat" data-i18n="lbl_cat">Kategori Laporan</label>
+        <select id="sk-abuse-cat">
+          <option value="Peniruan Identitas / Tautan Palsu">Peniruan Identitas / Tautan Palsu</option>
+          <option value="Ketidaksesuaian Hash atau Metadata Berita">Ketidaksesuaian Hash atau Metadata Berita</option>
+          <option value="Isu Keamanan atau Kontrak / RPC">Isu Keamanan atau Kontrak / RPC</option>
+          <option value="Pengaduan Konten atau Hak Publikasi">Pengaduan Konten atau Hak Publikasi</option>
+        </select>
+      </div>
+
+      <div class="sk-field">
+        <label for="sk-abuse-ref" data-i18n="lbl_ref">URL Terkait / Content Hash (bytes32) / TX Hash</label>
+        <input type="text" id="sk-abuse-ref" placeholder="https://... atau 0x..." />
+      </div>
+
+      <div class="sk-field">
+        <label for="sk-abuse-desc" data-i18n="lbl_desc">Uraian Singkat Laporan</label>
+        <textarea id="sk-abuse-desc" placeholder="Jelaskan temuan atau ketidaksesuaian yang ingin dilaporkan..."></textarea>
+      </div>
+
+      <div class="sk-btn-row">
+        <button type="button" class="sk-btn-main" id="sk-build-report" data-i18n="btn_build">Buat Ringkasan Laporan</button>
+        <button type="button" class="sk-btn-gold" id="sk-copy-report" style="display:none;" data-i18n="btn_copy">Salin Ringkasan</button>
+      </div>
+
+      <div class="sk-summary-box" id="sk-report-output" style="display:none;">
+        <div class="sk-summary-head">
+          <strong data-i18n="out_title">Ringkasan Laporan Siap Kirim / Arsipkan</strong>
+          <span class="sk-badge" data-i18n="out_badge">TERFORMAT</span>
         </div>
-
-        <div class="sk-field">
-          <label for="sk-abuse-ref" data-i18n="f_ref">URL Terkait / Content Hash (bytes32) / TX Hash</label>
-          <input type="text" id="sk-abuse-ref" placeholder="https://... atau 0x..." required />
-        </div>
-
-        <div class="sk-field">
-          <label for="sk-abuse-detail" data-i18n="f_detail">Uraian Singkat Laporan</label>
-          <textarea id="sk-abuse-detail" placeholder="Jelaskan temuan atau ketidaksesuaian yang ingin dilaporkan..." required></textarea>
-        </div>
-
-        <button type="submit" class="sk-submit" data-i18n="f_btn">Buat Ringkasan Laporan</button>
-      </form>
-
-      <div class="sk-notice" id="sk-abuse-result"></div>
+        <pre id="sk-report-text"></pre>
+      </div>
     </section>
   </main>
 
@@ -296,25 +570,41 @@
       const I18N = {
         id: {
           nav_home: "BERANDA",
-          r_kicker: "DEVELOPERS SUB-MENU · KEAMANAN & PENGADUAN",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          r_pill: "DEVELOPERS SUB-MENU · KEAMANAN & PENGADUAN",
           r_title: "Report Abuse & Verifikasi Pengaduan",
           r_desc: "Saluran pelaporan untuk tautan palsu/peniruan identitas, ketidaksesuaian metadata arsip berita, atau isu teknis pada ekosistem Coin MSK, FactSeal, dan NFT Samudera Kepri.",
+          r_coin_sub: "Ekosistem Samudera Kepri",
           form_title: "Formulir Laporan Penyalahgunaan / Isu",
-          f_type: "Kategori Laporan",
-          f_ref: "URL Terkait / Content Hash (bytes32) / TX Hash",
-          f_detail: "Uraian Singkat Laporan",
-          f_btn: "Buat Ringkasan Laporan"
+          lbl_cat: "Kategori Laporan",
+          lbl_ref: "URL Terkait / Content Hash (bytes32) / TX Hash",
+          lbl_desc: "Uraian Singkat Laporan",
+          btn_build: "Buat Ringkasan Laporan",
+          btn_copy: "Salin Ringkasan",
+          out_title: "Ringkasan Laporan Siap Kirim / Arsipkan",
+          out_badge: "TERFORMAT"
         },
         en: {
           nav_home: "HOME",
-          r_kicker: "DEVELOPERS SUB-MENU · SAFETY & REPORTING",
-          r_title: "Report Abuse & Issue Verification",
-          r_desc: "Reporting channel for impersonation/fake links, news archive metadata discrepancies, or technical issues across the MSK Coin, FactSeal, and Samudera Kepri NFT ecosystem.",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          r_pill: "DEVELOPERS SUB-MENU · SAFETY & ABUSE REPORTING",
+          r_title: "Report Abuse & Complaint Verification",
+          r_desc: "Reporting channel for spoofed links/impersonation, news archive metadata mismatches, or technical issues across the MSK Coin, FactSeal, and Samudera Kepri NFT ecosystem.",
+          r_coin_sub: "Samudera Kepri Ecosystem",
           form_title: "Abuse / Issue Report Form",
-          f_type: "Report Category",
-          f_ref: "Related URL / Content Hash (bytes32) / TX Hash",
-          f_detail: "Brief Description",
-          f_btn: "Generate Report Summary"
+          lbl_cat: "Report Category",
+          lbl_ref: "Related URL / Content Hash (bytes32) / TX Hash",
+          lbl_desc: "Brief Description",
+          btn_build: "Generate Report Summary",
+          btn_copy: "Copy Summary",
+          out_title: "Formatted Report Summary",
+          out_badge: "FORMATTED"
         }
       };
 
@@ -335,26 +625,53 @@
         btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
       });
 
-      let lang = "id";
-      try { lang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
-      applyLang(lang);
+      const dd = document.getElementById("sk-dev-dropdown");
+      const ddBtn = document.getElementById("sk-dev-btn");
+      ddBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dd.classList.toggle("open");
+        ddBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+      document.addEventListener("click", () => {
+        dd.classList.remove("open");
+        ddBtn.setAttribute("aria-expanded", "false");
+      });
 
-      function esc(s) {
-        return String(s || "")
-          .replace(/&/g, "&amp;")
-          .replace(/</g, "&lt;")
-          .replace(/>/g, "&gt;")
-          .replace(/"/g, "&quot;");
-      }
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
 
-      document.getElementById("sk-abuse-form").addEventListener("submit", function (e) {
-        e.preventDefault();
-        const type = document.getElementById("sk-abuse-type").value;
-        const ref = document.getElementById("sk-abuse-ref").value.trim();
-        const detail = document.getElementById("sk-abuse-detail").value.trim();
-        const box = document.getElementById("sk-abuse-result");
-        box.style.display = "block";
-        box.innerHTML = `<strong>Ringkasan Laporan Tercatat (Lokal):</strong><br/><strong>Kategori:</strong> ${esc(type)}<br/><strong>Referensi:</strong> ${esc(ref)}<br/><strong>Uraian:</strong> ${esc(detail)}`;
+      const buildBtn = document.getElementById("sk-build-report");
+      const copyBtn = document.getElementById("sk-copy-report");
+      const outBox = document.getElementById("sk-report-output");
+      const outText = document.getElementById("sk-report-text");
+
+      buildBtn.addEventListener("click", function () {
+        const cat = document.getElementById("sk-abuse-cat").value;
+        const ref = document.getElementById("sk-abuse-ref").value.trim() || "-";
+        const desc = document.getElementById("sk-abuse-desc").value.trim() || "-";
+        const now = new Date().toISOString();
+
+        const summary = [
+          "LAPORAN PENYALAHGUNAAN / ISU — EKOSISTEM SAMUDERA KEPRI",
+          "Waktu (UTC): " + now,
+          "Jaringan Uji: Ethereum Sepolia (Chain ID: 11155111)",
+          "Kategori: " + cat,
+          "Referensi (URL / Hash / TX): " + ref,
+          "Uraian: " + desc
+        ].join("\n");
+
+        outText.textContent = summary;
+        outBox.style.display = "block";
+        copyBtn.style.display = "inline-block";
+      });
+
+      copyBtn.addEventListener("click", function () {
+        navigator.clipboard.writeText(outText.textContent).then(() => {
+          const orig = this.textContent;
+          this.textContent = "Tersalin!";
+          setTimeout(() => { this.textContent = orig; }, 1500);
+        });
       });
     })();
   </script>
