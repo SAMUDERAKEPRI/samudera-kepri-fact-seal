@@ -1,0 +1,451 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Faucet &amp; MSK Testnet Info — Samudera Kepri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy-base: #060f1d;
+      --prussian: #0a192f;
+      --prussian-panel: rgba(10, 25, 47, 0.88);
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --gold: #eab308;
+      --gold-soft: #fde047;
+      --purple-kepri: #2e1065;
+      --magenta-kepri: #701a75;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --line-soft: rgba(148, 163, 184, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 14% 12%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 86% 18%, rgba(112, 26, 117, 0.26) 0%, transparent 48%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 55%, #050c16 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    .sk-top-wrap { position: sticky; top: 12px; z-index: 50; padding: 0 14px; }
+
+    .sk-navbar {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .sk-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .sk-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+    }
+
+    .sk-brand strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .sk-nav-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+    .sk-nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sk-nav-links a:hover, .sk-nav-links a.active { color: var(--gold-soft); }
+
+    .sk-lang-switch {
+      display: inline-flex;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    .sk-lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-lang-btn.active {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-main { max-width: 1120px; margin: 22px auto 0; padding: 0 14px 56px; }
+
+    .sk-hero {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 45%, #0a192f 82%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 24px;
+      margin-bottom: 20px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.44);
+    }
+
+    .sk-kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      background: rgba(6, 15, 29, 0.6);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .sk-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.65rem, 3.5vw, 2.35rem);
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .sk-hero p { font-size: 13.5px; color: #f1f5f9; max-width: 620px; }
+
+    .sk-coin-chip {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(6, 15, 29, 0.58);
+      border: 1px solid rgba(234, 179, 8, 0.48);
+      border-radius: 14px;
+      padding: 10px 14px;
+    }
+
+    .sk-coin-chip img {
+      width: 58px;
+      height: 58px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: #09090b;
+    }
+
+    .sk-coin-chip strong { display: block; font-size: 13px; color: var(--gold-soft); }
+    .sk-coin-chip span { display: block; font-size: 11px; color: #e2e8f0; }
+
+    .sk-panel {
+      background: var(--prussian-panel);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 20px;
+      margin-bottom: 20px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+    }
+
+    .sk-panel h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .sk-panel p.sk-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 14px; }
+
+    label {
+      display: block;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(6, 15, 29, 0.85);
+      color: #f8fafc;
+      font-size: 13.5px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    input[type="text"]:focus { outline: none; border-color: var(--emerald-bright); }
+
+    .sk-btn-row { display: flex; flex-wrap: wrap; gap: 10px; margin-top: 12px; }
+
+    button.sk-btn, a.sk-link-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 15px;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    a.sk-link-btn.sec {
+      background: rgba(6, 15, 29, 0.72);
+      color: var(--gold-soft);
+      border: 1px solid rgba(234, 179, 8, 0.45);
+    }
+
+    .sk-result {
+      margin-top: 14px;
+      padding: 14px;
+      border-radius: 10px;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(52, 211, 153, 0.28);
+      font-size: 13px;
+      color: #e2e8f0;
+      word-break: break-all;
+    }
+
+    .sk-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 14px;
+    }
+
+    .sk-box {
+      background: rgba(6, 15, 29, 0.78);
+      border: 1px solid rgba(52, 211, 153, 0.22);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sk-box h3 { font-size: 15px; color: #ffffff; margin-bottom: 6px; }
+    .sk-box p { font-size: 13px; color: var(--text-muted); margin-bottom: 10px; }
+
+    .sk-footer {
+      text-align: center;
+      padding: 24px 14px;
+      border-top: 1px solid var(--line-soft);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .sk-footer a { color: var(--gold-soft); text-decoration: none; }
+  </style>
+</head>
+<body>
+  <div class="sk-top-wrap">
+    <header class="sk-navbar">
+      <a href="../index.html" class="sk-brand">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+        <strong>SAMUDERA KEPRI · FAUCET</strong>
+      </a>
+      <div class="sk-nav-links">
+        <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+        <a href="./docs.html">DOCS</a>
+        <a href="./whitepaper.pdf" target="_blank" rel="noopener noreferrer">WHITEPAPER.PDF</a>
+        <a href="./faucet.html" class="active">FAUCET</a>
+        <a href="./report-abuse.html">REPORT-ABUSE</a>
+      </div>
+      <div class="sk-lang-switch">
+        <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+        <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+      </div>
+    </header>
+  </div>
+
+  <main class="sk-main">
+    <section class="sk-hero">
+      <div>
+        <div class="sk-kicker" data-i18n="f_kicker">DEVELOPERS SUB-MENU · LINGKUNGAN UJI SEPOLIA</div>
+        <h1 data-i18n="f_title">Faucet &amp; Pemeriksa Saldo Token MSK</h1>
+        <p data-i18n="f_desc">
+          Fasilitas informasi pengujian jaringan Sepolia (Chain ID: 11155111) untuk memeriksa saldo Sepolia ETH &amp; token SamuderaKepriToken (MSK) sebelum proyek dipindahkan ke sistem Ethereum asli.
+        </p>
+      </div>
+      <div class="sk-coin-chip">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
+        <div>
+          <strong>MSK TESTNET</strong>
+          <span>Chain ID 11155111</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-panel">
+      <h2 data-i18n="chk_title">Cek Saldo Sepolia ETH &amp; MSK</h2>
+      <p class="sk-desc" data-i18n="chk_desc">Masukkan alamat dompet (0x...) untuk melihat saldo ETH uji dan saldo token MSK di jaringan Sepolia.</p>
+      <label for="sk-wallet-input" data-i18n="chk_label">Alamat Dompet Ethereum (0x...)</label>
+      <input type="text" id="sk-wallet-input" value="0x7f8684CE32BC602D01B431c1f064f3838dF580eF" placeholder="0x..." />
+      <div class="sk-btn-row">
+        <button type="button" class="sk-btn" id="sk-check-balance-btn" data-i18n="chk_btn">Periksa Saldo</button>
+        <a href="./explorer.html" class="sk-link-btn sec" data-i18n="chk_exp">Buka Explorer</a>
+      </div>
+      <div class="sk-result" id="sk-balance-output" data-i18n="chk_ready">Siap memeriksa saldo di Ethereum Sepolia.</div>
+    </section>
+
+    <section class="sk-panel">
+      <h2 data-i18n="src_title">Sumber ETH Uji Sepolia &amp; Kontrak MSK</h2>
+      <p class="sk-desc" data-i18n="src_desc">Untuk mengirim transaksi uji pada tahap persiapan ini, gunakan ETH uji Sepolia dari faucet publik resmi atau periksa kontrak di Etherscan:</p>
+      <div class="sk-grid-2">
+        <div class="sk-box">
+          <h3 data-i18n="b1_title">Faucet ETH Sepolia Publik</h3>
+          <p data-i18n="b1_desc">Digunakan sebagai gas fee saat menguji penyegelan hash berita atau interaksi kontrak di jaringan uji Sepolia.</p>
+          <a href="https://sepoliafaucet.com/" target="_blank" rel="noopener noreferrer" class="sk-link-btn sec">Sepolia Faucet &nearr;</a>
+        </div>
+        <div class="sk-box">
+          <h3 data-i18n="b2_title">Kontrak Token MSK</h3>
+          <p><code>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</code></p>
+          <a href="https://sepolia.etherscan.io/token/0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d" target="_blank" rel="noopener noreferrer" class="sk-link-btn sec">Lihat Token di Etherscan &nearr;</a>
+        </div>
+      </div>
+    </section>
+  </main>
+
+  <footer class="sk-footer">
+    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Developers Faucet · Samudera Kepri (MSK)
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script>
+    (function () {
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          f_kicker: "DEVELOPERS SUB-MENU · LINGKUNGAN UJI SEPOLIA",
+          f_title: "Faucet & Pemeriksa Saldo Token MSK",
+          f_desc: "Fasilitas informasi pengujian jaringan Sepolia (Chain ID: 11155111) untuk memeriksa saldo Sepolia ETH & token SamuderaKepriToken (MSK) sebelum proyek dipindahkan ke sistem Ethereum asli.",
+          chk_title: "Cek Saldo Sepolia ETH & MSK",
+          chk_desc: "Masukkan alamat dompet (0x...) untuk melihat saldo ETH uji dan saldo token MSK di jaringan Sepolia.",
+          chk_label: "Alamat Dompet Ethereum (0x...)",
+          chk_btn: "Periksa Saldo",
+          chk_exp: "Buka Explorer",
+          chk_ready: "Siap memeriksa saldo di Ethereum Sepolia.",
+          src_title: "Sumber ETH Uji Sepolia & Kontrak MSK",
+          src_desc: "Untuk mengirim transaksi uji pada tahap persiapan ini, gunakan ETH uji Sepolia dari faucet publik resmi atau periksa kontrak di Etherscan:",
+          b1_title: "Faucet ETH Sepolia Publik",
+          b1_desc: "Digunakan sebagai gas fee saat menguji penyegelan hash berita atau interaksi kontrak di jaringan uji Sepolia.",
+          b2_title: "Kontrak Token MSK"
+        },
+        en: {
+          nav_home: "HOME",
+          f_kicker: "DEVELOPERS SUB-MENU · SEPOLIA TEST ENVIRONMENT",
+          f_title: "Faucet & MSK Token Balance Checker",
+          f_desc: "Testnet information and balance lookup on Sepolia (Chain ID: 11155111) for Sepolia ETH and SamuderaKepriToken (MSK) prior to migrating to the live Ethereum system.",
+          chk_title: "Check Sepolia ETH & MSK Balance",
+          chk_desc: "Enter a wallet address (0x...) to view testnet ETH and MSK token balance on Sepolia.",
+          chk_label: "Ethereum Wallet Address (0x...)",
+          chk_btn: "Check Balance",
+          chk_exp: "Open Explorer",
+          chk_ready: "Ready to check balances on Ethereum Sepolia.",
+          src_title: "Sepolia ETH Faucets & MSK Contract",
+          src_desc: "To submit test transactions during this preparation phase, obtain testnet ETH from a public Sepolia faucet or inspect the token on Etherscan:",
+          b1_title: "Public Sepolia ETH Faucet",
+          b1_desc: "Used to pay testnet gas fees while testing news hash sealing or contract interactions on Sepolia.",
+          b2_title: "MSK Token Contract"
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (dict[k]) el.textContent = dict[k];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      let lang = "id";
+      try { lang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(lang);
+
+      const RPC_URLS = ["https://rpc.sepolia.org", "https://ethereum-sepolia-rpc.publicnode.com"];
+      const MSK_ADDR = "0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d";
+
+      document.getElementById("sk-check-balance-btn").addEventListener("click", async function () {
+        const addr = document.getElementById("sk-wallet-input").value.trim();
+        const out = document.getElementById("sk-balance-output");
+        if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) {
+          out.textContent = "Format alamat dompet tidak valid (harus 0x + 40 karakter hex).";
+          return;
+        }
+        if (!window.ethers) {
+          out.textContent = "Pustaka ethers belum termuat.";
+          return;
+        }
+        out.textContent = "Mengambil saldo dari jaringan Sepolia...";
+        for (const rpc of RPC_URLS) {
+          try {
+            const provider = new window.ethers.JsonRpcProvider(rpc);
+            const ethWei = await provider.getBalance(addr);
+            const token = new window.ethers.Contract(
+              MSK_ADDR,
+              ["function balanceOf(address) view returns (uint256)", "function decimals() view returns (uint8)", "function symbol() view returns (string)"],
+              provider
+            );
+            const [rawBal, dec, sym] = await Promise.all([
+              token.balanceOf(addr),
+              token.decimals().catch(() => 18),
+              token.symbol().catch(() => "MSK")
+            ]);
+            const ethFmt = Number(window.ethers.formatEther(ethWei)).toLocaleString("id-ID", { maximumFractionDigits: 4 });
+            const mskFmt = Number(window.ethers.formatUnits(rawBal, dec)).toLocaleString("id-ID", { maximumFractionDigits: 4 });
+            out.innerHTML = `<strong>Alamat:</strong> ${addr}<br/><strong>Sepolia ETH:</strong> ${ethFmt} ETH<br/><strong>Saldo ${sym}:</strong> ${mskFmt} ${sym}`;
+            return;
+          } catch (e) {}
+        }
+        out.textContent = "Gagal menghubungi RPC Sepolia saat ini. Silakan coba lagi.";
+      });
+    })();
+  </script>
+</body>
+</html>
