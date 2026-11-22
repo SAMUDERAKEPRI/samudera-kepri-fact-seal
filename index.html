@@ -3,18 +3,450 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <meta http-equiv="refresh" content="0; url=https://samuderakepri.github.io/samudera-kepri-fact-seal/frontend/public-portal.html" />
-  <title>Mengalihkan ke Portal Samudera Kepri...</title>
-  <script>
-    window.location.replace("https://samuderakepri.github.io/samudera-kepri-fact-seal/frontend/public-portal.html");
-  </script>
+  <title>Samudera Kepri FactSeal &amp; Coin (MSK)</title>
+  <style>
+    @keyframes skFadeUp {
+      from {
+        opacity: 0;
+        transform: translateY(10px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    @keyframes skCoinPulse {
+      0%, 100% {
+        transform: translateY(0px);
+        box-shadow: 0 0 0 0 rgba(250, 204, 21, 0.35), 0 10px 24px rgba(0, 0, 0, 0.45);
+      }
+      50% {
+        transform: translateY(-3px);
+        box-shadow: 0 0 0 8px rgba(250, 204, 21, 0), 0 14px 28px rgba(0, 0, 0, 0.55);
+      }
+    }
+
+    @keyframes skBgShift {
+      0%, 100% {
+        background-position: 0% 50%;
+      }
+      50% {
+        background-position: 100% 50%;
+      }
+    }
+
+    html, body {
+      margin: 0;
+      padding: 0;
+      min-height: 100%;
+      font-family: system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+      background:
+        radial-gradient(circle at 15% 12%, rgba(112, 26, 117, 0.32) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(14, 116, 144, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #0b0d1e 0%, #11132b 52%, #090c18 100%);
+      color: #f8fafc;
+    }
+
+    #sk-landing {
+      max-width: 980px;
+      margin: 24px auto;
+      padding: 0 12px 28px;
+      animation: skFadeUp 0.45s ease-out;
+    }
+
+    #sk-landing .sk-hero {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 45%, #1e1b4b 78%, #9a3412 100%);
+      background-size: 200% 200%;
+      animation: skBgShift 12s ease infinite;
+      color: #ffffff;
+      border-radius: 16px;
+      padding: 26px 24px;
+      margin-bottom: 18px;
+      border: 1px solid rgba(251, 191, 36, 0.4);
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+    }
+
+    #sk-landing .sk-hero-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+    }
+
+    #sk-landing .sk-brand-wrap {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+      flex: 1 1 420px;
+    }
+
+    #sk-landing .sk-brand-logo {
+      width: 66px;
+      height: 66px;
+      border-radius: 14px;
+      object-fit: cover;
+      background: #ffffff;
+      border: 2px solid rgba(255, 255, 255, 0.85);
+      flex-shrink: 0;
+    }
+
+    #sk-landing .sk-kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      color: #fde68a;
+      background: rgba(15, 23, 42, 0.52);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 6px;
+    }
+
+    #sk-landing h1 {
+      margin: 0 0 6px;
+      font-size: 24px;
+      line-height: 1.25;
+      color: #ffffff;
+    }
+
+    #sk-landing .sk-hero-sub {
+      margin: 0;
+      font-size: 13.5px;
+      color: #f8fafc;
+      opacity: 0.95;
+      max-width: 620px;
+    }
+
+    #sk-landing .sk-coin-showcase {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(15, 23, 42, 0.48);
+      border: 1px solid rgba(250, 204, 21, 0.48);
+      border-radius: 14px;
+      padding: 10px 14px;
+      backdrop-filter: blur(6px);
+    }
+
+    #sk-landing .sk-coin-ring {
+      width: 68px;
+      height: 68px;
+      border-radius: 50%;
+      padding: 2px;
+      background: linear-gradient(135deg, #fde047, #d97706, #fef08a);
+      animation: skCoinPulse 3.6s ease-in-out infinite;
+      flex-shrink: 0;
+    }
+
+    #sk-landing .sk-coin-img {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+      object-fit: cover;
+      display: block;
+      background: #09090b;
+    }
+
+    #sk-landing .sk-coin-caption strong {
+      display: block;
+      font-size: 13px;
+      color: #fde047;
+      letter-spacing: 0.03em;
+    }
+
+    #sk-landing .sk-coin-caption span {
+      display: block;
+      font-size: 11px;
+      color: #e2e8f0;
+      margin-top: 2px;
+    }
+
+    #sk-landing .sk-cta-row {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 20px;
+    }
+
+    #sk-landing a.sk-btn {
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(135deg, #701a75 0%, #0369a1 100%);
+      color: #ffffff;
+      border: 1px solid rgba(255, 255, 255, 0.18);
+      border-radius: 8px;
+      padding: 10px 16px;
+      font-size: 13px;
+      font-weight: 700;
+      transition: transform 0.15s ease, filter 0.2s ease;
+    }
+
+    #sk-landing a.sk-btn:hover {
+      filter: brightness(1.12);
+      transform: translateY(-1px);
+    }
+
+    #sk-landing a.sk-btn-sec {
+      background: rgba(15, 23, 42, 0.65);
+      color: #fde68a;
+      border: 1px solid rgba(250, 204, 21, 0.45);
+    }
+
+    #sk-landing .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      gap: 12px;
+      margin-top: 18px;
+    }
+
+    #sk-landing .sk-stat-box {
+      background: rgba(15, 23, 42, 0.48);
+      border: 1px solid rgba(255, 255, 255, 0.2);
+      border-radius: 10px;
+      padding: 12px;
+    }
+
+    #sk-landing .sk-stat-label {
+      font-size: 11px;
+      text-transform: uppercase;
+      letter-spacing: 0.04em;
+      color: #e2e8f0;
+      margin-bottom: 4px;
+    }
+
+    #sk-landing .sk-stat-val {
+      font-size: 13px;
+      font-weight: 700;
+      color: #ffffff;
+      word-break: break-all;
+    }
+
+    #sk-landing .sk-panel {
+      background: rgba(19, 24, 48, 0.86);
+      border: 1px solid rgba(148, 163, 184, 0.22);
+      border-radius: 14px;
+      padding: 20px;
+      margin-bottom: 18px;
+      box-shadow: 0 10px 26px rgba(0, 0, 0, 0.35);
+      backdrop-filter: blur(10px);
+    }
+
+    #sk-landing h2 {
+      margin: 0 0 8px;
+      font-size: 18px;
+      color: #f8fafc;
+    }
+
+    #sk-landing p.sk-muted {
+      margin: 0 0 14px;
+      font-size: 13.5px;
+      color: #cbd5e1;
+    }
+
+    #sk-landing .sk-cards {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+      gap: 14px;
+    }
+
+    #sk-landing .sk-card {
+      background: rgba(11, 16, 34, 0.76);
+      border: 1px solid rgba(192, 132, 252, 0.25);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    #sk-landing .sk-card h3 {
+      margin: 0 0 6px;
+      font-size: 15px;
+      color: #fde68a;
+    }
+
+    #sk-landing .sk-card p {
+      margin: 0 0 12px;
+      font-size: 13px;
+      color: #cbd5e1;
+    }
+
+    #sk-landing .sk-card a {
+      color: #67e8f9;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 700;
+    }
+
+    #sk-landing .sk-card a:hover {
+      text-decoration: underline;
+    }
+
+    #sk-landing .sk-kv {
+      width: 100%;
+      border-collapse: collapse;
+      font-size: 13px;
+      background: rgba(9, 13, 28, 0.78);
+      border-radius: 8px;
+      overflow: hidden;
+    }
+
+    #sk-landing .sk-kv td {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+      padding: 9px 12px;
+      vertical-align: top;
+      word-break: break-all;
+      color: #e2e8f0;
+    }
+
+    #sk-landing .sk-kv td:first-child {
+      width: 195px;
+      font-weight: 700;
+      color: #cbd5e1;
+    }
+
+    #sk-landing .sk-footer {
+      text-align: center;
+      font-size: 12.5px;
+      color: #94a3b8;
+      padding-top: 6px;
+    }
+
+    #sk-landing .sk-footer a {
+      color: #fde68a;
+      text-decoration: none;
+    }
+  </style>
 </head>
 <body>
-  <p>
-    Mengalihkan ke
-    <a href="https://samuderakepri.github.io/samudera-kepri-fact-seal/frontend/public-portal.html">
-      https://samuderakepri.github.io/samudera-kepri-fact-seal/frontend/public-portal.html
-    </a>
-  </p>
+  <div id="sk-landing">
+    <section class="sk-hero">
+      <div class="sk-hero-top">
+        <div class="sk-brand-wrap">
+          <img
+            src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp"
+            class="sk-brand-logo"
+            alt="Logo Media Samudera Kepri"
+            loading="lazy"
+          />
+          <div>
+            <div class="sk-kicker">SAMUDERAKEPRI.CO.ID · VERIFIKASI FAKTA ON-CHAIN</div>
+            <h1>Samudera Kepri FactSeal &amp; Coin (MSK)</h1>
+            <p class="sk-hero-sub">
+              Halaman utama proyek transparansi integritas arsip berita, gelar fakta, dan investigasi <strong>Media Samudera Kepri</strong> di jaringan <strong>Ethereum Sepolia</strong>.
+            </p>
+          </div>
+        </div>
+
+        <div class="sk-coin-showcase">
+          <div class="sk-coin-ring">
+            <img
+              src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png"
+              class="sk-coin-img"
+              alt="Logo Coin Samudera Kepri"
+              loading="lazy"
+            />
+          </div>
+          <div class="sk-coin-caption">
+            <strong>SAMUDERA KEPRI (MSK)</strong>
+            <span>Sepolia · ID 11155111</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sk-cta-row">
+        <a href="./frontend/public-portal.html" class="sk-btn">Buka Portal Publik &amp; Registri</a>
+        <a href="./frontend/explorer.html" class="sk-btn sk-btn-sec">Buka Blockchain Explorer</a>
+        <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer" class="sk-btn sk-btn-sec">Situs Samudera Kepri</a>
+      </div>
+
+      <div class="sk-grid">
+        <div class="sk-stat-box">
+          <div class="sk-stat-label">Token / Coin</div>
+          <div class="sk-stat-val">SamuderaKepriToken (MSK)</div>
+        </div>
+        <div class="sk-stat-box">
+          <div class="sk-stat-label">Jaringan</div>
+          <div class="sk-stat-val">Ethereum Sepolia (11155111)</div>
+        </div>
+        <div class="sk-stat-box">
+          <div class="sk-stat-label">Total Data Tersegel</div>
+          <div class="sk-stat-val" id="sk-land-sealed">Memuat...</div>
+        </div>
+        <div class="sk-stat-box">
+          <div class="sk-stat-label">Blok Terbaru</div>
+          <div class="sk-stat-val" id="sk-land-block">Memuat...</div>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-panel">
+      <h2>Modul Utama Proyek</h2>
+      <p class="sk-muted">Pilih modul yang ingin dibuka untuk menelusuri registri arsip berita maupun data langsung di jaringan Sepolia.</p>
+      <div class="sk-cards">
+        <div class="sk-card">
+          <h3>Portal Publik &amp; Registri Berita</h3>
+          <p>Cari judul berita investigasi dan gelar fakta serta tinjau detail <code>contentHash</code>, verifikator, dan tautan rujukan.</p>
+          <a href="./frontend/public-portal.html">Masuk ke Portal Publik &rarr;</a>
+        </div>
+        <div class="sk-card">
+          <h3>FactSeal &amp; MSK Explorer</h3>
+          <p>Periksa status <code>contentHash</code> (<code>verifyFact</code>), cek saldo token <code>MSK</code>, dan buka tautan ke Sepolia Etherscan.</p>
+          <a href="./frontend/explorer.html">Masuk ke Explorer &rarr;</a>
+        </div>
+        <div class="sk-card">
+          <h3>Repositori &amp; Smart Contract</h3>
+          <p>Akses dokumentasi, kode sumber kontrak pintar Solidity, serta catatan deployment jaringan Sepolia di GitHub.</p>
+          <a href="https://github.com/SAMUDERAKEPRI/samudera-kepri-fact-seal" target="_blank" rel="noopener noreferrer">Buka GitHub Repository &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-panel">
+      <h2>Alamat Kontrak &amp; Identitas Jaringan</h2>
+      <table class="sk-kv">
+        <tr><td>Jaringan Blockchain</td><td>Ethereum Sepolia Testnet (Chain ID: 11155111)</td></tr>
+        <tr><td>Kontrak FactSeal</td><td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td></tr>
+        <tr><td>Kontrak Token (MSK)</td><td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td></tr>
+        <tr><td>Akun Verifikator</td><td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td></tr>
+      </table>
+    </section>
+
+    <footer class="sk-footer">
+      <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Samudera Kepri FactSeal &amp; Coin (MSK)
+    </footer>
+  </div>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script>
+    (function () {
+      const RPC_URLS = [
+        "https://rpc.sepolia.org",
+        "https://ethereum-sepolia-rpc.publicnode.com"
+      ];
+      const FACT_SEAL_ADDR = "0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033";
+
+      async function loadOverview() {
+        if (!window.ethers) return;
+        for (const url of RPC_URLS) {
+          try {
+            const provider = new window.ethers.JsonRpcProvider(url);
+            const block = await provider.getBlockNumber();
+            document.getElementById("sk-land-block").textContent = "#" + block.toLocaleString("id-ID");
+
+            const seal = new window.ethers.Contract(
+              FACT_SEAL_ADDR,
+              ["function totalSealed() view returns (uint256)"],
+              provider
+            );
+            const total = await seal.totalSealed();
+            document.getElementById("sk-land-sealed").textContent = total.toString() + " Catatan";
+            break;
+          } catch (e) {}
+        }
+      }
+
+      loadOverview();
+    })();
+  </script>
 </body>
 </html>
