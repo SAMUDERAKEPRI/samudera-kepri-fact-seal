@@ -11,7 +11,7 @@
     :root {
       --navy-base: #060f1d;
       --prussian: #0a192f;
-      --prussian-card: rgba(10, 25, 47, 0.86);
+      --prussian-card: rgba(10, 25, 47, 0.88);
       --emerald: #10b981;
       --emerald-bright: #34d399;
       --gold: #eab308;
@@ -23,7 +23,7 @@
       --line-soft: rgba(148, 163, 184, 0.18);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -56,10 +56,10 @@
     .sk-navbar {
       max-width: 1140px;
       margin: 0 auto;
-      background: rgba(10, 25, 47, 0.9);
+      background: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(234, 179, 8, 0.34);
+      border: 1px solid rgba(234, 179, 8, 0.35);
       border-radius: 14px;
       padding: 10px 16px;
       display: flex;
@@ -145,7 +145,7 @@
       position: absolute;
       top: calc(100% + 8px);
       left: 0;
-      min-width: 215px;
+      min-width: 220px;
       background: #081528;
       border: 1px solid rgba(234, 179, 8, 0.42);
       border-radius: 12px;
@@ -281,7 +281,7 @@
     .sk-hero p {
       font-size: 14px;
       color: #f1f5f9;
-      max-width: 640px;
+      max-width: 650px;
     }
 
     .sk-coin-box {
@@ -471,6 +471,50 @@
       text-decoration: underline;
     }
 
+    /* Modules & Sub-Menu Directory Grid */
+    .sk-dir-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 12px;
+    }
+
+    .sk-dir-item {
+      background: rgba(6, 15, 29, 0.76);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 12px;
+      padding: 14px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+    }
+
+    .sk-dir-item strong {
+      display: block;
+      font-size: 14px;
+      color: #ffffff;
+      margin-bottom: 3px;
+    }
+
+    .sk-dir-item span {
+      display: block;
+      font-size: 12px;
+      color: var(--text-muted);
+    }
+
+    .sk-dir-item a {
+      align-self: flex-start;
+      color: var(--emerald-bright);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .sk-dir-item a:hover {
+      color: var(--gold-soft);
+      text-decoration: underline;
+    }
+
     /* Contract Table */
     .sk-table {
       width: 100%;
@@ -577,6 +621,7 @@
             <a href="./frontend/public-portal.html" class="sk-btn-main" data-i18n="btn_registry">Registri Berita Blockchain</a>
             <a href="./frontend/explorer.html" class="sk-btn-gold" data-i18n="btn_explorer">Buka Explorer</a>
             <a href="./frontend/nft.html" class="sk-btn-gold" data-i18n="btn_nft">Galeri &amp; Bukti NFT</a>
+            <a href="./frontend/community.html" class="sk-btn-gold" data-i18n="btn_comm">Komunitas</a>
           </div>
         </div>
 
@@ -655,6 +700,80 @@
       </div>
     </section>
 
+    <section class="sk-section" id="modul">
+      <div class="sk-sec-head">
+        <div class="sk-sec-kicker" data-i18n="m_dir_kicker">PETA HALAMAN &amp; SUB-MENU DEVELOPERS</div>
+        <h2 data-i18n="m_dir_title">Seluruh Modul yang Telah Disiapkan</h2>
+        <p data-i18n="m_dir_desc">Akses langsung ke portal publik, explorer, komunitas, NFT, serta empat sub-menu di bawah DEVELOPERS.</p>
+      </div>
+
+      <div class="sk-dir-grid">
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_portal_t">Portal Publik &amp; Registri</strong>
+            <span data-i18n="d_portal_d">Pencarian berita, pratinjau contentHash, dan daftar catatan terverifikasi.</span>
+          </div>
+          <a href="./frontend/public-portal.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_exp_t">Blockchain Explorer</strong>
+            <span data-i18n="d_exp_d">Verifikasi langsung verifyFact ke kontrak FactSeal dan saldo token MSK.</span>
+          </div>
+          <a href="./frontend/explorer.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_nft_t">NFT Arsip &amp; Bukti</strong>
+            <span data-i18n="d_nft_d">Koleksi edisi arsip berita dan pemeriksa metadata kontrak NFT ERC-721.</span>
+          </div>
+          <a href="./frontend/nft.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_comm_t">Komunitas Samudera Kepri</strong>
+            <span data-i18n="d_comm_d">Kanal komunitas pembaca, kontributor, pemeriksa fakta, dan rubrik media.</span>
+          </div>
+          <a href="./frontend/community.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · docs</strong>
+            <span data-i18n="d_docs_d">Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.</span>
+          </div>
+          <a href="./frontend/docs.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · Whitepaper.pdf</strong>
+            <span data-i18n="d_wp_d">Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri &amp; Indonesia di kanan).</span>
+          </div>
+          <a href="./frontend/whitepaper.pdf" target="_blank" rel="noopener noreferrer" data-i18n="open_pdf">Buka PDF &nearr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · faucet</strong>
+            <span data-i18n="d_faucet_d">Pemeriksa saldo Sepolia ETH &amp; MSK serta rujukan faucet lingkungan uji.</span>
+          </div>
+          <a href="./frontend/faucet.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · report-abuse</strong>
+            <span data-i18n="d_abuse_d">Formulir pelaporan penyalahgunaan tautan, ketidaksesuaian arsip, atau isu keamanan.</span>
+          </div>
+          <a href="./frontend/report-abuse.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+      </div>
+    </section>
+
     <section class="sk-section">
       <div class="sk-sec-head">
         <div class="sk-sec-kicker" data-i18n="k_kicker">PARAMETER KONTRAK &amp; MIGRASI</div>
@@ -689,6 +808,7 @@
           btn_registry: "Registri Berita Blockchain",
           btn_explorer: "Buka Explorer",
           btn_nft: "Galeri & Bukti NFT",
+          btn_comm: "Komunitas",
           coin_sub: "Tahap Uji Sistem · Siap Migrasi ETH",
           m_coin: "TOKEN / COIN",
           m_net: "JARINGAN SAAT INI",
@@ -709,6 +829,23 @@
           c4_title: "Media Samudera Kepri",
           c4_desc: "Terhubung langsung ke portal berita resmi dan ruang komunitas pembaca, kontributor, serta pemeriksa fakta.",
           c4_link: "Kunjungi samuderakepri.co.id →",
+          m_dir_kicker: "PETA HALAMAN & SUB-MENU DEVELOPERS",
+          m_dir_title: "Seluruh Modul yang Telah Disiapkan",
+          m_dir_desc: "Akses langsung ke portal publik, explorer, komunitas, NFT, serta empat sub-menu di bawah DEVELOPERS.",
+          d_portal_t: "Portal Publik & Registri",
+          d_portal_d: "Pencarian berita, pratinjau contentHash, dan daftar catatan terverifikasi.",
+          d_exp_t: "Blockchain Explorer",
+          d_exp_d: "Verifikasi langsung verifyFact ke kontrak FactSeal dan saldo token MSK.",
+          d_nft_t: "NFT Arsip & Bukti",
+          d_nft_d: "Koleksi edisi arsip berita dan pemeriksa metadata kontrak NFT ERC-721.",
+          d_comm_t: "Komunitas Samudera Kepri",
+          d_comm_d: "Kanal komunitas pembaca, kontributor, pemeriksa fakta, dan rubrik media.",
+          d_docs_d: "Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.",
+          d_wp_d: "Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri & Indonesia di kanan).",
+          d_faucet_d: "Pemeriksa saldo Sepolia ETH & MSK serta rujukan faucet lingkungan uji.",
+          d_abuse_d: "Formulir pelaporan penyalahgunaan tautan, ketidaksesuaian arsip, atau isu keamanan.",
+          go_link: "Buka Halaman →",
+          open_pdf: "Buka PDF ↗",
           k_kicker: "PARAMETER KONTRAK & MIGRASI",
           k_title: "Alamat Kontrak Aktif (Tahap Persiapan ETH)",
           t_net: "Jaringan Uji Saat Ini",
@@ -728,6 +865,7 @@
           btn_registry: "Blockchain News Registry",
           btn_explorer: "Open Explorer",
           btn_nft: "NFT Gallery & Proofs",
+          btn_comm: "Community",
           coin_sub: "System Build Stage · ETH Migration Ready",
           m_coin: "TOKEN / COIN",
           m_net: "CURRENT NETWORK",
@@ -748,6 +886,23 @@
           c4_title: "Media Samudera Kepri",
           c4_desc: "Connected directly to the official news portal and community space for readers, contributors, and fact checkers.",
           c4_link: "Visit samuderakepri.co.id →",
+          m_dir_kicker: "PAGE DIRECTORY & DEVELOPERS SUB-MENU",
+          m_dir_title: "All Prepared Ecosystem Modules",
+          m_dir_desc: "Direct access to the public portal, explorer, community, NFTs, and all four DEVELOPERS sub-menu items.",
+          d_portal_t: "Public Portal & Registry",
+          d_portal_d: "News search, contentHash preview, and verified archive list.",
+          d_exp_t: "Blockchain Explorer",
+          d_exp_d: "Direct verifyFact lookup against FactSeal and MSK token balances.",
+          d_nft_t: "Archive & Proof NFTs",
+          d_nft_d: "Curated archive editions and ERC-721 NFT metadata inspector.",
+          d_comm_t: "Samudera Kepri Community",
+          d_comm_d: "Community hub for readers, contributors, fact checkers, and media desks.",
+          d_docs_d: "Technical ecosystem docs, 4 pillars, code examples, and ETH migration path.",
+          d_wp_d: "Bilingual whitepaper PDF (English on the left & Indonesian on the right).",
+          d_faucet_d: "Sepolia ETH & MSK balance checker and testnet faucet references.",
+          d_abuse_d: "Form to report link abuse, archive discrepancies, or safety issues.",
+          go_link: "Open Page →",
+          open_pdf: "Open PDF ↗",
           k_kicker: "CONTRACT & MIGRATION PARAMETERS",
           k_title: "Active Contract Addresses (ETH Prep Stage)",
           t_net: "Current Test Network",
