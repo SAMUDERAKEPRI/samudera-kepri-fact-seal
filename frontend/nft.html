@@ -1,0 +1,574 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>NFT Arsip &amp; Bukti Liputan — Samudera Kepri (MSK)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <style>
+    :root {
+      --navy-base: #060f1d;
+      --prussian: #0a192f;
+      --prussian-panel: rgba(10, 25, 47, 0.88);
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --gold: #eab308;
+      --gold-soft: #fde047;
+      --purple-kepri: #2e1065;
+      --magenta-kepri: #701a75;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --line-soft: rgba(148, 163, 184, 0.18);
+    }
+
+    * { box-sizing: border-box; margin: 0; padding: 0; }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 14% 12%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 86% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 55%, #050c16 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.65;
+    }
+
+    .sk-top-wrap { position: sticky; top: 12px; z-index: 50; padding: 0 14px; }
+
+    .sk-navbar {
+      max-width: 1120px;
+      margin: 0 auto;
+      background: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(14px);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      flex-wrap: wrap;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
+    }
+
+    .sk-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .sk-brand img {
+      width: 32px;
+      height: 32px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+    }
+
+    .sk-brand strong {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+    }
+
+    .sk-nav-links { display: flex; align-items: center; gap: 18px; flex-wrap: wrap; }
+
+    .sk-nav-links a {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sk-nav-links a:hover, .sk-nav-links a.active { color: var(--gold-soft); }
+
+    .sk-lang-switch {
+      display: inline-flex;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    .sk-lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 8px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-lang-btn.active {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-main { max-width: 1120px; margin: 22px auto 0; padding: 0 14px 56px; }
+
+    .sk-hero {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 45%, #0a192f 82%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 26px 24px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.44);
+    }
+
+    .sk-kicker {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      background: rgba(6, 15, 29, 0.6);
+      padding: 4px 10px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .sk-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.65rem, 3.6vw, 2.4rem);
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .sk-hero p { font-size: 13.5px; color: #f1f5f9; max-width: 630px; }
+
+    .sk-seal-badge {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(6, 15, 29, 0.62);
+      border: 1px solid rgba(234, 179, 8, 0.52);
+      border-radius: 14px;
+      padding: 12px 16px;
+    }
+
+    .sk-seal-badge img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: #09090b;
+    }
+
+    .sk-seal-badge strong { display: block; font-size: 13px; color: var(--gold-soft); }
+    .sk-seal-badge span { display: block; font-size: 11px; color: #e2e8f0; }
+
+    .sk-panel {
+      background: var(--prussian-panel);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.34);
+    }
+
+    .sk-panel h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .sk-panel p.sk-desc { font-size: 13.5px; color: var(--text-muted); margin-bottom: 16px; }
+
+    /* NFT Archive Cards */
+    .sk-nft-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .sk-nft-card {
+      background: rgba(6, 15, 29, 0.84);
+      border: 1px solid rgba(52, 211, 153, 0.28);
+      border-radius: 14px;
+      overflow: hidden;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      transition: transform 0.2s ease, border-color 0.2s ease;
+    }
+
+    .sk-nft-card:hover {
+      transform: translateY(-4px);
+      border-color: var(--gold);
+    }
+
+    .sk-nft-art {
+      padding: 18px;
+      background: linear-gradient(135deg, #2e1065 0%, #0a192f 58%, #064e3b 100%);
+      border-bottom: 1px solid rgba(234, 179, 8, 0.35);
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+    }
+
+    .sk-nft-id {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 12px;
+      font-weight: 800;
+      color: var(--gold-soft);
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      padding: 4px 10px;
+      border-radius: 999px;
+    }
+
+    .sk-nft-art img {
+      width: 44px;
+      height: 44px;
+      border-radius: 50%;
+      border: 1.5px solid var(--gold);
+      object-fit: cover;
+      background: #09090b;
+    }
+
+    .sk-nft-body {
+      padding: 16px;
+    }
+
+    .sk-nft-cat {
+      font-size: 11px;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+      color: var(--emerald-bright);
+      margin-bottom: 4px;
+    }
+
+    .sk-nft-body h3 {
+      font-size: 15.5px;
+      color: #ffffff;
+      margin-bottom: 8px;
+      line-height: 1.35;
+    }
+
+    .sk-nft-hash {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11.5px;
+      color: #cbd5e1;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      border-radius: 8px;
+      padding: 7px 9px;
+      word-break: break-all;
+      margin-bottom: 12px;
+    }
+
+    .sk-nft-actions {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    a.sk-btn-sm, button.sk-btn-sm {
+      display: inline-block;
+      text-decoration: none;
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      border: none;
+      border-radius: 7px;
+      padding: 7px 12px;
+      font-size: 12px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    a.sk-btn-sm.sec {
+      background: rgba(10, 25, 47, 0.85);
+      color: var(--gold-soft);
+      border: 1px solid rgba(234, 179, 8, 0.45);
+    }
+
+    .sk-form-grid {
+      display: grid;
+      grid-template-columns: 1fr 180px;
+      gap: 10px;
+    }
+
+    input[type="text"] {
+      width: 100%;
+      padding: 10px 12px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(6, 15, 29, 0.85);
+      color: #f8fafc;
+      font-size: 13px;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+    }
+
+    .sk-result {
+      margin-top: 12px;
+      padding: 12px 14px;
+      border-radius: 10px;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(52, 211, 153, 0.28);
+      font-size: 13px;
+      color: #e2e8f0;
+      word-break: break-all;
+    }
+
+    .sk-footer {
+      text-align: center;
+      padding: 24px 14px;
+      border-top: 1px solid var(--line-soft);
+      font-size: 12.5px;
+      color: var(--text-muted);
+    }
+
+    .sk-footer a { color: var(--gold-soft); text-decoration: none; }
+
+    @media (max-width: 640px) {
+      .sk-form-grid { grid-template-columns: 1fr; }
+    }
+  </style>
+</head>
+<body>
+  <div class="sk-top-wrap">
+    <header class="sk-navbar">
+      <a href="../index.html" class="sk-brand">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+        <strong>SAMUDERA KEPRI · NFT</strong>
+      </a>
+      <div class="sk-nav-links">
+        <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+        <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+        <a href="./nft.html" class="active">NFT ARSIP</a>
+        <a href="./explorer.html">EXPLORER</a>
+        <a href="./community.html" data-i18n="nav_comm">KOMUNITAS</a>
+      </div>
+      <div class="sk-lang-switch">
+        <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+        <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+      </div>
+    </header>
+  </div>
+
+  <main class="sk-main">
+    <section class="sk-hero">
+      <div>
+        <div class="sk-kicker" data-i18n="n_kicker">SERTIFIKAT DIGITAL &amp; KOLEKSI ARSIP ON-CHAIN</div>
+        <h1 data-i18n="n_title">NFT Arsip &amp; Bukti Liputan Samudera Kepri</h1>
+        <p data-i18n="n_desc">
+          Representasi sertifikat digital dan edisi koleksi NFT dari laporan investigasi, gelar fakta, dan tonggak jurnalistik Media Samudera Kepri yang terhubung dengan bukti hash FactSeal.
+        </p>
+      </div>
+      <div class="sk-seal-badge">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="NFT Seal Samudera Kepri" />
+        <div>
+          <strong>SK ARCHIVE NFT</strong>
+          <span data-i18n="n_stage">Siap Migrasi Sistem ETH</span>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-panel">
+      <h2 data-i18n="g_title">Edisi Arsip &amp; Sertifikat Terdaftar</h2>
+      <p class="sk-desc" data-i18n="g_desc">Setiap kartu arsip terhubung dengan contentHash tersegel di jaringan Sepolia dan tautan liputan Media Samudera Kepri.</p>
+
+      <div class="sk-nft-grid">
+        <article class="sk-nft-card">
+          <div>
+            <div class="sk-nft-art">
+              <span class="sk-nft-id">ARCHIVE SEAL #001</span>
+              <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Badge #001" />
+            </div>
+            <div class="sk-nft-body">
+              <div class="sk-nft-cat">INVESTIGASI · PRODUKSI</div>
+              <h3>Pantauan Lapangan Indikasikan Aktivitas Gelper di Sukaberenang Masih Beroperasi</h3>
+              <div class="sk-nft-hash">Hash: 0x2beb6b90e77ece32e5296b3e8c4f90fb4eee6b4e86532e132fab4b36d0fb3e76</div>
+              <div class="sk-nft-actions">
+                <a href="./explorer.html" class="sk-btn-sm" data-i18n="btn_verify">Cek Hash</a>
+                <a href="https://www.samuderakepri.co.id/pantauan-lapangan-indikasikan-aktivitas-gelper-di-sukaberenang-masih-beroperasi-kapolres-tanjungpinang-belum-beri-tanggapan/" target="_blank" rel="noopener noreferrer" class="sk-btn-sm sec" data-i18n="btn_read">Baca Artikel &nearr;</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="sk-nft-card">
+          <div>
+            <div class="sk-nft-art">
+              <span class="sk-nft-id">GENESIS SEAL #002</span>
+              <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Badge #002" />
+            </div>
+            <div class="sk-nft-body">
+              <div class="sk-nft-cat">GELAR FAKTA · ARSIP</div>
+              <h3>Sertifikat Genesis Gelar Fakta Media Samudera Kepri</h3>
+              <div class="sk-nft-hash">Hash: 0x1111111111111111111111111111111111111111111111111111111111111111</div>
+              <div class="sk-nft-actions">
+                <a href="./public-portal.html" class="sk-btn-sm" data-i18n="btn_portal">Lihat di Portal</a>
+                <a href="https://www.samuderakepri.co.id/category/investigasi/gelar-fakta/" target="_blank" rel="noopener noreferrer" class="sk-btn-sm sec">Gelar Fakta &nearr;</a>
+              </div>
+            </div>
+          </div>
+        </article>
+
+        <article class="sk-nft-card">
+          <div>
+            <div class="sk-nft-art">
+              <span class="sk-nft-id">ECOSYSTEM PASS #003</span>
+              <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Badge #003" />
+            </div>
+            <div class="sk-nft-body">
+              <div class="sk-nft-cat">MSK &amp; MEDIA · EDISI KHUSUS</div>
+              <h3>Kartu Apresiasi Kontributor &amp; Pemeriksa Fakta Samudera Kepri</h3>
+              <div class="sk-nft-hash">Kontrak FactSeal: 0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</div>
+              <div class="sk-nft-actions">
+                <a href="./community.html" class="sk-btn-sm" data-i18n="btn_comm">Komunitas</a>
+                <a href="./docs.html" class="sk-btn-sm sec">Docs &rarr;</a>
+              </div>
+            </div>
+          </div>
+        </article>
+      </div>
+    </section>
+
+    <section class="sk-panel">
+      <h2 data-i18n="chk_title">Pemeriksa Metadata ERC-721 / Kontrak NFT</h2>
+      <p class="sk-desc" data-i18n="chk_desc">Masukkan alamat kontrak NFT ERC-721 (0x...) dan Token ID di jaringan Sepolia untuk membaca pemilik dan tokenURI-nya.</p>
+      <div class="sk-form-grid">
+        <input type="text" id="sk-nft-contract" placeholder="Alamat Kontrak NFT ERC-721 (0x...)" />
+        <input type="text" id="sk-nft-tokenid" value="1" placeholder="Token ID (mis. 1)" />
+      </div>
+      <div style="margin-top: 10px;">
+        <button type="button" class="sk-btn-sm" id="sk-nft-inspect-btn" data-i18n="chk_btn">Periksa Metadata NFT</button>
+      </div>
+      <div class="sk-result" id="sk-nft-output" data-i18n="chk_ready">Siap memeriksa metadata kontrak NFT ERC-721 di jaringan Sepolia.</div>
+    </section>
+  </main>
+
+  <footer class="sk-footer">
+    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; NFT Arsip · Coin MSK &amp; FactSeal
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script>
+    (function () {
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_comm: "KOMUNITAS",
+          n_kicker: "SERTIFIKAT DIGITAL & KOLEKSI ARSIP ON-CHAIN",
+          n_title: "NFT Arsip & Bukti Liputan Samudera Kepri",
+          n_desc: "Representasi sertifikat digital dan edisi koleksi NFT dari laporan investigasi, gelar fakta, dan tonggak jurnalistik Media Samudera Kepri yang terhubung dengan bukti hash FactSeal.",
+          n_stage: "Siap Migrasi Sistem ETH",
+          g_title: "Edisi Arsip & Sertifikat Terdaftar",
+          g_desc: "Setiap kartu arsip terhubung dengan contentHash tersegel di jaringan Sepolia dan tautan liputan Media Samudera Kepri.",
+          btn_verify: "Cek Hash",
+          btn_read: "Baca Artikel ↗",
+          btn_portal: "Lihat di Portal",
+          btn_comm: "Komunitas",
+          chk_title: "Pemeriksa Metadata ERC-721 / Kontrak NFT",
+          chk_desc: "Masukkan alamat kontrak NFT ERC-721 (0x...) dan Token ID di jaringan Sepolia untuk membaca pemilik dan tokenURI-nya.",
+          chk_btn: "Periksa Metadata NFT",
+          chk_ready: "Siap memeriksa metadata kontrak NFT ERC-721 di jaringan Sepolia."
+        },
+        en: {
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_comm: "COMMUNITY",
+          n_kicker: "DIGITAL CERTIFICATES & ON-CHAIN ARCHIVE COLLECTIBLES",
+          n_title: "Samudera Kepri Archive & Proof NFTs",
+          n_desc: "Digital certificate representations and special-edition NFTs of investigative reports, fact hearings, and journalistic milestones linked to FactSeal hash proofs.",
+          n_stage: "ETH System Migration Ready",
+          g_title: "Registered Archive & Certificate Editions",
+          g_desc: "Each archive card links to a sealed contentHash on Sepolia and the corresponding Media Samudera Kepri publication.",
+          btn_verify: "Verify Hash",
+          btn_read: "Read Article ↗",
+          btn_portal: "View in Portal",
+          btn_comm: "Community",
+          chk_title: "ERC-721 NFT Contract & Metadata Inspector",
+          chk_desc: "Enter an ERC-721 NFT contract address (0x...) and Token ID on Sepolia to read ownerOf and tokenURI.",
+          chk_btn: "Inspect NFT Metadata",
+          chk_ready: "Ready to inspect ERC-721 NFT contract metadata on Sepolia."
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (dict[k]) el.textContent = dict[k];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      let lang = "id";
+      try { lang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(lang);
+
+      const RPC_URLS = ["https://rpc.sepolia.org", "https://ethereum-sepolia-rpc.publicnode.com"];
+      const ERC721_ABI = [
+        "function name() view returns (string)",
+        "function symbol() view returns (string)",
+        "function ownerOf(uint256 tokenId) view returns (address)",
+        "function tokenURI(uint256 tokenId) view returns (string)"
+      ];
+
+      document.getElementById("sk-nft-inspect-btn").addEventListener("click", async function () {
+        const addr = document.getElementById("sk-nft-contract").value.trim();
+        const tid = document.getElementById("sk-nft-tokenid").value.trim() || "1";
+        const out = document.getElementById("sk-nft-output");
+
+        if (!/^0x[0-9a-fA-F]{40}$/.test(addr)) {
+          out.textContent = "Masukkan alamat kontrak ERC-721 yang valid (0x + 40 karakter hex).";
+          return;
+        }
+        if (!window.ethers) {
+          out.textContent = "Pustaka ethers belum termuat.";
+          return;
+        }
+        out.textContent = "Membaca data NFT dari jaringan Sepolia...";
+        for (const rpc of RPC_URLS) {
+          try {
+            const provider = new window.ethers.JsonRpcProvider(rpc);
+            const nft = new window.ethers.Contract(addr, ERC721_ABI, provider);
+            const [name, sym, owner, uri] = await Promise.all([
+              nft.name().catch(() => "-"),
+              nft.symbol().catch(() => "-"),
+              nft.ownerOf(tid).catch(() => "Token ID tidak ditemukan"),
+              nft.tokenURI(tid).catch(() => "-")
+            ]);
+            out.innerHTML = `<strong>Koleksi:</strong> ${name} (${sym})<br/><strong>Token ID:</strong> #${tid}<br/><strong>Pemilik:</strong> ${owner}<br/><strong>Token URI:</strong> ${uri}`;
+            return;
+          } catch (e) {}
+        }
+        out.textContent = "Gagal membaca kontrak NFT dari RPC Sepolia.";
+      });
+    })();
+  </script>
+</body>
+</html>
