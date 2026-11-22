@@ -610,4 +610,211 @@
     </section>
 
     <section class="sk-section" id="pilar">
-      <div class="
+      <div class="sk-sec-head">
+        <div class="sk-sec-kicker" data-i18n="p_kicker">4 PILAR UTAMA PROYEK</div>
+        <h2 data-i18n="p_title">Struktur Inti Ekosistem Samudera Kepri</h2>
+        <p data-i18n="p_desc">Dirancang dengan identitas sendiri sebelum seluruh modul dirampungkan dan dipindahkan ke sistem Ethereum asli.</p>
+      </div>
+
+      <div class="sk-pillars">
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">01 · NEWS BLOCKCHAIN</span>
+            <h3 data-i18n="c1_title">Berita Berbasis Blockchain</h3>
+            <p data-i18n="c1_desc">Setiap berita investigasi, gelar fakta, dan arsip penting disegel sidik jari hash agar keasliannya dapat dicek publik.</p>
+          </div>
+          <a href="./frontend/public-portal.html" data-i18n="c1_link">Buka Registri Berita &rarr;</a>
+        </div>
+
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">02 · MSK COIN</span>
+            <h3 data-i18n="c2_title">Coin Samudera Kepri (MSK)</h3>
+            <p data-i18n="c2_desc">Aset token ekosistem proyek untuk mendukung transparansi, apresiasi komunitas, dan utilitas digital Samudera Kepri.</p>
+          </div>
+          <a href="./frontend/explorer.html" data-i18n="c2_link">Cek Saldo &amp; Kontrak MSK &rarr;</a>
+        </div>
+
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">03 · ARCHIVE NFT</span>
+            <h3 data-i18n="c3_title">NFT Arsip &amp; Bukti Liputan</h3>
+            <p data-i18n="c3_desc">Representasi sertifikat digital dan koleksi NFT edisi khusus dari dokumentasi serta arsip fakta terpilih.</p>
+          </div>
+          <a href="./frontend/nft.html" data-i18n="c3_link">Lihat Modul NFT &rarr;</a>
+        </div>
+
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">04 · SAMUDERA KEPRI</span>
+            <h3 data-i18n="c4_title">Media Samudera Kepri</h3>
+            <p data-i18n="c4_desc">Terhubung langsung ke portal berita resmi dan ruang komunitas pembaca, kontributor, serta pemeriksa fakta.</p>
+          </div>
+          <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer" data-i18n="c4_link">Kunjungi samuderakepri.co.id &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-section">
+      <div class="sk-sec-head">
+        <div class="sk-sec-kicker" data-i18n="k_kicker">PARAMETER KONTRAK &amp; MIGRASI</div>
+        <h2 data-i18n="k_title">Alamat Kontrak Aktif (Tahap Persiapan ETH)</h2>
+      </div>
+      <table class="sk-table">
+        <tr><td data-i18n="t_net">Jaringan Uji Saat Ini</td><td>Ethereum Sepolia (Chain ID: 11155111)</td></tr>
+        <tr><td data-i18n="t_seal">Kontrak FactSeal</td><td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td></tr>
+        <tr><td data-i18n="t_msk">Kontrak Token MSK</td><td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td></tr>
+        <tr><td data-i18n="t_ver">Verifikator Utama</td><td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer class="sk-footer">
+    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Coin MSK · FactSeal · NFT · Media
+  </footer>
+
+  <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
+  <script>
+    (function () {
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          hero_pill: "PERSIAPAN MENUJU ETHEREUM ASLI · AKTIF DI SEPOLIA (CHAIN ID 11155111)",
+          hero_title: "Ekosistem Coin MSK, Berita Blockchain, NFT & Media Samudera Kepri",
+          hero_desc: "Platform transparansi khas Media Samudera Kepri yang menyatukan token ekosistem MSK, penyegelan integritas artikel berita berbasis blockchain, arsip sertifikat/NFT, serta kanal jurnalistik publik.",
+          btn_registry: "Registri Berita Blockchain",
+          btn_explorer: "Buka Explorer",
+          btn_nft: "Galeri & Bukti NFT",
+          coin_sub: "Tahap Uji Sistem · Siap Migrasi ETH",
+          m_coin: "TOKEN / COIN",
+          m_net: "JARINGAN SAAT INI",
+          m_sealed: "DATA BERITA TERSEGEL",
+          m_block: "BLOK TERBARU",
+          p_kicker: "4 PILAR UTAMA PROYEK",
+          p_title: "Struktur Inti Ekosistem Samudera Kepri",
+          p_desc: "Dirancang dengan identitas sendiri sebelum seluruh modul dirampungkan dan dipindahkan ke sistem Ethereum asli.",
+          c1_title: "Berita Berbasis Blockchain",
+          c1_desc: "Setiap berita investigasi, gelar fakta, dan arsip penting disegel sidik jari hash agar keasliannya dapat dicek publik.",
+          c1_link: "Buka Registri Berita →",
+          c2_title: "Coin Samudera Kepri (MSK)",
+          c2_desc: "Aset token ekosistem proyek untuk mendukung transparansi, apresiasi komunitas, dan utilitas digital Samudera Kepri.",
+          c2_link: "Cek Saldo & Kontrak MSK →",
+          c3_title: "NFT Arsip & Bukti Liputan",
+          c3_desc: "Representasi sertifikat digital dan koleksi NFT edisi khusus dari dokumentasi serta arsip fakta terpilih.",
+          c3_link: "Lihat Modul NFT →",
+          c4_title: "Media Samudera Kepri",
+          c4_desc: "Terhubung langsung ke portal berita resmi dan ruang komunitas pembaca, kontributor, serta pemeriksa fakta.",
+          c4_link: "Kunjungi samuderakepri.co.id →",
+          k_kicker: "PARAMETER KONTRAK & MIGRASI",
+          k_title: "Alamat Kontrak Aktif (Tahap Persiapan ETH)",
+          t_net: "Jaringan Uji Saat Ini",
+          t_seal: "Kontrak FactSeal",
+          t_msk: "Kontrak Token MSK",
+          t_ver: "Verifikator Utama"
+        },
+        en: {
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          hero_pill: "ROAD TO ETHEREUM MAINNET · LIVE ON SEPOLIA (CHAIN ID 11155111)",
+          hero_title: "Samudera Kepri MSK Coin, Blockchain News, NFT & Media Ecosystem",
+          hero_desc: "An original transparency platform by Media Samudera Kepri uniting the MSK ecosystem coin, blockchain-anchored news integrity, archive NFTs/certificates, and public journalism channels.",
+          btn_registry: "Blockchain News Registry",
+          btn_explorer: "Open Explorer",
+          btn_nft: "NFT Gallery & Proofs",
+          coin_sub: "System Build Stage · ETH Migration Ready",
+          m_coin: "TOKEN / COIN",
+          m_net: "CURRENT NETWORK",
+          m_sealed: "SEALED NEWS RECORDS",
+          m_block: "LATEST BLOCK",
+          p_kicker: "4 CORE PROJECT PILLARS",
+          p_title: "Core Architecture of Samudera Kepri Ecosystem",
+          p_desc: "Built with our own identity before completing every module and migrating to the live Ethereum system.",
+          c1_title: "Blockchain-Backed News",
+          c1_desc: "Investigative reports, fact hearings, and key archives are cryptographically sealed so the public can verify authenticity.",
+          c1_link: "Open News Registry →",
+          c2_title: "Samudera Kepri Coin (MSK)",
+          c2_desc: "Ecosystem token asset supporting transparency, community recognition, and digital utility across Samudera Kepri.",
+          c2_link: "Check MSK & Contract →",
+          c3_title: "Archive & Proof NFTs",
+          c3_desc: "Digital certificates and special-edition NFT records representing curated archival proofs and investigative milestones.",
+          c3_link: "Explore NFT Module →",
+          c4_title: "Media Samudera Kepri",
+          c4_desc: "Connected directly to the official news portal and community space for readers, contributors, and fact checkers.",
+          c4_link: "Visit samuderakepri.co.id →",
+          k_kicker: "CONTRACT & MIGRATION PARAMETERS",
+          k_title: "Active Contract Addresses (ETH Prep Stage)",
+          t_net: "Current Test Network",
+          t_seal: "FactSeal Contract",
+          t_msk: "MSK Token Contract",
+          t_ver: "Primary Verifier"
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key]) el.textContent = dict[key];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      const dd = document.getElementById("sk-dev-dropdown");
+      const ddBtn = document.getElementById("sk-dev-btn");
+      ddBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dd.classList.toggle("open");
+        ddBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+      document.addEventListener("click", () => {
+        dd.classList.remove("open");
+        ddBtn.setAttribute("aria-expanded", "false");
+      });
+
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
+
+      const RPC_URLS = ["https://rpc.sepolia.org", "https://ethereum-sepolia-rpc.publicnode.com"];
+      const FACT_SEAL_ADDR = "0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033";
+
+      async function loadMetrics() {
+        if (!window.ethers) return;
+        for (const url of RPC_URLS) {
+          try {
+            const provider = new window.ethers.JsonRpcProvider(url);
+            const block = await provider.getBlockNumber();
+            document.getElementById("sk-idx-block").textContent = "#" + block.toLocaleString("id-ID");
+
+            const seal = new window.ethers.Contract(
+              FACT_SEAL_ADDR,
+              ["function totalSealed() view returns (uint256)"],
+              provider
+            );
+            const total = await seal.totalSealed();
+            document.getElementById("sk-idx-sealed").textContent = total.toString();
+            break;
+          } catch (e) {}
+        }
+      }
+
+      loadMetrics();
+    })();
+  </script>
+</body>
+</html>
