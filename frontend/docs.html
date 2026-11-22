@@ -3,7 +3,7 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Docs — Samudera Kepri FactSeal &amp; Coin (MSK)</title>
+  <title>Dokumentasi — Samudera Kepri (MSK) &amp; FactSeal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
@@ -11,7 +11,7 @@
     :root {
       --navy-base: #060f1d;
       --prussian: #0a192f;
-      --prussian-panel: rgba(10, 25, 47, 0.88);
+      --prussian-card: rgba(10, 25, 47, 0.88);
       --emerald: #10b981;
       --emerald-bright: #34d399;
       --gold: #eab308;
@@ -23,7 +23,7 @@
       --line-soft: rgba(148, 163, 184, 0.18);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -36,24 +36,25 @@
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
       background:
-        radial-gradient(circle at 12% 10%, rgba(16, 185, 129, 0.18) 0%, transparent 45%),
-        radial-gradient(circle at 88% 15%, rgba(112, 26, 117, 0.26) 0%, transparent 48%),
-        linear-gradient(180deg, #06101f 0%, #0a192f 55%, #050c16 100%);
+        radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        radial-gradient(circle at 50% 85%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 52%, #050c16 100%);
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.65;
     }
 
-    /* Top Bar */
-    .sk-topbar-wrap {
+    /* Top Navigation Bar (Seragam dengan index.html) */
+    .sk-header-wrap {
       position: sticky;
-      top: 12px;
+      top: 14px;
       z-index: 60;
       padding: 0 14px;
     }
 
-    .sk-topbar {
-      max-width: 1180px;
+    .sk-navbar {
+      max-width: 1140px;
       margin: 0 auto;
       background: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(14px);
@@ -65,8 +66,8 @@
       align-items: center;
       justify-content: space-between;
       gap: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
       flex-wrap: wrap;
-      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.45);
     }
 
     .sk-brand {
@@ -78,66 +79,117 @@
     }
 
     .sk-brand img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       object-fit: cover;
       border: 1.5px solid var(--gold);
       background: #ffffff;
     }
 
-    .sk-brand strong {
+    .sk-brand-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
-      font-size: 15px;
+      font-size: 15.5px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      display: block;
+      line-height: 1.1;
     }
 
-    .sk-search-box {
-      flex: 1 1 240px;
-      max-width: 340px;
+    .sk-brand-sub {
+      font-size: 10.5px;
+      color: var(--gold-soft);
+      letter-spacing: 0.05em;
+      display: block;
     }
 
-    .sk-search-box input {
-      width: 100%;
-      padding: 8px 12px;
-      border-radius: 8px;
-      border: 1px solid rgba(52, 211, 153, 0.3);
-      background: rgba(6, 15, 29, 0.85);
-      color: #f8fafc;
-      font-size: 12.5px;
-      font-family: inherit;
-    }
-
-    .sk-search-box input::placeholder {
-      color: #64748b;
-    }
-
-    .sk-search-box input:focus {
-      outline: none;
-      border-color: var(--gold);
-    }
-
-    .sk-top-actions {
+    .sk-nav {
       display: flex;
       align-items: center;
-      gap: 10px;
+      gap: 18px;
       flex-wrap: wrap;
     }
 
-    .sk-nav-link {
+    .sk-nav > a,
+    .sk-dd-trigger {
       color: #e2e8f0;
       text-decoration: none;
       font-size: 12px;
       font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      padding: 6px 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .sk-nav > a:hover,
+    .sk-nav > a.active,
+    .sk-dd-trigger:hover,
+    .sk-dd-trigger.active {
+      color: var(--gold-soft);
+    }
+
+    .sk-dropdown {
+      position: relative;
+    }
+
+    .sk-dd-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      background: #081528;
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.58);
+      z-index: 80;
+    }
+
+    .sk-dropdown.open .sk-dd-menu,
+    .sk-dropdown:hover .sk-dd-menu {
+      display: block;
+    }
+
+    .sk-dd-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sk-dd-menu a:hover,
+    .sk-dd-menu a.current {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-soft);
+    }
+
+    .sk-dd-tag {
+      font-size: 10px;
+      color: var(--emerald-bright);
       text-transform: uppercase;
       letter-spacing: 0.05em;
     }
 
-    .sk-nav-link:hover,
-    .sk-nav-link.active {
-      color: var(--gold-soft);
+    .sk-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
     }
 
     .sk-lang-switch {
@@ -154,7 +206,7 @@
       color: #cbd5e1;
       font-size: 11px;
       font-weight: 800;
-      padding: 5px 8px;
+      padding: 5px 9px;
       border-radius: 6px;
       cursor: pointer;
     }
@@ -164,29 +216,146 @@
       color: #090d16;
     }
 
-    /* Docs Layout */
-    .sk-docs-layout {
-      max-width: 1180px;
+    .sk-portal-cta {
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    /* Main Container */
+    .sk-main {
+      max-width: 1140px;
       margin: 22px auto 0;
       padding: 0 14px 56px;
+    }
+
+    .sk-hero {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 28px 24px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.46);
+    }
+
+    .sk-stage-pill {
+      display: inline-block;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      background: rgba(6, 15, 29, 0.62);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .sk-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff;
+      margin-bottom: 8px;
+    }
+
+    .sk-hero p {
+      font-size: 13.5px;
+      color: #f1f5f9;
+      max-width: 640px;
+    }
+
+    .sk-coin-box {
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      background: rgba(6, 15, 29, 0.58);
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      border-radius: 14px;
+      padding: 11px 16px;
+    }
+
+    .sk-coin-box img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: #09090b;
+    }
+
+    .sk-coin-box strong {
+      display: block;
+      font-size: 13px;
+      color: var(--gold-soft);
+    }
+
+    .sk-coin-box span {
+      display: block;
+      font-size: 11.5px;
+      color: #e2e8f0;
+    }
+
+    /* Docs Two-Column Shell */
+    .sk-docs-shell {
       display: grid;
-      grid-template-columns: 255px minmax(0, 1fr);
+      grid-template-columns: 260px 1fr;
       gap: 20px;
       align-items: start;
     }
 
-    /* Sidebar */
+    @media (max-width: 860px) {
+      .sk-docs-shell {
+        grid-template-columns: 1fr;
+      }
+    }
+
     .sk-sidebar {
       position: sticky;
-      top: 76px;
-      background: var(--prussian-panel);
+      top: 86px;
+      background: var(--prussian-card);
       border: 1px solid var(--line-soft);
-      border-radius: 14px;
-      padding: 16px;
+      border-radius: 16px;
+      padding: 18px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+    }
+
+    .sk-search-box {
+      margin-bottom: 14px;
+    }
+
+    .sk-search-box input {
+      width: 100%;
+      padding: 9px 11px;
+      border-radius: 8px;
+      border: 1px solid rgba(148, 163, 184, 0.35);
+      background: rgba(6, 15, 29, 0.85);
+      color: #f8fafc;
+      font-size: 12.5px;
+      font-family: inherit;
+    }
+
+    .sk-search-box input:focus {
+      outline: none;
+      border-color: var(--emerald-bright);
     }
 
     .sk-side-group {
-      margin-bottom: 18px;
+      margin-bottom: 14px;
     }
 
     .sk-side-group:last-child {
@@ -194,26 +363,24 @@
     }
 
     .sk-side-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
+      font-size: 10.5px;
       font-weight: 800;
-      text-transform: uppercase;
       letter-spacing: 0.08em;
+      text-transform: uppercase;
       color: var(--gold-soft);
-      margin-bottom: 8px;
+      margin-bottom: 6px;
     }
 
-    .sk-side-list {
+    .sk-side-links {
       list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
-    .sk-side-list li {
-      margin-bottom: 4px;
-    }
-
-    .sk-side-list a {
+    .sk-side-links a {
       display: block;
-      padding: 6px 10px;
+      padding: 7px 10px;
       border-radius: 8px;
       color: #cbd5e1;
       text-decoration: none;
@@ -222,151 +389,77 @@
       transition: background 0.15s ease, color 0.15s ease;
     }
 
-    .sk-side-list a:hover {
+    .sk-side-links a:hover {
       background: rgba(16, 185, 129, 0.14);
       color: var(--emerald-bright);
     }
 
-    /* Content Area */
     .sk-docs-content {
       display: flex;
       flex-direction: column;
-      gap: 18px;
-    }
-
-    .sk-doc-hero {
-      background: linear-gradient(125deg, #2e1065 0%, #701a75 45%, #0a192f 82%, #064e3b 100%);
-      border: 1px solid rgba(234, 179, 8, 0.42);
-      border-radius: 16px;
-      padding: 24px;
-      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.42);
-    }
-
-    .sk-kicker {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      color: var(--gold-soft);
-      background: rgba(6, 15, 29, 0.6);
-      padding: 4px 10px;
-      border-radius: 999px;
-      margin-bottom: 8px;
-    }
-
-    .sk-doc-hero h1 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.6rem, 3.4vw, 2.3rem);
-      color: #ffffff;
-      margin-bottom: 8px;
-    }
-
-    .sk-doc-hero p {
-      font-size: 14px;
-      color: #f1f5f9;
-      max-width: 680px;
+      gap: 20px;
     }
 
     .sk-doc-card {
-      background: var(--prussian-panel);
+      background: var(--prussian-card);
       border: 1px solid var(--line-soft);
-      border-radius: 14px;
-      padding: 20px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.32);
+      border-radius: 16px;
+      padding: 22px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
     }
 
     .sk-doc-card h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 18px;
+      font-size: 19px;
       color: var(--gold-soft);
       margin-bottom: 8px;
     }
 
     .sk-doc-card p {
       font-size: 13.5px;
-      color: #cbd5e1;
+      color: #e2e8f0;
       margin-bottom: 12px;
     }
 
-    .sk-mini-grid {
+    .sk-doc-card p:last-child {
+      margin-bottom: 0;
+    }
+
+    .sk-pillar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
       gap: 12px;
       margin-top: 10px;
     }
 
-    .sk-mini-box {
+    .sk-pillar {
       background: rgba(6, 15, 29, 0.78);
       border: 1px solid rgba(52, 211, 153, 0.24);
-      border-radius: 10px;
-      padding: 12px;
+      border-radius: 12px;
+      padding: 14px;
     }
 
-    .sk-mini-box strong {
-      display: block;
-      font-size: 13.5px;
+    .sk-pillar h3 {
+      font-size: 14.5px;
       color: #ffffff;
       margin-bottom: 4px;
     }
 
-    .sk-mini-box span {
-      font-size: 12px;
-      color: var(--text-muted);
-    }
-
-    .sk-code-wrap {
-      background: rgba(5, 11, 22, 0.94);
-      border: 1px solid rgba(52, 211, 153, 0.28);
-      border-radius: 10px;
-      overflow: hidden;
-      margin-top: 8px;
-    }
-
-    .sk-code-bar {
-      display: flex;
-      justify-content: space-between;
-      align-items: center;
-      padding: 7px 12px;
-      background: rgba(16, 185, 129, 0.12);
-      border-bottom: 1px solid rgba(52, 211, 153, 0.2);
-      font-size: 11px;
-      font-weight: 700;
-      color: var(--emerald-bright);
-    }
-
-    .sk-copy-btn {
-      background: rgba(234, 179, 8, 0.16);
-      border: 1px solid rgba(234, 179, 8, 0.45);
-      color: var(--gold-soft);
-      border-radius: 6px;
-      padding: 3px 9px;
-      font-size: 11px;
-      font-weight: 700;
-      cursor: pointer;
-    }
-
-    pre {
-      padding: 14px;
-      overflow-x: auto;
+    .sk-pillar p {
       font-size: 12.5px;
-      color: #a7f3d0;
-      line-height: 1.55;
+      color: var(--text-muted);
+      margin: 0;
     }
 
     .sk-table {
       width: 100%;
       border-collapse: collapse;
       font-size: 13px;
-      background: rgba(6, 15, 29, 0.82);
-      border-radius: 10px;
-      overflow: hidden;
     }
 
     .sk-table td {
-      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
-      padding: 9px 12px;
-      vertical-align: top;
+      padding: 9px 10px;
+      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
       word-break: break-all;
       color: #e2e8f0;
     }
@@ -374,134 +467,227 @@
     .sk-table td:first-child {
       width: 205px;
       font-weight: 700;
-      color: #cbd5e1;
+      color: var(--gold-soft);
+    }
+
+    .sk-code-box {
+      background: rgba(6, 15, 29, 0.92);
+      border: 1px solid rgba(234, 179, 8, 0.32);
+      border-radius: 12px;
+      overflow: hidden;
+      margin-top: 10px;
+    }
+
+    .sk-code-head {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 8px 12px;
+      background: rgba(10, 25, 47, 0.9);
+      border-bottom: 1px solid rgba(148, 163, 184, 0.16);
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      color: var(--emerald-bright);
+    }
+
+    .sk-copy-btn {
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.45);
+      color: var(--gold-soft);
+      font-size: 11px;
+      font-weight: 700;
+      padding: 4px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-copy-btn:hover {
+      border-color: var(--emerald-bright);
+      color: var(--emerald-bright);
+    }
+
+    pre {
+      padding: 14px;
+      overflow-x: auto;
+      font-size: 12.5px;
+      line-height: 1.55;
+      color: #e2e8f0;
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
     }
 
     .sk-footer {
       text-align: center;
-      padding: 24px 14px;
-      border-top: 1px solid var(--line-soft);
       font-size: 12.5px;
       color: var(--text-muted);
+      padding: 24px 14px 36px;
+      border-top: 1px solid var(--line-soft);
     }
 
     .sk-footer a {
       color: var(--gold-soft);
       text-decoration: none;
     }
-
-    @media (max-width: 860px) {
-      .sk-docs-layout {
-        grid-template-columns: 1fr;
-      }
-      .sk-sidebar {
-        position: static;
-      }
-    }
   </style>
 </head>
 <body>
-  <div class="sk-topbar-wrap">
-    <header class="sk-topbar">
+  <div class="sk-header-wrap">
+    <header class="sk-navbar">
       <a href="../index.html" class="sk-brand">
         <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
-        <strong>SAMUDERA KEPRI · DOCS</strong>
+        <div>
+          <span class="sk-brand-title">SAMUDERA KEPRI</span>
+          <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+        </div>
       </a>
 
-      <div class="sk-search-box">
-        <input type="text" id="sk-doc-filter" placeholder="Cari topik dokumentasi / Search docs..." />
-      </div>
+      <nav class="sk-nav" aria-label="Navigasi Utama">
+        <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+        <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+        <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+        <a href="./community.html" data-i18n="nav_community">KOMUNITAS</a>
 
-      <div class="sk-top-actions">
-        <a href="../index.html" class="sk-nav-link" data-i18n="top_home">BERANDA</a>
-        <a href="./docs.html" class="sk-nav-link active">DOCS</a>
-        <a href="./public-portal.html" class="sk-nav-link" data-i18n="top_portal">PORTAL</a>
-        <a href="./explorer.html" class="sk-nav-link">EXPLORER</a>
-        <div class="sk-lang-switch">
+        <div class="sk-dropdown" id="sk-dev-dropdown">
+          <button type="button" class="sk-dd-trigger active" id="sk-dev-btn" aria-expanded="false">
+            <span>DEVELOPERS</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./docs.html" class="current" role="menuitem">
+              <span>docs</span>
+              <span class="sk-dd-tag">GUIDE</span>
+            </a>
+            <a href="./Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+              <span>Whitepaper.pdf</span>
+              <span class="sk-dd-tag">PDF</span>
+            </a>
+            <a href="./faucet.html" role="menuitem">
+              <span>faucet</span>
+              <span class="sk-dd-tag">TEST</span>
+            </a>
+            <a href="./report-abuse.html" role="menuitem">
+              <span>report-abuse</span>
+              <span class="sk-dd-tag">SAFETY</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sk-right-tools">
+        <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
           <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
           <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
         </div>
+        <a href="./public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
       </div>
     </header>
   </div>
 
-  <div class="sk-docs-layout">
-    <aside class="sk-sidebar" aria-label="Daftar Isi Dokumentasi">
-      <div class="sk-side-group">
-        <div class="sk-side-title" data-i18n="sb_foundation">PONDASI EKOSISTEM</div>
-        <ul class="sk-side-list">
-          <li><a href="#pengantar" data-i18n="sb_intro">Pengantar Proyek</a></li>
-          <li><a href="#arsitektur" data-i18n="sb_arch">4 Pilar Utama</a></li>
-          <li><a href="#kontrak" data-i18n="sb_contracts">Alamat Kontrak</a></li>
-        </ul>
-      </div>
-      <div class="sk-side-group">
-        <div class="sk-side-title" data-i18n="sb_dev">INTEGRASI &amp; MIGRASI</div>
-        <ul class="sk-side-list">
-          <li><a href="#verifikasi-hash" data-i18n="sb_verify">Verifikasi Hash (ethers.js)</a></li>
-          <li><a href="#migrasi-eth" data-i18n="sb_migrate">Jalur Migrasi Ethereum Asli</a></li>
-        </ul>
-      </div>
-    </aside>
-
-    <main class="sk-docs-content" id="sk-doc-sections">
-      <section class="sk-doc-hero" data-topic="pengantar overview samudera kepri factseal msk nft media">
-        <div class="sk-kicker" data-i18n="d_kicker">DEVELOPERS SUB-MENU · DOKUMENTASI RESMI</div>
+  <main class="sk-main">
+    <section class="sk-hero">
+      <div>
+        <div class="sk-stage-pill" data-i18n="d_pill">DEVELOPERS SUB-MENU · DOKUMENTASI RESMI</div>
         <h1 data-i18n="d_title">Dokumentasi Ekosistem Samudera Kepri</h1>
         <p data-i18n="d_desc">
           Panduan teknis penyegelan integritas berita berbasis blockchain (FactSeal), token ekosistem MSK, sertifikat/NFT arsip, serta alur persiapan sebelum migrasi ke sistem Ethereum asli.
         </p>
-      </section>
+      </div>
 
-      <section class="sk-doc-card" id="pengantar" data-topic="pengantar introduction sepolia media samudera kepri">
-        <h2 data-i18n="s1_title">1. Pengantar Proyek</h2>
-        <p data-i18n="s1_p1">
-          Proyek ini dikembangkan dengan identitas khas Media Samudera Kepri untuk menghubungkan transparansi jurnalistik dengan pencatatan bukti digital di jaringan EVM. Saat ini seluruh fitur diuji secara terstruktur di jaringan Ethereum Sepolia (Chain ID: 11155111) sebelum dipindahkan ke sistem Ethereum asli.
-        </p>
-      </section>
-
-      <section class="sk-doc-card" id="arsitektur" data-topic="pilar arsitektur coin msk berita blockchain nft media">
-        <h2 data-i18n="s2_title">2. Empat Pilar Utama Sistem</h2>
-        <p data-i18n="s2_p1">Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:</p>
-        <div class="sk-mini-grid">
-          <div class="sk-mini-box">
-            <strong data-i18n="b1_t">Berita Berbasis Blockchain</strong>
-            <span data-i18n="b1_d">Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.</span>
-          </div>
-          <div class="sk-mini-box">
-            <strong data-i18n="b2_t">Coin Samudera Kepri (MSK)</strong>
-            <span data-i18n="b2_d">Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.</span>
-          </div>
-          <div class="sk-mini-box">
-            <strong data-i18n="b3_t">NFT Arsip &amp; Bukti</strong>
-            <span data-i18n="b3_d">Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.</span>
-          </div>
-          <div class="sk-mini-box">
-            <strong data-i18n="b4_t">Media Samudera Kepri</strong>
-            <span data-i18n="b4_d">Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.</span>
-          </div>
+      <div class="sk-coin-box">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
+        <div>
+          <strong>DOCS · MSK &amp; FACTSEAL</strong>
+          <span data-i18n="d_coin_sub">Sepolia · Siap Migrasi ETH</span>
         </div>
-      </section>
+      </div>
+    </section>
 
-      <section class="sk-doc-card" id="kontrak" data-topic="kontrak contract factseal msk verifier alamat sepolia">
-        <h2 data-i18n="s3_title">3. Alamat Kontrak &amp; Parameter Aktif</h2>
-        <table class="sk-table">
-          <tr><td data-i18n="k_net">Jaringan Uji Saat Ini</td><td>Ethereum Sepolia (Chain ID: 11155111)</td></tr>
-          <tr><td data-i18n="k_seal">Kontrak FactSeal</td><td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td></tr>
-          <tr><td data-i18n="k_msk">Kontrak Token MSK</td><td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td></tr>
-          <tr><td data-i18n="k_ver">Verifikator Utama</td><td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td></tr>
-        </table>
-      </section>
+    <div class="sk-docs-shell">
+      <aside class="sk-sidebar">
+        <div class="sk-search-box">
+          <input type="text" id="sk-doc-filter" placeholder="Cari topik dokumentasi..." />
+        </div>
 
-      <section class="sk-doc-card" id="verifikasi-hash" data-topic="verifikasi hash verifyfact ethers kode snippet">
-        <h2 data-i18n="s4_title">4. Contoh Pembacaan Status Fakta (`verifyFact`)</h2>
-        <p data-i18n="s4_p1">Contoh pembacaan status keaslian hash berita menggunakan ethers.js v6:</p>
-        <div class="sk-code-wrap">
-          <div class="sk-code-bar">
-            <span>JAVASCRIPT · ETHERS V6</span>
-            <button type="button" class="sk-copy-btn" id="sk-copy-snippet">Salin Kode</button>
+        <div class="sk-side-group">
+          <div class="sk-side-title" data-i18n="sb_g1">FONDASI EKOSISTEM</div>
+          <ul class="sk-side-links">
+            <li><a href="#pengantar" data-i18n="sb_l1">Pengantar Proyek</a></li>
+            <li><a href="#empat-pilar" data-i18n="sb_l2">4 Pilar Utama</a></li>
+            <li><a href="#alamat-kontrak" data-i18n="sb_l3">Alamat Kontrak</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-side-group">
+          <div class="sk-side-title" data-i18n="sb_g2">INTEGRASI &amp; MIGRASI</div>
+          <ul class="sk-side-links">
+            <li><a href="#verifikasi-hash" data-i18n="sb_l4">Verifikasi Hash (ethers.js)</a></li>
+            <li><a href="#migrasi-eth" data-i18n="sb_l5">Jalur Migrasi Ethereum Asli</a></li>
+          </ul>
+        </div>
+      </aside>
+
+      <div class="sk-docs-content" id="sk-doc-sections">
+        <article class="sk-doc-card" id="pengantar">
+          <h2 data-i18n="sec1_t">1. Pengantar Proyek</h2>
+          <p data-i18n="sec1_p">
+            Proyek ini dikembangkan dengan identitas khas Media Samudera Kepri untuk menghubungkan transparansi jurnalistik dengan pencatatan bukti digital di jaringan EVM. Saat ini seluruh fitur diuji secara terstruktur di jaringan Ethereum Sepolia (Chain ID: 11155111) sebelum dipindahkan ke sistem Ethereum asli.
+          </p>
+        </article>
+
+        <article class="sk-doc-card" id="empat-pilar">
+          <h2 data-i18n="sec2_t">2. Empat Pilar Utama Sistem</h2>
+          <p data-i18n="sec2_p">Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:</p>
+          <div class="sk-pillar-grid">
+            <div class="sk-pillar">
+              <h3 data-i18n="p1_t">Berita Berbasis Blockchain</h3>
+              <p data-i18n="p1_d">Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.</p>
+            </div>
+            <div class="sk-pillar">
+              <h3 data-i18n="p2_t">Coin Samudera Kepri (MSK)</h3>
+              <p data-i18n="p2_d">Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.</p>
+            </div>
+            <div class="sk-pillar">
+              <h3 data-i18n="p3_t">NFT Arsip &amp; Bukti</h3>
+              <p data-i18n="p3_d">Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.</p>
+            </div>
+            <div class="sk-pillar">
+              <h3 data-i18n="p4_t">Media Samudera Kepri</h3>
+              <p data-i18n="p4_d">Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.</p>
+            </div>
           </div>
-          <pre><code id="sk-snippet-code">const RPC_URL = "https://rpc.sepolia.org";
+        </article>
+
+        <article class="sk-doc-card" id="alamat-kontrak">
+          <h2 data-i18n="sec3_t">3. Alamat Kontrak &amp; Parameter Aktif</h2>
+          <table class="sk-table">
+            <tr>
+              <td data-i18n="tbl_net">Jaringan Uji Saat Ini</td>
+              <td>Ethereum Sepolia (Chain ID: 11155111)</td>
+            </tr>
+            <tr>
+              <td data-i18n="tbl_seal">Kontrak FactSeal</td>
+              <td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td>
+            </tr>
+            <tr>
+              <td data-i18n="tbl_msk">Kontrak Token MSK</td>
+              <td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td>
+            </tr>
+            <tr>
+              <td data-i18n="tbl_ver">Verifikator Utama</td>
+              <td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td>
+            </tr>
+          </table>
+        </article>
+
+        <article class="sk-doc-card" id="verifikasi-hash">
+          <h2 data-i18n="sec4_t">4. Contoh Pembacaan Status Fakta (verifyFact)</h2>
+          <p data-i18n="sec4_p">Contoh pembacaan keaslian hash berita menggunakan ethers.js v6:</p>
+          <div class="sk-code-box">
+            <div class="sk-code-head">
+              <span>JAVASCRIPT · ETHERS V6</span>
+              <button type="button" class="sk-copy-btn" id="sk-copy-code" data-i18n="btn_copy">Salin Kode</button>
+            </div>
+            <pre id="sk-code-sample">const RPC_URL = "https://rpc.sepolia.org";
 const FACT_SEAL_ADDR = "0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033";
 const ABI = [
   "function totalSealed() view returns (uint256)",
@@ -511,95 +697,106 @@ const ABI = [
 const provider = new ethers.JsonRpcProvider(RPC_URL);
 const contract = new ethers.Contract(FACT_SEAL_ADDR, ABI, provider);
 const total = await contract.totalSealed();
-console.log("Total data tersegel:", total.toString());</code></pre>
-        </div>
-      </section>
+console.log("Total data tersegel:", total.toString());</pre>
+          </div>
+        </article>
 
-      <section class="sk-doc-card" id="migrasi-eth" data-topic="migrasi ethereum asli mainnet roadmap persiapan">
-        <h2 data-i18n="s5_title">5. Jalur Menuju Sistem Ethereum Asli</h2>
-        <p data-i18n="s5_p1">
-          Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli.
-        </p>
-      </section>
-    </main>
-  </div>
+        <article class="sk-doc-card" id="migrasi-eth">
+          <h2 data-i18n="sec5_t">5. Jalur Menuju Sistem Ethereum Asli</h2>
+          <p data-i18n="sec5_p">
+            Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli.
+          </p>
+        </article>
+      </div>
+    </div>
+  </main>
 
   <footer class="sk-footer">
-    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Developers Docs · Coin MSK &amp; FactSeal
+    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Developers Docs · Coin MSK · FactSeal · NFT
   </footer>
 
   <script>
     (function () {
       const I18N = {
         id: {
-          top_home: "BERANDA",
-          top_portal: "PORTAL",
-          sb_foundation: "PONDASI EKOSISTEM",
-          sb_intro: "Pengantar Proyek",
-          sb_arch: "4 Pilar Utama",
-          sb_contracts: "Alamat Kontrak",
-          sb_dev: "INTEGRASI & MIGRASI",
-          sb_verify: "Verifikasi Hash (ethers.js)",
-          sb_migrate: "Jalur Migrasi Ethereum Asli",
-          d_kicker: "DEVELOPERS SUB-MENU · DOKUMENTASI RESMI",
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          d_pill: "DEVELOPERS SUB-MENU · DOKUMENTASI RESMI",
           d_title: "Dokumentasi Ekosistem Samudera Kepri",
           d_desc: "Panduan teknis penyegelan integritas berita berbasis blockchain (FactSeal), token ekosistem MSK, sertifikat/NFT arsip, serta alur persiapan sebelum migrasi ke sistem Ethereum asli.",
-          s1_title: "1. Pengantar Proyek",
-          s1_p1: "Proyek ini dikembangkan dengan identitas khas Media Samudera Kepri untuk menghubungkan transparansi jurnalistik dengan pencatatan bukti digital di jaringan EVM. Saat ini seluruh fitur diuji secara terstruktur di jaringan Ethereum Sepolia (Chain ID: 11155111) sebelum dipindahkan ke sistem Ethereum asli.",
-          s2_title: "2. Empat Pilar Utama Sistem",
-          s2_p1: "Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:",
-          b1_t: "Berita Berbasis Blockchain",
-          b1_d: "Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.",
-          b2_t: "Coin Samudera Kepri (MSK)",
-          b2_d: "Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.",
-          b3_t: "NFT Arsip & Bukti",
-          b3_d: "Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.",
-          b4_t: "Media Samudera Kepri",
-          b4_d: "Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.",
-          s3_title: "3. Alamat Kontrak & Parameter Aktif",
-          k_net: "Jaringan Uji Saat Ini",
-          k_seal: "Kontrak FactSeal",
-          k_msk: "Kontrak Token MSK",
-          k_ver: "Verifikator Utama",
-          s4_title: "4. Contoh Pembacaan Status Fakta (verifyFact)",
-          s4_p1: "Contoh pembacaan status keaslian hash berita menggunakan ethers.js v6:",
-          s5_title: "5. Jalur Menuju Sistem Ethereum Asli",
-          s5_p1: "Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli."
+          d_coin_sub: "Sepolia · Siap Migrasi ETH",
+          sb_g1: "FONDASI EKOSISTEM",
+          sb_l1: "Pengantar Proyek",
+          sb_l2: "4 Pilar Utama",
+          sb_l3: "Alamat Kontrak",
+          sb_g2: "INTEGRASI & MIGRASI",
+          sb_l4: "Verifikasi Hash (ethers.js)",
+          sb_l5: "Jalur Migrasi Ethereum Asli",
+          sec1_t: "1. Pengantar Proyek",
+          sec1_p: "Proyek ini dikembangkan dengan identitas khas Media Samudera Kepri untuk menghubungkan transparansi jurnalistik dengan pencatatan bukti digital di jaringan EVM. Saat ini seluruh fitur diuji secara terstruktur di jaringan Ethereum Sepolia (Chain ID: 11155111) sebelum dipindahkan ke sistem Ethereum asli.",
+          sec2_t: "2. Empat Pilar Utama Sistem",
+          sec2_p: "Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:",
+          p1_t: "Berita Berbasis Blockchain",
+          p1_d: "Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.",
+          p2_t: "Coin Samudera Kepri (MSK)",
+          p2_d: "Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.",
+          p3_t: "NFT Arsip & Bukti",
+          p3_d: "Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.",
+          p4_t: "Media Samudera Kepri",
+          p4_d: "Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.",
+          sec3_t: "3. Alamat Kontrak & Parameter Aktif",
+          tbl_net: "Jaringan Uji Saat Ini",
+          tbl_seal: "Kontrak FactSeal",
+          tbl_msk: "Kontrak Token MSK",
+          tbl_ver: "Verifikator Utama",
+          sec4_t: "4. Contoh Pembacaan Status Fakta (verifyFact)",
+          sec4_p: "Contoh pembacaan keaslian hash berita menggunakan ethers.js v6:",
+          btn_copy: "Salin Kode",
+          sec5_t: "5. Jalur Menuju Sistem Ethereum Asli",
+          sec5_p: "Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli."
         },
         en: {
-          top_home: "HOME",
-          top_portal: "PORTAL",
-          sb_foundation: "ECOSYSTEM FOUNDATIONS",
-          sb_intro: "Project Overview",
-          sb_arch: "4 Core Pillars",
-          sb_contracts: "Contract Addresses",
-          sb_dev: "INTEGRATION & MIGRATION",
-          sb_verify: "Hash Verification (ethers.js)",
-          sb_migrate: "Path to Live Ethereum",
-          d_kicker: "DEVELOPERS SUB-MENU · OFFICIAL DOCS",
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          d_pill: "DEVELOPERS SUB-MENU · OFFICIAL DOCUMENTATION",
           d_title: "Samudera Kepri Ecosystem Documentation",
-          d_desc: "Technical reference for blockchain-backed news integrity (FactSeal), MSK ecosystem coin, archive certificates/NFTs, and migration readiness toward the live Ethereum system.",
-          s1_title: "1. Project Overview",
-          s1_p1: "Built with Media Samudera Kepri's own identity to connect journalistic transparency with on-chain proof records on EVM networks. All modules are currently structured and tested on Ethereum Sepolia (Chain ID: 11155111) prior to migrating to the live Ethereum system.",
-          s2_title: "2. Four Core System Pillars",
-          s2_p1: "Designed to work together for transparent public auditability:",
-          b1_t: "Blockchain-Backed News",
-          b1_d: "Cryptographic contentHash (bytes32) sealing for news archives, fact hearings, and investigations.",
-          b2_t: "Samudera Kepri Coin (MSK)",
-          b2_d: "Ecosystem token supporting participation, community recognition, and transparency.",
-          b3_t: "Archive & Proof NFTs",
-          b3_d: "Digital certificates and special-edition archive NFTs within the Samudera Kepri ecosystem.",
-          b4_t: "Media Samudera Kepri",
-          b4_d: "Direct publication references to samuderakepri.co.id and community spaces.",
-          s3_title: "3. Active Contracts & Parameters",
-          k_net: "Current Test Network",
-          k_seal: "FactSeal Contract",
-          k_msk: "MSK Token Contract",
-          k_ver: "Primary Verifier",
-          s4_title: "4. Reading Fact Status (verifyFact)",
-          s4_p1: "Sample read call for verifying article hash integrity with ethers.js v6:",
-          s5_title: "5. Path to the Live Ethereum System",
-          s5_p1: "Every page, news verification workflow, NFT module, and MSK coin utility is refined on the test environment first. Once complete and verified, network parameters, contracts, and references will migrate to the live Ethereum system."
+          d_desc: "Technical guide for blockchain news integrity sealing (FactSeal), MSK ecosystem token, archive NFTs/certificates, and preparation workflows before migrating to the live Ethereum system.",
+          d_coin_sub: "Sepolia · ETH Migration Ready",
+          sb_g1: "ECOSYSTEM FOUNDATION",
+          sb_l1: "Project Introduction",
+          sb_l2: "4 Core Pillars",
+          sb_l3: "Contract Addresses",
+          sb_g2: "INTEGRATION & MIGRATION",
+          sb_l4: "Hash Verification (ethers.js)",
+          sb_l5: "Live Ethereum Migration Path",
+          sec1_t: "1. Project Introduction",
+          sec1_p: "This project is built with Media Samudera Kepri's signature identity to connect journalistic transparency with digital proof records on EVM networks. All features are currently tested on Ethereum Sepolia (Chain ID: 11155111) prior to migration to the live Ethereum system.",
+          sec2_t: "2. Four Core System Pillars",
+          sec2_p: "Each component is designed to complement one another for open public auditability:",
+          p1_t: "Blockchain-Based News",
+          p1_d: "Cryptographic contentHash (bytes32) sealing for news archives, fact hearings, and investigations.",
+          p2_t: "Samudera Kepri Coin (MSK)",
+          p2_d: "Ecosystem utility token supporting participation, appreciation, and community transparency.",
+          p3_t: "Archive NFT & Proof",
+          p3_d: "Digital certificates and special-edition archive NFTs belonging to the Samudera Kepri ecosystem.",
+          p4_t: "Media Samudera Kepri",
+          p4_d: "Publication integration with samuderakepri.co.id and the community portal.",
+          sec3_t: "3. Active Contract Addresses & Parameters",
+          tbl_net: "Current Test Network",
+          tbl_seal: "FactSeal Contract",
+          tbl_msk: "MSK Token Contract",
+          tbl_ver: "Primary Verifier",
+          sec4_t: "4. Fact Status Read Example (verifyFact)",
+          sec4_p: "Sample script to read news hash authenticity using ethers.js v6:",
+          btn_copy: "Copy Code",
+          sec5_t: "5. Path to the Live Ethereum System",
+          sec5_p: "All interfaces, news verification flows, NFT modules, and MSK coin utilities are refined in the test environment first. Once fully verified, network settings, contract addresses, and official references will migrate to the live Ethereum system."
         }
       };
 
@@ -607,8 +804,8 @@ console.log("Total data tersegel:", total.toString());</code></pre>
         const dict = I18N[lang] || I18N.id;
         document.documentElement.lang = lang;
         document.querySelectorAll("[data-i18n]").forEach((el) => {
-          const key = el.getAttribute("data-i18n");
-          if (dict[key]) el.textContent = dict[key];
+          const k = el.getAttribute("data-i18n");
+          if (dict[k]) el.textContent = dict[k];
         });
         document.querySelectorAll(".sk-lang-btn").forEach((b) => {
           b.classList.toggle("active", b.getAttribute("data-lang") === lang);
@@ -620,29 +817,40 @@ console.log("Total data tersegel:", total.toString());</code></pre>
         btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
       });
 
-      let lang = "id";
-      try { lang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
-      applyLang(lang);
+      const dd = document.getElementById("sk-dev-dropdown");
+      const ddBtn = document.getElementById("sk-dev-btn");
+      ddBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dd.classList.toggle("open");
+        ddBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+      document.addEventListener("click", () => {
+        dd.classList.remove("open");
+        ddBtn.setAttribute("aria-expanded", "false");
+      });
 
       const filterInput = document.getElementById("sk-doc-filter");
       filterInput.addEventListener("input", function () {
         const q = this.value.trim().toLowerCase();
-        document.querySelectorAll("#sk-doc-sections [data-topic]").forEach((sec) => {
-          const hay = (sec.getAttribute("data-topic") + " " + sec.textContent).toLowerCase();
-          sec.style.display = !q || hay.includes(q) ? "" : "none";
+        document.querySelectorAll("#sk-doc-sections .sk-doc-card").forEach((card) => {
+          const match = !q || card.textContent.toLowerCase().includes(q);
+          card.style.display = match ? "" : "none";
         });
       });
 
-      const copyBtn = document.getElementById("sk-copy-snippet");
-      copyBtn.addEventListener("click", async function () {
-        const codeText = document.getElementById("sk-snippet-code").textContent || "";
-        try {
-          await navigator.clipboard.writeText(codeText);
-          const prev = this.textContent;
-          this.textContent = "Tersalin";
-          setTimeout(() => { this.textContent = prev; }, 1400);
-        } catch (e) {}
+      const copyBtn = document.getElementById("sk-copy-code");
+      copyBtn.addEventListener("click", function () {
+        const code = document.getElementById("sk-code-sample").textContent;
+        navigator.clipboard.writeText(code).then(() => {
+          const orig = this.textContent;
+          this.textContent = "Tersalin!";
+          setTimeout(() => { this.textContent = orig; }, 1600);
+        });
       });
+
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
     })();
   </script>
 </body>
