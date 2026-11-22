@@ -3,27 +3,27 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Komunitas Samudera Kepri (MSK) — Let's Get Social</title>
+  <title>Komunitas — Samudera Kepri (MSK) &amp; FactSeal</title>
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:ital,wght@0,700;0,800;1,800&display=swap" rel="stylesheet" />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
   <style>
     :root {
-      --bg-dark: #070d16;
-      --bg-surface: #0b1422;
+      --navy-base: #060f1d;
       --prussian: #0a192f;
+      --prussian-card: rgba(10, 25, 47, 0.88);
       --emerald: #10b981;
       --emerald-bright: #34d399;
       --gold: #eab308;
       --gold-soft: #fde047;
-      --purple-deep: #2e1065;
-      --magenta: #701a75;
+      --purple-kepri: #2e1065;
+      --magenta-kepri: #701a75;
       --text-main: #f8fafc;
       --text-muted: #94a3b8;
-      --border-subtle: rgba(148, 163, 184, 0.16);
+      --line-soft: rgba(148, 163, 184, 0.18);
     }
 
-    * {
+    *, *::before, *::after {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
@@ -35,53 +35,39 @@
 
     body {
       font-family: 'Inter', system-ui, -apple-system, sans-serif;
-      background-color: var(--bg-dark);
-      color: var(--text-main);
-      overflow-x: hidden;
-      line-height: 1.6;
-    }
-
-    /* Top Cosmic/Oceanic Band (Matching Reference Header) */
-    .sk-comm-hero {
-      position: relative;
-      padding: 18px 16px 76px;
       background:
-        radial-gradient(circle at 20% 25%, rgba(16, 185, 129, 0.25) 0%, transparent 45%),
-        radial-gradient(circle at 82% 20%, rgba(112, 26, 117, 0.34) 0%, transparent 48%),
-        linear-gradient(180deg, #071628 0%, #0a192f 58%, #070d16 100%);
-      text-align: center;
-      overflow: hidden;
+        radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        radial-gradient(circle at 50% 85%, rgba(234, 179, 8, 0.1) 0%, transparent 50%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 52%, #050c16 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.65;
     }
 
-    .sk-comm-hero::after {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background-image: radial-gradient(rgba(255, 255, 255, 0.22) 1px, transparent 1px);
-      background-size: 72px 72px;
-      opacity: 0.35;
-      pointer-events: none;
-    }
-
-    .sk-nav-wrap {
-      position: relative;
-      z-index: 20;
-      max-width: 1120px;
-      margin: 0 auto 54px;
+    /* Top Navigation Bar */
+    .sk-header-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 60;
+      padding: 0 14px;
     }
 
     .sk-navbar {
-      background: rgba(10, 25, 47, 0.84);
+      max-width: 1140px;
+      margin: 0 auto;
+      background: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(14px);
       -webkit-backdrop-filter: blur(14px);
-      border: 1px solid rgba(234, 179, 8, 0.28);
+      border: 1px solid rgba(234, 179, 8, 0.35);
       border-radius: 14px;
       padding: 10px 16px;
       display: flex;
       align-items: center;
       justify-content: space-between;
-      gap: 14px;
-      box-shadow: 0 14px 30px rgba(0, 0, 0, 0.42);
+      gap: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
     }
 
     .sk-brand {
@@ -93,593 +79,553 @@
     }
 
     .sk-brand img {
-      width: 32px;
-      height: 32px;
+      width: 34px;
+      height: 34px;
       border-radius: 8px;
       object-fit: cover;
       border: 1.5px solid var(--gold);
       background: #ffffff;
     }
 
-    .sk-brand span {
+    .sk-brand-title {
       font-family: 'Space Grotesk', sans-serif;
       font-weight: 800;
-      font-size: 16px;
+      font-size: 15.5px;
       letter-spacing: 0.04em;
       text-transform: uppercase;
+      display: block;
+      line-height: 1.1;
     }
 
-    .sk-nav-links {
+    .sk-brand-sub {
+      font-size: 10.5px;
+      color: var(--gold-soft);
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+    .sk-nav {
       display: flex;
       align-items: center;
-      gap: 20px;
+      gap: 18px;
+      flex-wrap: wrap;
     }
 
-    .sk-nav-links a {
-      color: #cbd5e1;
+    .sk-nav > a,
+    .sk-dd-trigger {
+      color: #e2e8f0;
       text-decoration: none;
-      font-size: 11.5px;
+      font-size: 12px;
       font-weight: 700;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      padding: 6px 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
       transition: color 0.2s ease;
     }
 
-    .sk-nav-links a:hover,
-    .sk-nav-links a.active {
+    .sk-nav > a:hover,
+    .sk-nav > a.active,
+    .sk-dd-trigger:hover {
       color: var(--gold-soft);
     }
 
-    .sk-nav-cta {
+    .sk-dropdown {
+      position: relative;
+    }
+
+    .sk-dd-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      background: #081528;
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.58);
+      z-index: 80;
+    }
+
+    .sk-dropdown.open .sk-dd-menu,
+    .sk-dropdown:hover .sk-dd-menu {
+      display: block;
+    }
+
+    .sk-dd-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sk-dd-menu a:hover {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-soft);
+    }
+
+    .sk-dd-tag {
+      font-size: 10px;
+      color: var(--emerald-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sk-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+    }
+
+    .sk-lang-switch {
+      display: inline-flex;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    .sk-lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-lang-btn.active {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-portal-cta {
       background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
       color: #03221e;
       text-decoration: none;
       font-size: 11.5px;
       font-weight: 800;
-      letter-spacing: 0.06em;
+      letter-spacing: 0.05em;
       text-transform: uppercase;
-      padding: 9px 16px;
+      padding: 9px 14px;
       border-radius: 8px;
       white-space: nowrap;
-      box-shadow: 0 0 18px rgba(16, 185, 129, 0.35);
-    }
-
-    .sk-hero-content {
-      position: relative;
-      z-index: 10;
-      max-width: 780px;
-      margin: 0 auto;
-    }
-
-    .sk-display-title {
-      font-family: 'Space Grotesk', sans-serif;
-      font-style: italic;
-      font-weight: 800;
-      font-size: clamp(2.2rem, 5.6vw, 4.2rem);
-      line-height: 1.05;
-      letter-spacing: -0.02em;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff 0%, #6ee7b7 52%, #10b981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 14px;
-    }
-
-    .sk-hero-desc {
-      color: #cbd5e1;
-      font-size: 14.5px;
-      max-width: 560px;
-      margin: 0 auto;
     }
 
     /* Main Container */
-    .sk-container {
-      max-width: 980px;
-      margin: 0 auto;
-      padding: 0 16px;
+    .sk-main {
+      max-width: 1140px;
+      margin: 22px auto 0;
+      padding: 0 14px 56px;
     }
 
-    /* Join Community Banner Card (Matching Reference Scene Box) */
-    .sk-join-banner {
-      position: relative;
+    .sk-hero {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
       border-radius: 18px;
-      padding: 32px 26px;
-      margin-top: -24px;
-      margin-bottom: 72px;
-      background:
-        linear-gradient(120deg, rgba(46, 16, 101, 0.78) 0%, rgba(10, 25, 47, 0.92) 55%, rgba(16, 185, 129, 0.22) 100%);
-      border: 1px solid rgba(234, 179, 8, 0.38);
-      box-shadow: 0 20px 44px rgba(0, 0, 0, 0.52);
-      overflow: hidden;
-    }
-
-    .sk-join-grid {
-      position: relative;
-      z-index: 2;
-      display: grid;
-      grid-template-columns: 1.15fr 0.85fr;
-      gap: 24px;
+      padding: 28px 24px;
+      margin-bottom: 22px;
+      display: flex;
+      justify-content: space-between;
       align-items: center;
+      gap: 20px;
+      flex-wrap: wrap;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.46);
     }
 
-    .sk-join-tag {
+    .sk-stage-pill {
       display: inline-block;
       font-size: 11px;
-      font-weight: 700;
-      letter-spacing: 0.08em;
+      font-weight: 800;
+      letter-spacing: 0.06em;
       text-transform: uppercase;
       color: var(--gold-soft);
+      background: rgba(6, 15, 29, 0.62);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      padding: 4px 11px;
+      border-radius: 999px;
+      margin-bottom: 10px;
+    }
+
+    .sk-hero h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+      font-weight: 800;
+      line-height: 1.15;
+      color: #ffffff;
       margin-bottom: 8px;
     }
 
-    .sk-join-box {
-      background: rgba(7, 13, 22, 0.78);
-      border: 1px solid rgba(148, 163, 184, 0.24);
-      border-radius: 14px;
-      padding: 18px;
-      backdrop-filter: blur(10px);
+    .sk-hero p {
+      font-size: 13.5px;
+      color: #f1f5f9;
+      max-width: 640px;
     }
 
-    .sk-join-box h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 17px;
-      color: #ffffff;
-      margin-bottom: 4px;
-    }
-
-    .sk-join-box p {
-      font-size: 12.5px;
-      color: var(--text-muted);
-      margin-bottom: 14px;
-    }
-
-    .sk-channel-grid {
-      display: grid;
-      grid-template-columns: repeat(2, minmax(0, 1fr));
-      gap: 10px;
-    }
-
-    .sk-channel-btn {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      text-decoration: none;
-      background: rgba(15, 29, 50, 0.88);
-      border: 1px solid rgba(52, 211, 153, 0.24);
-      border-radius: 10px;
-      padding: 10px 12px;
-      color: #f8fafc;
-      font-size: 12.5px;
-      font-weight: 700;
-      transition: border-color 0.2s ease, transform 0.15s ease;
-    }
-
-    .sk-channel-btn:hover {
-      border-color: var(--gold);
-      transform: translateY(-1px);
-    }
-
-    .sk-channel-btn span {
-      color: var(--gold-soft);
-      font-size: 12px;
-    }
-
-    .sk-mascot-card {
-      display: flex;
-      flex-direction: column;
-      align-items: center;
-      text-align: center;
-      background: rgba(7, 13, 22, 0.55);
-      border: 1px solid rgba(234, 179, 8, 0.32);
-      border-radius: 14px;
-      padding: 18px;
-    }
-
-    .sk-mascot-card img {
-      width: 96px;
-      height: 96px;
-      border-radius: 50%;
-      object-fit: cover;
-      border: 2.5px solid var(--gold);
-      background: #09090b;
-      margin-bottom: 10px;
-      box-shadow: 0 10px 24px rgba(0, 0, 0, 0.45);
-    }
-
-    .sk-mascot-card strong {
-      font-size: 14px;
-      color: var(--gold-soft);
-      letter-spacing: 0.03em;
-    }
-
-    .sk-mascot-card small {
-      font-size: 12px;
-      color: #cbd5e1;
-      margin-top: 2px;
-    }
-
-    /* Regional / Desk Communities Section (Matching "COMMUNITIES IN YOUR LANGUAGE") */
-    .sk-section-block {
-      padding: 24px 0 68px;
-    }
-
-    .sk-center-heading {
-      text-align: center;
-      margin-bottom: 32px;
-    }
-
-    .sk-center-heading h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-style: italic;
-      font-weight: 800;
-      font-size: clamp(1.65rem, 3.8vw, 2.55rem);
-      line-height: 1.1;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff 0%, #6ee7b7 60%, #10b981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-    }
-
-    .sk-comm-cards {
-      display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(290px, 1fr));
-      gap: 20px;
-    }
-
-    .sk-comm-card {
-      background: var(--bg-surface);
-      border: 1px solid rgba(52, 211, 153, 0.24);
-      border-radius: 14px;
-      padding: 20px;
-      transition: transform 0.2s ease, border-color 0.2s ease;
-    }
-
-    .sk-comm-card:hover {
-      transform: translateY(-3px);
-      border-color: var(--gold);
-    }
-
-    .sk-comm-card-top {
+    .sk-coin-box {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin-bottom: 12px;
+      background: rgba(6, 15, 29, 0.58);
+      border: 1px solid rgba(234, 179, 8, 0.5);
+      border-radius: 14px;
+      padding: 11px 16px;
     }
 
-    .sk-comm-pill {
-      background: rgba(112, 26, 117, 0.35);
-      border: 1px solid rgba(234, 179, 8, 0.42);
+    .sk-coin-box img {
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      object-fit: cover;
+      border: 2px solid var(--gold);
+      background: #09090b;
+    }
+
+    .sk-coin-box strong {
+      display: block;
+      font-size: 13px;
       color: var(--gold-soft);
-      font-family: 'Space Grotesk', sans-serif;
+    }
+
+    .sk-coin-box span {
+      display: block;
+      font-size: 11.5px;
+      color: #e2e8f0;
+    }
+
+    .sk-section {
+      background: var(--prussian-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+    }
+
+    .sk-sec-kicker {
       font-size: 11px;
       font-weight: 800;
-      padding: 5px 10px;
-      border-radius: 999px;
-      letter-spacing: 0.05em;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 4px;
     }
 
-    .sk-comm-card h3 {
-      font-size: 16px;
+    .sk-section h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 20px;
       color: #ffffff;
+      margin-bottom: 6px;
     }
 
-    .sk-comm-card p {
-      font-size: 13px;
+    .sk-sec-desc {
+      font-size: 13.5px;
       color: var(--text-muted);
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
-    .sk-comm-links {
+    .sk-grid-2 {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .sk-card {
+      background: rgba(6, 15, 29, 0.78);
+      border: 1px solid rgba(52, 211, 153, 0.24);
+      border-radius: 12px;
+      padding: 16px;
       display: flex;
       flex-direction: column;
-      gap: 8px;
-      font-size: 12.5px;
+      justify-content: space-between;
+      gap: 12px;
     }
 
-    .sk-comm-links a {
-      color: var(--emerald-bright);
+    .sk-card h3 {
+      font-size: 16px;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .sk-card p {
+      font-size: 13px;
+      color: var(--text-muted);
+      margin-bottom: 10px;
+    }
+
+    .sk-links {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+    }
+
+    .sk-links a {
+      color: var(--gold-soft);
       text-decoration: none;
+      font-size: 13px;
       font-weight: 600;
     }
 
-    .sk-comm-links a:hover {
-      color: var(--gold-soft);
+    .sk-links a:hover {
+      color: var(--emerald-bright);
       text-decoration: underline;
-    }
-
-    /* Callout Band (Matching "START BUILDING TOGETHER") */
-    .sk-callout-band {
-      padding: 64px 16px;
-      text-align: center;
-      background:
-        radial-gradient(circle at 50% 50%, rgba(16, 185, 129, 0.18) 0%, transparent 62%),
-        linear-gradient(180deg, rgba(10, 25, 47, 0.35) 0%, rgba(112, 26, 117, 0.16) 100%);
-      border-top: 1px solid var(--border-subtle);
-      border-bottom: 1px solid var(--border-subtle);
-    }
-
-    .sk-callout-band h2 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-style: italic;
-      font-weight: 800;
-      font-size: clamp(1.7rem, 4vw, 2.7rem);
-      line-height: 1.08;
-      text-transform: uppercase;
-      background: linear-gradient(180deg, #ffffff 0%, #6ee7b7 55%, #10b981 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      margin-bottom: 12px;
-    }
-
-    .sk-callout-band p {
-      max-width: 520px;
-      margin: 0 auto 24px;
-      color: var(--text-muted);
-      font-size: 14px;
     }
 
     .sk-btn-row {
       display: flex;
-      justify-content: center;
-      gap: 12px;
       flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 8px;
     }
 
-    .sk-btn-primary {
+    .sk-btn-main {
+      display: inline-block;
       text-decoration: none;
       background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
       color: #03221e;
       font-size: 12.5px;
       font-weight: 800;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 12px 22px;
+      padding: 9px 16px;
       border-radius: 8px;
     }
 
-    .sk-btn-outline {
+    .sk-btn-gold {
+      display: inline-block;
       text-decoration: none;
-      background: rgba(10, 25, 47, 0.78);
-      border: 1px solid rgba(234, 179, 8, 0.45);
+      background: rgba(6, 15, 29, 0.65);
+      border: 1px solid rgba(234, 179, 8, 0.5);
       color: var(--gold-soft);
       font-size: 12.5px;
       font-weight: 700;
-      letter-spacing: 0.06em;
-      text-transform: uppercase;
-      padding: 12px 20px;
+      padding: 9px 16px;
       border-radius: 8px;
     }
 
-    /* Footer + Giant Brand Wordmark (Matching Reference Bottom) */
     .sk-footer {
-      max-width: 1120px;
-      margin: 0 auto;
-      padding: 56px 20px 24px;
-    }
-
-    .sk-footer-grid {
-      display: grid;
-      grid-template-columns: 1.4fr repeat(3, 1fr);
-      gap: 28px;
-      margin-bottom: 44px;
-    }
-
-    .sk-footer-say {
-      font-family: 'Space Grotesk', sans-serif;
-      font-style: italic;
-      font-weight: 800;
-      font-size: 20px;
-      color: #ffffff;
-      margin-bottom: 12px;
-    }
-
-    .sk-footer-say span {
-      color: var(--emerald-bright);
-    }
-
-    .sk-footer-col h4 {
-      font-family: 'Space Grotesk', sans-serif;
-      font-size: 11px;
-      letter-spacing: 0.1em;
-      text-transform: uppercase;
-      color: var(--text-muted);
-      margin-bottom: 12px;
-    }
-
-    .sk-footer-col a {
-      display: block;
-      color: #cbd5e1;
-      text-decoration: none;
+      text-align: center;
       font-size: 12.5px;
-      margin-bottom: 8px;
-    }
-
-    .sk-footer-col a:hover {
-      color: var(--gold-soft);
-    }
-
-    .sk-giant-wordmark {
-      font-family: 'Space Grotesk', sans-serif;
-      font-weight: 800;
-      font-size: clamp(3rem, 11.5vw, 8.8rem);
-      line-height: 0.92;
-      text-align: center;
-      text-transform: uppercase;
-      letter-spacing: 0.02em;
-      background: linear-gradient(180deg, rgba(16, 185, 129, 0.34) 0%, rgba(112, 26, 117, 0.28) 60%, rgba(10, 25, 47, 0.15) 100%);
-      -webkit-background-clip: text;
-      -webkit-text-fill-color: transparent;
-      user-select: none;
-      padding-bottom: 12px;
-    }
-
-    .sk-copy-line {
-      text-align: center;
-      font-size: 12px;
       color: var(--text-muted);
-      padding-top: 14px;
-      border-top: 1px solid var(--border-subtle);
+      padding-top: 8px;
     }
 
-    @media (max-width: 820px) {
-      .sk-nav-links { display: none; }
-      .sk-join-grid { grid-template-columns: 1fr; }
-      .sk-footer-grid { grid-template-columns: 1fr 1fr; }
-    }
-
-    @media (max-width: 500px) {
-      .sk-footer-grid { grid-template-columns: 1fr; }
-      .sk-channel-grid { grid-template-columns: 1fr; }
+    .sk-footer a {
+      color: var(--gold-soft);
+      text-decoration: none;
     }
   </style>
 </head>
 <body>
-  <!-- Top Cosmic/Oceanic Header -->
-  <header class="sk-comm-hero">
-    <div class="sk-nav-wrap">
-      <nav class="sk-navbar">
-        <a href="../index.html" class="sk-brand">
-          <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
-          <span>SAMUDERA KEPRI</span>
-        </a>
-
-        <div class="sk-nav-links">
-          <a href="./community.html" class="active">COMMUNITY</a>
-          <a href="../index.html#ekosistem">ECOSYSTEM</a>
-          <a href="./public-portal.html">PORTAL PUBLIK</a>
-          <a href="./explorer.html">EXPLORER</a>
+  <div class="sk-header-wrap">
+    <header class="sk-navbar">
+      <a href="../index.html" class="sk-brand">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+        <div>
+          <span class="sk-brand-title">SAMUDERA KEPRI</span>
+          <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
         </div>
+      </a>
 
-        <a href="./public-portal.html" class="sk-nav-cta">BUKA PORTAL</a>
-      </nav>
-    </div>
+      <nav class="sk-nav" aria-label="Navigasi Utama">
+        <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+        <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+        <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+        <a href="./community.html" class="active" data-i18n="nav_community">KOMUNITAS</a>
 
-    <div class="sk-hero-content">
-      <h1 class="sk-display-title">LET'S GET SOCIAL</h1>
-      <p class="sk-hero-desc">
-        Terhubung dengan pembaca, kontributor biro, pemeriksa fakta, dan pegiat transparansi publik di ekosistem <strong>Media Samudera Kepri</strong> &amp; <strong>Coin (MSK)</strong>.
-      </p>
-    </div>
-  </header>
-
-  <!-- Main Content -->
-  <main class="sk-container">
-    <!-- Join Community Card -->
-    <section class="sk-join-banner">
-      <div class="sk-join-grid">
-        <div class="sk-join-box">
-          <div class="sk-join-tag">JARINGAN &amp; KANAL RESMI</div>
-          <h2>JOIN THE COMMUNITY</h2>
-          <p>Akses kanal publikasi, repositori terbuka, dan catatan verifikasi berita Samudera Kepri.</p>
-
-          <div class="sk-channel-grid">
-            <a class="sk-channel-btn" href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">
-              PORTAL BERITA <span>&nearr;</span>
+        <div class="sk-dropdown" id="sk-dev-dropdown">
+          <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
+            <span>DEVELOPERS</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./docs.html" role="menuitem">
+              <span>docs</span>
+              <span class="sk-dd-tag">GUIDE</span>
             </a>
-            <a class="sk-channel-btn" href="https://github.com/SAMUDERAKEPRI/samudera-kepri-fact-seal" target="_blank" rel="noopener noreferrer">
-              GITHUB REPO <span>&nearr;</span>
+            <a href="./Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+              <span>Whitepaper.pdf</span>
+              <span class="sk-dd-tag">PDF</span>
             </a>
-            <a class="sk-channel-btn" href="./public-portal.html">
-              REGISTRI FAKTA <span>&rarr;</span>
+            <a href="./faucet.html" role="menuitem">
+              <span>faucet</span>
+              <span class="sk-dd-tag">TEST</span>
             </a>
-            <a class="sk-channel-btn" href="./explorer.html">
-              SEPOLIA EXPLORER <span>&rarr;</span>
+            <a href="./report-abuse.html" role="menuitem">
+              <span>report-abuse</span>
+              <span class="sk-dd-tag">SAFETY</span>
             </a>
           </div>
         </div>
+      </nav>
 
-        <div class="sk-mascot-card">
-          <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
-          <strong>KOMUNITAS MSK SEPOLIA</strong>
-          <small>Verifikasi Arsip &amp; Gelar Fakta Terbuka</small>
+      <div class="sk-right-tools">
+        <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
+          <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+          <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="./public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
+      </div>
+    </header>
+  </div>
+
+  <main class="sk-main">
+    <section class="sk-hero">
+      <div>
+        <div class="sk-stage-pill" data-i18n="c_pill">JEJARING PEMBACA, KONTRIBUTOR &amp; VERIFIKATOR</div>
+        <h1 data-i18n="c_title">Komunitas Ekosistem Samudera Kepri</h1>
+        <p data-i18n="c_desc">
+          Ruang kolaborasi pembaca, biro liputan, pemeriksa fakta, dan penggiat transparansi yang menghubungkan kanal jurnalistik Media Samudera Kepri dengan Coin MSK, FactSeal, dan NFT Arsip.
+        </p>
+      </div>
+
+      <div class="sk-coin-box">
+        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
+        <div>
+          <strong>KOMUNITAS MSK</strong>
+          <span data-i18n="c_coin_sub">Sepolia · Siap Migrasi ETH</span>
         </div>
       </div>
     </section>
 
-    <!-- Regional / Rubrik Communities -->
-    <section class="sk-section-block">
-      <div class="sk-center-heading">
-        <h2>COMMUNITIES &amp; RUBRIK<br />IN YOUR REGION</h2>
-      </div>
+    <section class="sk-section">
+      <div class="sk-sec-kicker" data-i18n="k_kicker">KANAL &amp; PERAN KOMUNITAS</div>
+      <h2 data-i18n="k_title">Terhubung dengan Liputan &amp; Verifikasi Publik</h2>
+      <p class="sk-sec-desc" data-i18n="k_desc">Pilih jalur kanal publikasi resmi maupun perangkat penelusuran data on-chain ekosistem Samudera Kepri.</p>
 
-      <div class="sk-comm-cards">
-        <div class="sk-comm-card">
-          <div class="sk-comm-card-top">
-            <span class="sk-comm-pill">KEPRI &amp; NUSANTARA</span>
-            <h3>Komunitas Pembaca &amp; Kontributor</h3>
+      <div class="sk-grid-2">
+        <div class="sk-card">
+          <div>
+            <h3 data-i18n="g1_t">Pembaca, Biro &amp; Kontributor Media</h3>
+            <p data-i18n="g1_d">Ikuti laporan investigasi, gelar fakta, dan kabar terkini langsung dari kanal resmi Media Samudera Kepri.</p>
+            <ul class="sk-links">
+              <li><a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Portal Berita samuderakepri.co.id &nearr;</a></li>
+              <li><a href="https://www.samuderakepri.co.id/category/investigasi/gelar-fakta/" target="_blank" rel="noopener noreferrer">Rubrik Gelar Fakta &nearr;</a></li>
+              <li><a href="https://www.samuderakepri.co.id/category/investigasi/" target="_blank" rel="noopener noreferrer">Rubrik Investigasi &nearr;</a></li>
+            </ul>
           </div>
-          <p>Ikuti laporan liputan daerah, gelar fakta, dan kabar terkini langsung dari kanal resmi Media Samudera Kepri.</p>
-          <div class="sk-comm-links">
-            <a href="https://www.samuderakepri.co.id/category/investigasi/gelar-fakta/" target="_blank" rel="noopener noreferrer">&nearr; Kanal Gelar Fakta</a>
-            <a href="https://www.samuderakepri.co.id/category/investigasi/" target="_blank" rel="noopener noreferrer">&nearr; Kanal Investigasi</a>
-            <a href="https://www.samuderakepri.co.id/category/kabar-terkini/" target="_blank" rel="noopener noreferrer">&nearr; Kanal Kabar Terkini</a>
+          <div class="sk-btn-row">
+            <a href="./public-portal.html" class="sk-btn-main" data-i18n="btn_portal">Buka Portal Publik</a>
           </div>
         </div>
 
-        <div class="sk-comm-card">
-          <div class="sk-comm-card-top">
-            <span class="sk-comm-pill">ON-CHAIN &amp; VERIFIKASI</span>
-            <h3>Penguji &amp; Peneliti Data</h3>
+        <div class="sk-card">
+          <div>
+            <h3 data-i18n="g2_t">Pemeriksa Fakta &amp; Penguji Ekosistem</h3>
+            <p data-i18n="g2_d">Periksa keaslian contentHash, saldo token MSK, sertifikat/NFT arsip, serta pantau kontrak di jaringan uji Sepolia.</p>
+            <ul class="sk-links">
+              <li><a href="./explorer.html">Blockchain Explorer (FactSeal &amp; MSK) &rarr;</a></li>
+              <li><a href="./nft.html">NFT Arsip &amp; Bukti Liputan &rarr;</a></li>
+              <li><a href="https://github.com/SAMUDERAKEPRI/samudera-kepri-fact-seal" target="_blank" rel="noopener noreferrer">Repositori GitHub Proyek &nearr;</a></li>
+            </ul>
           </div>
-          <p>Periksa keaslian <code>contentHash</code>, telusuri catatan kontrak FactSeal di Sepolia, dan pelajari saldo ekosistem MSK.</p>
-          <div class="sk-comm-links">
-            <a href="./public-portal.html">&rarr; Cari &amp; Pratinjau Hash Berita</a>
-            <a href="./explorer.html">&rarr; Cek verifyFact &amp; Saldo MSK</a>
-            <a href="https://sepolia.etherscan.io/address/0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033" target="_blank" rel="noopener noreferrer">&nearr; Kontrak FactSeal di Etherscan</a>
+          <div class="sk-btn-row">
+            <a href="./explorer.html" class="sk-btn-gold" data-i18n="btn_exp">Buka Explorer</a>
+            <a href="./nft.html" class="sk-btn-gold" data-i18n="btn_nft">Lihat NFT</a>
           </div>
         </div>
       </div>
     </section>
   </main>
 
-  <!-- Callout Band -->
-  <section class="sk-callout-band">
-    <h2>START VERIFYING<br />TOGETHER</h2>
-    <p>Bangun transparansi informasi publik yang dapat diaudit bersama ekosistem Samudera Kepri FactSeal &amp; Coin (MSK).</p>
-    <div class="sk-btn-row">
-      <a href="./public-portal.html" class="sk-btn-primary">BUKA PORTAL PUBLIK</a>
-      <a href="./explorer.html" class="sk-btn-outline">BUKA EXPLORER &rsaquo;</a>
-    </div>
-  </section>
-
-  <!-- Footer + Giant Brand Wordmark -->
   <footer class="sk-footer">
-    <div class="sk-footer-grid">
-      <div>
-        <div class="sk-footer-say">COME SAY HI <span>+</span></div>
-        <div class="sk-comm-links">
-          <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">&nearr; samuderakepri.co.id</a>
-          <a href="https://github.com/SAMUDERAKEPRI/samudera-kepri-fact-seal" target="_blank" rel="noopener noreferrer">&nearr; GitHub SAMUDERAKEPRI</a>
-        </div>
-      </div>
-
-      <div class="sk-footer-col">
-        <h4>PORTAL</h4>
-        <a href="../index.html">Landing Page</a>
-        <a href="./public-portal.html">Portal Publik</a>
-        <a href="./community.html">Community</a>
-      </div>
-
-      <div class="sk-footer-col">
-        <h4>ON-CHAIN</h4>
-        <a href="./explorer.html">Blockchain Explorer</a>
-        <a href="https://sepolia.etherscan.io/token/0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d" target="_blank" rel="noopener noreferrer">Token MSK</a>
-        <a href="https://sepolia.etherscan.io/address/0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033" target="_blank" rel="noopener noreferrer">FactSeal Contract</a>
-      </div>
-
-      <div class="sk-footer-col">
-        <h4>MEDIA</h4>
-        <a href="https://www.samuderakepri.co.id/category/investigasi/gelar-fakta/" target="_blank" rel="noopener noreferrer">Gelar Fakta</a>
-        <a href="https://www.samuderakepri.co.id/category/investigasi/" target="_blank" rel="noopener noreferrer">Investigasi</a>
-        <a href="https://www.samuderakepri.co.id/category/kabar-terkini/" target="_blank" rel="noopener noreferrer">Kabar Terkini</a>
-      </div>
-    </div>
-
-    <div class="sk-giant-wordmark">SAMUDERA KEPRI</div>
-
-    <div class="sk-copy-line">
-      &copy; 2026 Media Samudera Kepri &middot; Samudera Kepri FactSeal &amp; Coin (MSK)
-    </div>
+    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Komunitas · Coin MSK · FactSeal · NFT
   </footer>
+
+  <script>
+    (function () {
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          c_pill: "JEJARING PEMBACA, KONTRIBUTOR & VERIFIKATOR",
+          c_title: "Komunitas Ekosistem Samudera Kepri",
+          c_desc: "Ruang kolaborasi pembaca, biro liputan, pemeriksa fakta, dan penggiat transparansi yang menghubungkan kanal jurnalistik Media Samudera Kepri dengan Coin MSK, FactSeal, dan NFT Arsip.",
+          c_coin_sub: "Sepolia · Siap Migrasi ETH",
+          k_kicker: "KANAL & PERAN KOMUNITAS",
+          k_title: "Terhubung dengan Liputan & Verifikasi Publik",
+          k_desc: "Pilih jalur kanal publikasi resmi maupun perangkat penelusuran data on-chain ekosistem Samudera Kepri.",
+          g1_t: "Pembaca, Biro & Kontributor Media",
+          g1_d: "Ikuti laporan investigasi, gelar fakta, dan kabar terkini langsung dari kanal resmi Media Samudera Kepri.",
+          btn_portal: "Buka Portal Publik",
+          g2_t: "Pemeriksa Fakta & Penguji Ekosistem",
+          g2_d: "Periksa keaslian contentHash, saldo token MSK, sertifikat/NFT arsip, serta pantau kontrak di jaringan uji Sepolia.",
+          btn_exp: "Buka Explorer",
+          btn_nft: "Lihat NFT"
+        },
+        en: {
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          c_pill: "READERS, CONTRIBUTORS & VERIFIERS NETWORK",
+          c_title: "Samudera Kepri Ecosystem Community",
+          c_desc: "A collaboration hub for readers, reporting bureaus, fact checkers, and transparency advocates connecting Media Samudera Kepri journalism with MSK Coin, FactSeal, and Archive NFTs.",
+          c_coin_sub: "Sepolia · ETH Migration Ready",
+          k_kicker: "COMMUNITY CHANNELS & ROLES",
+          k_title: "Connect with Journalism & Public Verification",
+          k_desc: "Access official publication channels and on-chain verification tools across the Samudera Kepri ecosystem.",
+          g1_t: "Readers, Bureaus & Media Contributors",
+          g1_d: "Follow investigative reports, fact hearings, and latest updates from official Media Samudera Kepri channels.",
+          btn_portal: "Open Public Portal",
+          g2_t: "Fact Checkers & Ecosystem Testers",
+          g2_d: "Verify contentHash integrity, MSK token balances, archive NFTs/certificates, and Sepolia contracts.",
+          btn_exp: "Open Explorer",
+          btn_nft: "View NFTs"
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const k = el.getAttribute("data-i18n");
+          if (dict[k]) el.textContent = dict[k];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      const dd = document.getElementById("sk-dev-dropdown");
+      const ddBtn = document.getElementById("sk-dev-btn");
+      ddBtn.addEventListener("click", (e) => {
+        e.stopPropagation();
+        const isOpen = dd.classList.toggle("open");
+        ddBtn.setAttribute("aria-expanded", String(isOpen));
+      });
+      document.addEventListener("click", () => {
+        dd.classList.remove("open");
+        ddBtn.setAttribute("aria-expanded", "false");
+      });
+
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
+    })();
+  </script>
 </body>
 </html>
