@@ -31,6 +31,7 @@
 
     html {
       scroll-behavior: smooth;
+      overflow-x: hidden;
     }
 
     body {
@@ -43,6 +44,8 @@
       color: var(--text-main);
       min-height: 100vh;
       line-height: 1.65;
+      overflow-x: hidden;
+      width: 100%;
     }
 
     /* Top Navigation Bar (Seragam dengan index.html) */
@@ -51,10 +54,12 @@
       top: 14px;
       z-index: 60;
       padding: 0 14px;
+      width: 100%;
     }
 
     .sk-navbar {
       max-width: 1140px;
+      width: 100%;
       margin: 0 auto;
       background: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(14px);
@@ -76,6 +81,7 @@
       gap: 10px;
       text-decoration: none;
       color: #ffffff;
+      min-width: 0;
     }
 
     .sk-brand img {
@@ -85,6 +91,7 @@
       object-fit: cover;
       border: 1.5px solid var(--gold);
       background: #ffffff;
+      flex-shrink: 0;
     }
 
     .sk-brand-title {
@@ -109,6 +116,7 @@
       align-items: center;
       gap: 18px;
       flex-wrap: wrap;
+      min-width: 0;
     }
 
     .sk-nav > a,
@@ -190,6 +198,7 @@
       display: flex;
       align-items: center;
       gap: 10px;
+      flex-wrap: wrap;
     }
 
     .sk-lang-switch {
@@ -232,8 +241,10 @@
     /* Main Container */
     .sk-main {
       max-width: 1140px;
+      width: 100%;
       margin: 22px auto 0;
       padding: 0 14px 56px;
+      overflow-x: hidden;
     }
 
     .sk-hero {
@@ -248,6 +259,12 @@
       gap: 20px;
       flex-wrap: wrap;
       box-shadow: 0 16px 36px rgba(0, 0, 0, 0.46);
+      max-width: 100%;
+    }
+
+    .sk-hero > div:first-child {
+      min-width: 0;
+      flex: 1 1 320px;
     }
 
     .sk-stage-pill {
@@ -262,6 +279,7 @@
       padding: 4px 11px;
       border-radius: 999px;
       margin-bottom: 10px;
+      max-width: 100%;
     }
 
     .sk-hero h1 {
@@ -271,12 +289,14 @@
       line-height: 1.15;
       color: #ffffff;
       margin-bottom: 8px;
+      overflow-wrap: anywhere;
     }
 
     .sk-hero p {
       font-size: 13.5px;
       color: #f1f5f9;
       max-width: 640px;
+      overflow-wrap: anywhere;
     }
 
     .sk-coin-box {
@@ -287,6 +307,8 @@
       border: 1px solid rgba(234, 179, 8, 0.5);
       border-radius: 14px;
       padding: 11px 16px;
+      max-width: 100%;
+      flex-shrink: 0;
     }
 
     .sk-coin-box img {
@@ -296,6 +318,7 @@
       object-fit: cover;
       border: 2px solid var(--gold);
       background: #09090b;
+      flex-shrink: 0;
     }
 
     .sk-coin-box strong {
@@ -310,17 +333,19 @@
       color: #e2e8f0;
     }
 
-    /* Docs Two-Column Shell */
+    /* Docs Two-Column Shell (min-width: 0 mencegah overflow grid) */
     .sk-docs-shell {
       display: grid;
-      grid-template-columns: 260px 1fr;
+      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
       gap: 20px;
       align-items: start;
+      width: 100%;
+      max-width: 100%;
     }
 
     @media (max-width: 860px) {
       .sk-docs-shell {
-        grid-template-columns: 1fr;
+        grid-template-columns: minmax(0, 1fr);
       }
     }
 
@@ -332,6 +357,14 @@
       border-radius: 16px;
       padding: 18px;
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+      min-width: 0;
+      max-width: 100%;
+    }
+
+    @media (max-width: 860px) {
+      .sk-sidebar {
+        position: static;
+      }
     }
 
     .sk-search-box {
@@ -340,6 +373,7 @@
 
     .sk-search-box input {
       width: 100%;
+      max-width: 100%;
       padding: 9px 11px;
       border-radius: 8px;
       border: 1px solid rgba(148, 163, 184, 0.35);
@@ -387,6 +421,7 @@
       font-size: 13px;
       font-weight: 500;
       transition: background 0.15s ease, color 0.15s ease;
+      overflow-wrap: anywhere;
     }
 
     .sk-side-links a:hover {
@@ -398,6 +433,8 @@
       display: flex;
       flex-direction: column;
       gap: 20px;
+      min-width: 0;
+      max-width: 100%;
     }
 
     .sk-doc-card {
@@ -406,6 +443,9 @@
       border-radius: 16px;
       padding: 22px;
       box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+      min-width: 0;
+      max-width: 100%;
+      overflow: hidden;
     }
 
     .sk-doc-card h2 {
@@ -413,12 +453,14 @@
       font-size: 19px;
       color: var(--gold-soft);
       margin-bottom: 8px;
+      overflow-wrap: anywhere;
     }
 
     .sk-doc-card p {
       font-size: 13.5px;
       color: #e2e8f0;
       margin-bottom: 12px;
+      overflow-wrap: anywhere;
     }
 
     .sk-doc-card p:last-child {
@@ -427,9 +469,10 @@
 
     .sk-pillar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
       gap: 12px;
       margin-top: 10px;
+      max-width: 100%;
     }
 
     .sk-pillar {
@@ -437,37 +480,66 @@
       border: 1px solid rgba(52, 211, 153, 0.24);
       border-radius: 12px;
       padding: 14px;
+      min-width: 0;
     }
 
     .sk-pillar h3 {
       font-size: 14.5px;
       color: #ffffff;
       margin-bottom: 4px;
+      overflow-wrap: anywhere;
     }
 
     .sk-pillar p {
       font-size: 12.5px;
       color: var(--text-muted);
       margin: 0;
+      overflow-wrap: anywhere;
     }
 
     .sk-table {
       width: 100%;
+      max-width: 100%;
       border-collapse: collapse;
       font-size: 13px;
+      table-layout: fixed;
     }
 
     .sk-table td {
       padding: 9px 10px;
       border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-      word-break: break-all;
+      overflow-wrap: anywhere;
+      word-break: break-word;
       color: #e2e8f0;
     }
 
     .sk-table td:first-child {
-      width: 205px;
+      width: 36%;
       font-weight: 700;
       color: var(--gold-soft);
+    }
+
+    .sk-table td:last-child {
+      width: 64%;
+    }
+
+    @media (max-width: 540px) {
+      .sk-table,
+      .sk-table tbody,
+      .sk-table tr,
+      .sk-table td {
+        display: block;
+        width: 100% !important;
+      }
+
+      .sk-table td:first-child {
+        padding-bottom: 2px;
+        border-bottom: none;
+      }
+
+      .sk-table td:last-child {
+        padding-top: 2px;
+      }
     }
 
     .sk-code-box {
@@ -476,12 +548,15 @@
       border-radius: 12px;
       overflow: hidden;
       margin-top: 10px;
+      max-width: 100%;
     }
 
     .sk-code-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
       padding: 8px 12px;
       background: rgba(10, 25, 47, 0.9);
       border-bottom: 1px solid rgba(148, 163, 184, 0.16);
@@ -510,10 +585,14 @@
     pre {
       padding: 14px;
       overflow-x: auto;
-      font-size: 12.5px;
+      max-width: 100%;
+      width: 100%;
+      font-size: 12px;
       line-height: 1.55;
       color: #e2e8f0;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      white-space: pre-wrap;
+      overflow-wrap: anywhere;
     }
 
     .sk-footer {
@@ -522,6 +601,8 @@
       color: var(--text-muted);
       padding: 24px 14px 36px;
       border-top: 1px solid var(--line-soft);
+      max-width: 100%;
+      overflow-wrap: anywhere;
     }
 
     .sk-footer a {
