@@ -1,0 +1,130 @@
+:root {
+  --sk-navy-base: #060f1d;
+  --sk-prussian: #0a192f;
+  --sk-emerald: #10b981;
+  --sk-emerald-bright: #34d399;
+  --sk-gold: #eab308;
+  --sk-gold-soft: #fde047;
+  --sk-purple: #2e1065;
+  --sk-magenta: #701a75;
+}
+
+.sk-bokeh-layer {
+  position: fixed;
+  inset: 0;
+  z-index: 0;
+  pointer-events: none;
+  overflow: hidden;
+}
+
+.sk-bokeh-orb {
+  position: absolute;
+  border-radius: 999px;
+  filter: blur(76px);
+  opacity: 0.18;
+  will-change: transform;
+  transform: translate3d(0, 0, 0);
+}
+
+.sk-bokeh-orb--emerald {
+  width: clamp(240px, 34vw, 460px);
+  height: clamp(240px, 34vw, 460px);
+  top: -60px;
+  left: -80px;
+  background: radial-gradient(circle, var(--sk-emerald-bright) 0%, rgba(16, 185, 129, 0.15) 65%, transparent 100%);
+  animation: skBokehDriftA 22s ease-in-out infinite alternate;
+}
+
+.sk-bokeh-orb--magenta {
+  width: clamp(260px, 38vw, 520px);
+  height: clamp(260px, 38vw, 520px);
+  top: 8%;
+  right: -110px;
+  background: radial-gradient(circle, #c084fc 0%, var(--sk-magenta) 55%, transparent 100%);
+  opacity: 0.16;
+  animation: skBokehDriftB 26s ease-in-out infinite alternate;
+}
+
+.sk-bokeh-orb--gold {
+  width: clamp(190px, 26vw, 360px);
+  height: clamp(190px, 26vw, 360px);
+  bottom: 10%;
+  left: 22%;
+  background: radial-gradient(circle, var(--sk-gold-soft) 0%, rgba(234, 179, 8, 0.14) 65%, transparent 100%);
+  opacity: 0.11;
+  animation: skBokehDriftC 20s ease-in-out infinite alternate;
+}
+
+@keyframes skBokehDriftA {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(38px, 28px, 0) scale(1.08); }
+}
+
+@keyframes skBokehDriftB {
+  0%   { transform: translate3d(0, 0, 0) scale(1); }
+  100% { transform: translate3d(-34px, 36px, 0) scale(1.06); }
+}
+
+@keyframes skBokehDriftC {
+  0%   { transform: translate3d(0, 0, 0) scale(0.96); }
+  100% { transform: translate3d(26px, -24px, 0) scale(1.05); }
+}
+
+.sk-above-bokeh {
+  position: relative;
+  z-index: 1;
+  min-width: 0;
+}
+
+.sk-seal-shimmer {
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-seal-shimmer::after {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: -120%;
+  width: 65%;
+  height: 100%;
+  background: linear-gradient(
+    115deg,
+    transparent 0%,
+    rgba(253, 224, 71, 0.08) 45%,
+    rgba(52, 211, 153, 0.14) 52%,
+    transparent 100%
+  );
+  transform: skewX(-18deg);
+  pointer-events: none;
+  animation: skShimmerSweep 7.5s ease-in-out infinite;
+}
+
+@keyframes skShimmerSweep {
+  0%, 72% { left: -120%; }
+  100%    { left: 160%; }
+}
+
+.sk-reveal {
+  opacity: 0;
+  transform: translateY(14px);
+  transition: opacity 0.55s ease, transform 0.55s ease;
+}
+
+.sk-reveal.is-visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .sk-bokeh-orb,
+  .sk-seal-shimmer::after {
+    animation: none !important;
+  }
+
+  .sk-reveal {
+    opacity: 1 !important;
+    transform: none !important;
+    transition: none !important;
+  }
+}
