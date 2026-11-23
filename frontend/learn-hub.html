@@ -277,7 +277,7 @@
       padding: 32px 30px;
       margin-bottom: 26px;
       display: grid;
-      grid-template-columns: minmax(0, 1.35fr) minmax(260px, 0.85fr);
+      grid-template-columns: minmax(0, 1.35fr) minmax(min(260px, 100%), 0.85fr);
       gap: 24px;
       align-items: center;
       box-shadow: 0 18px 40px rgba(0, 0, 0, 0.44);
@@ -820,12 +820,115 @@
 
     @media (max-width: 640px) {
       .sk-banner {
-        padding: 22px 18px;
+        padding: 20px 14px;
       }
       .sk-bento-grid,
       .sk-flow-tabs,
       .sk-panel-stats {
         grid-template-columns: minmax(0, 1fr);
+      }
+    }
+
+    @media (max-width: 768px) {
+      .sk-header-wrap {
+        position: relative;
+        top: 0;
+        padding: 10px 10px 0;
+      }
+      .sk-navbar {
+        position: relative;
+        padding: 10px 12px;
+        gap: 10px;
+      }
+      .sk-brand {
+        order: 1;
+        flex: 1 1 auto;
+        min-width: 0;
+      }
+      .sk-right-tools {
+        order: 2;
+        flex-shrink: 0;
+      }
+      .sk-nav {
+        order: 3;
+        flex: 1 0 100%;
+        width: 100%;
+        gap: 6px 12px;
+        padding-top: 8px;
+        border-top: 1px solid rgba(148, 163, 184, 0.16);
+      }
+      .sk-nav > a,
+      .sk-dd-trigger {
+        min-height: 36px;
+        padding: 6px 4px;
+        font-size: 11.5px;
+      }
+      .sk-dropdown {
+        position: static;
+      }
+      .sk-dd-menu {
+        left: 0;
+        right: 0;
+        top: calc(100% + 8px);
+        width: 100%;
+        min-width: 0;
+        max-width: 100%;
+      }
+      .sk-dd-menu a {
+        min-height: 40px;
+        padding: 10px 12px;
+      }
+    }
+
+    @media (max-width: 480px) {
+      .sk-main {
+        padding: 16px 12px 26px;
+      }
+      .sk-brand-title {
+        font-size: 14px;
+      }
+      .sk-brand-sub {
+        font-size: 9.5px;
+      }
+      .sk-nav {
+        order: 2;
+      }
+      .sk-right-tools {
+        order: 3;
+        width: 100%;
+        justify-content: space-between;
+        padding-top: 8px;
+        border-top: 1px solid rgba(148, 163, 184, 0.14);
+      }
+      .sk-lang-btn {
+        min-height: 32px;
+        padding: 5px 10px;
+      }
+      .sk-portal-cta {
+        min-height: 36px;
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        padding: 8px 12px;
+        font-size: 11px;
+      }
+      .sk-banner,
+      .sk-card,
+      .sk-flow-detail,
+      .sk-hash-lab {
+        padding: 18px 14px;
+      }
+      .sk-banner-actions {
+        flex-direction: column;
+      }
+      .sk-banner-actions a {
+        width: 100%;
+        justify-content: center;
+        text-align: center;
+        min-height: 40px;
+      }
+      .sk-preset-btn {
+        min-height: 34px;
       }
     }
   </style>

@@ -1,8 +1,53 @@
 /* === SAMUDERA KEPRI SIGNATURE BOKEH & MOTION SYSTEM === */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+
 html,
 body {
   overflow-x: hidden;
   max-width: 100%;
+}
+
+img,
+svg,
+canvas,
+video {
+  max-width: 100%;
+}
+
+.sk-main,
+.sk-main > *,
+.sk-footer-inner,
+.sk-footer-grid > *,
+.sk-footer-col,
+.sk-prefooter-card > *,
+.sk-hero-top > *,
+.sk-hero-copy,
+.sk-navbar > *,
+.sk-card,
+.sk-panel,
+.sk-subcard,
+.sk-doc-card,
+.sk-post-card,
+.sk-hub-card,
+.sk-comm-card,
+.sk-nft-card {
+  min-width: 0;
+}
+
+.sk-main code,
+.sk-main pre,
+.sk-table td,
+table.sk-kv td,
+.sk-card a,
+.sk-post-card a,
+.sk-hub-card a,
+.sk-list-item,
+.sk-result-box {
+  overflow-wrap: anywhere;
 }
 
 .sk-bokeh-layer {
