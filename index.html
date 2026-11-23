@@ -8,7 +8,6 @@
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
   <link rel="stylesheet" href="./frontend/sk-bokeh-motion.css" />
-  <link rel="stylesheet" href="./frontend/sk-footer.css" />
   <style>
     :root {
       --navy-base: #060f1d;
@@ -33,7 +32,6 @@
 
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
 
     body {
@@ -80,7 +78,6 @@
       gap: 10px;
       text-decoration: none;
       color: #ffffff;
-      min-width: 0;
     }
 
     .sk-brand img {
@@ -90,7 +87,6 @@
       object-fit: cover;
       border: 1.5px solid var(--gold);
       background: #ffffff;
-      flex-shrink: 0;
     }
 
     .sk-brand-title {
@@ -115,7 +111,6 @@
       align-items: center;
       gap: 18px;
       flex-wrap: wrap;
-      min-width: 0;
     }
 
     .sk-nav > a,
@@ -142,7 +137,7 @@
       color: var(--gold-soft);
     }
 
-    /* LEARN & DEVELOPERS Dropdown Menus */
+    /* DEVELOPERS Dropdown Menu Only */
     .sk-dropdown {
       position: relative;
     }
@@ -153,6 +148,7 @@
       top: calc(100% + 8px);
       left: 0;
       min-width: 220px;
+      max-width: calc(100vw - 32px);
       background: #081528;
       border: 1px solid rgba(234, 179, 8, 0.42);
       border-radius: 12px;
@@ -161,9 +157,34 @@
       z-index: 80;
     }
 
+    .sk-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -10px;
+      height: 10px;
+    }
+
     .sk-dropdown.open .sk-dd-menu,
     .sk-dropdown:hover .sk-dd-menu {
       display: block;
+    }
+
+    @media (max-width: 640px) {
+      .sk-navbar {
+        position: relative;
+      }
+      .sk-dropdown {
+        position: static;
+      }
+      .sk-dd-menu {
+        left: 0;
+        right: 0;
+        top: calc(100% + 8px);
+        min-width: 0;
+        max-width: 100%;
+      }
     }
 
     .sk-dd-menu a {
@@ -195,7 +216,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
     .sk-lang-switch {
@@ -239,7 +259,7 @@
     .sk-main {
       max-width: 1140px;
       margin: 22px auto 0;
-      padding: 0 14px 20px;
+      padding: 0 14px 56px;
     }
 
     /* Hero Banner */
@@ -262,7 +282,6 @@
 
     .sk-hero-copy {
       flex: 1 1 500px;
-      min-width: 0;
     }
 
     .sk-stage-pill {
@@ -285,14 +304,12 @@
       line-height: 1.15;
       color: #ffffff;
       margin-bottom: 10px;
-      overflow-wrap: anywhere;
     }
 
     .sk-hero p {
       font-size: 14px;
       color: #f1f5f9;
       max-width: 650px;
-      overflow-wrap: anywhere;
     }
 
     .sk-coin-box {
@@ -303,7 +320,6 @@
       border: 1px solid rgba(234, 179, 8, 0.5);
       border-radius: 14px;
       padding: 11px 16px;
-      flex-shrink: 0;
     }
 
     .sk-coin-box img {
@@ -313,7 +329,6 @@
       object-fit: cover;
       border: 2px solid var(--gold);
       background: #09090b;
-      flex-shrink: 0;
     }
 
     .sk-coin-box strong {
@@ -370,7 +385,6 @@
       border: 1px solid rgba(255, 255, 255, 0.18);
       border-radius: 10px;
       padding: 12px;
-      min-width: 0;
     }
 
     .sk-metric small {
@@ -386,7 +400,7 @@
       font-family: 'Space Grotesk', sans-serif;
       font-size: 13.5px;
       color: #ffffff;
-      overflow-wrap: anywhere;
+      word-break: break-all;
     }
 
     /* Section Block */
@@ -397,7 +411,6 @@
       padding: 22px;
       margin-bottom: 22px;
       box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
-      min-width: 0;
     }
 
     .sk-sec-head {
@@ -418,13 +431,11 @@
       font-size: 20px;
       color: #ffffff;
       margin-bottom: 4px;
-      overflow-wrap: anywhere;
     }
 
     .sk-sec-head p {
       font-size: 13.5px;
       color: var(--text-muted);
-      overflow-wrap: anywhere;
     }
 
     /* 4 Pillars Grid */
@@ -442,7 +453,6 @@
       display: flex;
       flex-direction: column;
       justify-content: space-between;
-      min-width: 0;
       transition: transform 0.2s ease, border-color 0.2s ease;
     }
 
@@ -464,21 +474,18 @@
       padding: 3px 9px;
       border-radius: 999px;
       margin-bottom: 10px;
-      align-self: flex-start;
     }
 
     .sk-pillar h3 {
       font-size: 16px;
       color: #ffffff;
       margin-bottom: 6px;
-      overflow-wrap: anywhere;
     }
 
     .sk-pillar p {
       font-size: 13px;
       color: var(--text-muted);
       margin-bottom: 14px;
-      overflow-wrap: anywhere;
     }
 
     .sk-pillar a {
@@ -508,7 +515,6 @@
       flex-direction: column;
       justify-content: space-between;
       gap: 10px;
-      min-width: 0;
     }
 
     .sk-dir-item strong {
@@ -516,14 +522,12 @@
       font-size: 14px;
       color: #ffffff;
       margin-bottom: 3px;
-      overflow-wrap: anywhere;
     }
 
     .sk-dir-item span {
       display: block;
       font-size: 12px;
       color: var(--text-muted);
-      overflow-wrap: anywhere;
     }
 
     .sk-dir-item a {
@@ -547,331 +551,652 @@
       background: rgba(6, 15, 29, 0.82);
       border-radius: 10px;
       overflow: hidden;
-      table-layout: fixed;
     }
 
     .sk-table td {
       border-bottom: 1px solid rgba(148, 163, 184, 0.14);
       padding: 9px 12px;
       vertical-align: top;
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      word-break: break-all;
       color: #e2e8f0;
     }
 
     .sk-table td:first-child {
-      width: 36%;
+      width: 210px;
       font-weight: 700;
       color: #cbd5e1;
     }
 
-    .sk-table td:last-child {
-      width: 64%;
+    /* === SAMUDERA KEPRI ICONIC FOOTER & DISPLAY WORDMARK === */
+    .sk-footer-shell {
+      position: relative;
+      margin-top: 44px;
+      background:
+        radial-gradient(ellipse 60% 55% at 15% 100%, rgba(16, 185, 129, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 55% at 50% 95%, rgba(234, 179, 8, 0.11) 0%, transparent 72%),
+        radial-gradient(ellipse 60% 55% at 85% 100%, rgba(112, 26, 117, 0.22) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(10, 25, 47, 0.72) 0%, #060f1d 38%, #040a14 100%);
+      border-top: 1px solid rgba(234, 179, 8, 0.28);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .sk-footer-shell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(52, 211, 153, 0.75) 24%,
+        rgba(253, 224, 71, 0.9) 50%,
+        rgba(192, 132, 252, 0.75) 76%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    .sk-footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 16px 24px;
+      min-width: 0;
+    }
+
+    .sk-footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      padding-bottom: 28px;
+    }
+
+    .sk-footer-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .sk-footer-brand-row img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .sk-footer-brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: block;
+      line-height: 1.15;
+    }
+
+    .sk-footer-brand-entity {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--gold-soft);
+      display: block;
+    }
+
+    .sk-footer-desc {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      max-width: 390px;
+      margin-bottom: 12px;
+    }
+
+    .sk-footer-lead {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #e2e8f0;
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 8px;
+      padding: 6px 11px;
+    }
+
+    .sk-footer-lead strong {
+      color: var(--emerald-bright);
+      font-weight: 700;
+    }
+
+    .sk-footer-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 12px;
+    }
+
+    .sk-footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sk-footer-list a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sk-footer-list a:hover {
+      color: var(--emerald-bright);
+    }
+
+    .sk-footer-net-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #a7f3d0;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .sk-footer-net-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald-bright);
+      box-shadow: 0 0 8px rgba(52, 211, 153, 0.9);
+      flex-shrink: 0;
+    }
+
+    .sk-footer-divider {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(148, 163, 184, 0.08) 0%,
+        rgba(52, 211, 153, 0.38) 28%,
+        rgba(253, 224, 71, 0.52) 50%,
+        rgba(192, 132, 252, 0.38) 72%,
+        rgba(148, 163, 184, 0.08) 100%
+      );
+      margin: 4px 0 18px;
+    }
+
+    .sk-footer-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .sk-footer-meta-bar a {
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sk-footer-meta-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .sk-wordmark-stage {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      padding: 14px 4px 10px;
+      text-align: center;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse 52% 70% at 50% 60%, rgba(112, 26, 117, 0.22) 0%, transparent 72%),
+        radial-gradient(ellipse 40% 60% at 20% 70%, rgba(16, 185, 129, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 70%, rgba(234, 179, 8, 0.12) 0%, transparent 70%);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .sk-wordmark-eyebrow {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(9px, 1.3vw, 11.5px);
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    .sk-wordmark-text {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 0 auto;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.75rem, 8.6vw, 7.3rem);
+      line-height: 0.94;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: linear-gradient(
+        96deg,
+        #34d399 0%,
+        #6ee7b7 18%,
+        #fde047 46%,
+        #eab308 62%,
+        #c084fc 82%,
+        #e879f9 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      filter:
+        drop-shadow(0 6px 22px rgba(234, 179, 8, 0.18))
+        drop-shadow(0 0 16px rgba(52, 211, 153, 0.16));
+    }
+
+    .sk-wordmark-underline {
+      width: min(440px, 68%);
+      height: 3px;
+      margin: 12px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #34d399 22%,
+        #fde047 50%,
+        #c084fc 78%,
+        transparent 100%
+      );
+      opacity: 0.85;
+    }
+
+    @media (max-width: 860px) {
+      .sk-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
     }
 
     @media (max-width: 540px) {
-      .sk-table,
-      .sk-table tbody,
-      .sk-table tr,
-      .sk-table td {
-        display: block;
-        width: 100% !important;
+      .sk-footer-inner {
+        padding: 30px 14px 18px;
       }
-
-      .sk-table td:first-child {
-        padding-bottom: 2px;
-        border-bottom: none;
+      .sk-footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
       }
-
-      .sk-table td:last-child {
-        padding-top: 2px;
+      .sk-wordmark-eyebrow {
+        letter-spacing: 0.16em;
       }
     }
   </style>
 </head>
 <body>
   <div class="sk-bokeh-layer" aria-hidden="true">
+    <div class="sk-bokeh-horizon"></div>
     <div class="sk-bokeh-orb sk-bokeh-orb--emerald"></div>
     <div class="sk-bokeh-orb sk-bokeh-orb--magenta"></div>
     <div class="sk-bokeh-orb sk-bokeh-orb--gold"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--archipelago"></div>
+    <div class="sk-bokeh-beacon sk-bokeh-beacon--seal"></div>
+    <div class="sk-bokeh-beacon sk-bokeh-beacon--coin"></div>
+  </div>
+  <div class="sk-header-wrap">
+    <header class="sk-navbar">
+      <a href="./index.html" class="sk-brand">
+        <img src="./public/assets/aistudio/icon250_ef33c0f4.webp" onerror="this.onerror=null;this.src='./icon250.webp';" alt="Logo Media Samudera Kepri" referrerpolicy="no-referrer" />
+        <div>
+          <span class="sk-brand-title">SAMUDERA KEPRI</span>
+          <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+        </div>
+      </a>
+
+      <nav class="sk-nav" aria-label="Navigasi Utama">
+        <a href="./index.html" data-i18n="nav_home">BERANDA</a>
+        <a href="./frontend/public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+        <a href="./frontend/nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+        <a href="./frontend/community.html" data-i18n="nav_community">KOMUNITAS</a>
+
+        <div class="sk-dropdown" id="sk-learn-dropdown">
+          <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
+            <span>LEARN</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./frontend/learn-hub.html" role="menuitem">
+              <span>learn-hub</span>
+              <span class="sk-dd-tag">HUB</span>
+            </a>
+            <a href="./frontend/blog.html" role="menuitem">
+              <span>blog</span>
+              <span class="sk-dd-tag">ON-CHAIN</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- DEVELOPERS is a dropdown-only menu (not a standalone page) -->
+        <div class="sk-dropdown" id="sk-dev-dropdown">
+          <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
+            <span>DEVELOPERS</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./frontend/docs.html" role="menuitem">
+              <span>docs</span>
+              <span class="sk-dd-tag">GUIDE</span>
+            </a>
+            <a href="./frontend/Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+              <span>Whitepaper.pdf</span>
+              <span class="sk-dd-tag">PDF</span>
+            </a>
+            <a href="./frontend/faucet.html" role="menuitem">
+              <span>faucet</span>
+              <span class="sk-dd-tag">TEST</span>
+            </a>
+            <a href="./frontend/report-abuse.html" role="menuitem">
+              <span>report-abuse</span>
+              <span class="sk-dd-tag">SAFETY</span>
+            </a>
+          </div>
+        </div>
+      </nav>
+
+      <div class="sk-right-tools">
+        <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
+          <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+          <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+        </div>
+        <a href="./frontend/public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
+      </div>
+    </header>
   </div>
 
-  <div class="sk-above-bokeh sk-motion-shell">
-    <div class="sk-header-wrap">
-      <header class="sk-navbar">
-        <a href="./index.html" class="sk-brand">
-          <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+  <main class="sk-main">
+    <section class="sk-hero">
+      <div class="sk-hero-top">
+        <div class="sk-hero-copy">
+          <div class="sk-stage-pill" data-i18n="hero_pill">
+            PERSIAPAN MENUJU ETHEREUM ASLI · AKTIF DI SEPOLIA (CHAIN ID 11155111)
+          </div>
+          <h1 data-i18n="hero_title">Ekosistem Coin MSK, Berita Blockchain, NFT &amp; Media Samudera Kepri</h1>
+          <p data-i18n="hero_desc">
+            Platform transparansi khas Media Samudera Kepri yang menyatukan token ekosistem MSK, penyegelan integritas artikel berita berbasis blockchain, arsip sertifikat/NFT, serta kanal jurnalistik publik.
+          </p>
+          <div class="sk-hero-btns">
+            <a href="./frontend/public-portal.html" class="sk-btn-main" data-i18n="btn_registry">Registri Berita Blockchain</a>
+            <a href="./frontend/explorer.html" class="sk-btn-gold" data-i18n="btn_explorer">Buka Explorer</a>
+            <a href="./frontend/nft.html" class="sk-btn-gold" data-i18n="btn_nft">Galeri &amp; Bukti NFT</a>
+            <a href="./frontend/community.html" class="sk-btn-gold" data-i18n="btn_comm">Komunitas</a>
+          </div>
+        </div>
+
+        <div class="sk-coin-box">
+          <img src="./public/assets/aistudio/con_samuderakepri_aaafc179.png" onerror="this.onerror=null;this.src='./con%20samuderakepri.png';" alt="Coin Samudera Kepri MSK" referrerpolicy="no-referrer" />
           <div>
-            <span class="sk-brand-title">SAMUDERA KEPRI</span>
-            <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+            <strong>COIN SAMUDERA KEPRI (MSK)</strong>
+            <span data-i18n="coin_sub">Tahap Uji Sistem · Siap Migrasi ETH</span>
           </div>
-        </a>
-
-        <nav class="sk-nav" aria-label="Navigasi Utama">
-          <a href="./index.html" data-i18n="nav_home">BERANDA</a>
-          <a href="./frontend/public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
-          <a href="./frontend/nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
-          <a href="./frontend/community.html" data-i18n="nav_community">KOMUNITAS</a>
-
-          <!-- LEARN dropdown menu -->
-          <div class="sk-dropdown" id="sk-learn-dropdown">
-            <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
-              <span>LEARN</span>
-              <span aria-hidden="true">&#9662;</span>
-            </button>
-            <div class="sk-dd-menu" role="menu">
-              <a href="./frontend/learn-hub.html" role="menuitem">
-                <span>learn-hub</span>
-                <span class="sk-dd-tag">HUB</span>
-              </a>
-              <a href="./frontend/blog.html" role="menuitem">
-                <span>blog</span>
-                <span class="sk-dd-tag">ON-CHAIN</span>
-              </a>
-            </div>
-          </div>
-
-          <!-- DEVELOPERS dropdown menu -->
-          <div class="sk-dropdown" id="sk-dev-dropdown">
-            <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
-              <span>DEVELOPERS</span>
-              <span aria-hidden="true">&#9662;</span>
-            </button>
-            <div class="sk-dd-menu" role="menu">
-              <a href="./frontend/docs.html" role="menuitem">
-                <span>docs</span>
-                <span class="sk-dd-tag">GUIDE</span>
-              </a>
-              <a href="./frontend/Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
-                <span>Whitepaper.pdf</span>
-                <span class="sk-dd-tag">PDF</span>
-              </a>
-              <a href="./frontend/faucet.html" role="menuitem">
-                <span>faucet</span>
-                <span class="sk-dd-tag">TEST</span>
-              </a>
-              <a href="./frontend/report-abuse.html" role="menuitem">
-                <span>report-abuse</span>
-                <span class="sk-dd-tag">SAFETY</span>
-              </a>
-            </div>
-          </div>
-        </nav>
-
-        <div class="sk-right-tools">
-          <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
-            <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
-            <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
-          </div>
-          <a href="./frontend/public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
         </div>
-      </header>
+      </div>
+
+      <div class="sk-metrics">
+        <div class="sk-metric">
+          <small data-i18n="m_coin">TOKEN / COIN</small>
+          <strong>SamuderaKepriToken (MSK)</strong>
+        </div>
+        <div class="sk-metric">
+          <small data-i18n="m_net">JARINGAN SAAT INI</small>
+          <strong>Ethereum Sepolia (11155111)</strong>
+        </div>
+        <div class="sk-metric">
+          <small data-i18n="m_sealed">DATA BERITA TERSEGEL</small>
+          <strong id="sk-idx-sealed">Memuat...</strong>
+        </div>
+        <div class="sk-metric">
+          <small data-i18n="m_block">BLOK TERBARU</small>
+          <strong id="sk-idx-block">Memuat...</strong>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-section" id="pilar">
+      <div class="sk-sec-head">
+        <div class="sk-sec-kicker" data-i18n="p_kicker">4 PILAR UTAMA PROYEK</div>
+        <h2 data-i18n="p_title">Struktur Inti Ekosistem Samudera Kepri</h2>
+        <p data-i18n="p_desc">Dirancang dengan identitas sendiri sebelum seluruh modul dirampungkan dan dipindahkan ke sistem Ethereum asli.</p>
+      </div>
+
+      <div class="sk-pillars">
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">01 · NEWS BLOCKCHAIN</span>
+            <h3 data-i18n="c1_title">Berita Berbasis Blockchain</h3>
+            <p data-i18n="c1_desc">Setiap berita investigasi, gelar fakta, dan arsip penting disegel sidik jari hash agar keasliannya dapat dicek publik.</p>
+          </div>
+          <a href="./frontend/public-portal.html" data-i18n="c1_link">Buka Registri Berita &rarr;</a>
+        </div>
+
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">02 · MSK COIN</span>
+            <h3 data-i18n="c2_title">Coin Samudera Kepri (MSK)</h3>
+            <p data-i18n="c2_desc">Aset token ekosistem proyek untuk mendukung transparansi, apresiasi komunitas, dan utilitas digital Samudera Kepri.</p>
+          </div>
+          <a href="./frontend/explorer.html" data-i18n="c2_link">Cek Saldo &amp; Kontrak MSK &rarr;</a>
+        </div>
+
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">03 · ARCHIVE NFT</span>
+            <h3 data-i18n="c3_title">NFT Arsip &amp; Bukti Liputan</h3>
+            <p data-i18n="c3_desc">Representasi sertifikat digital dan koleksi NFT edisi khusus dari dokumentasi serta arsip fakta terpilih.</p>
+          </div>
+          <a href="./frontend/nft.html" data-i18n="c3_link">Lihat Modul NFT &rarr;</a>
+        </div>
+
+        <div class="sk-pillar">
+          <div>
+            <span class="sk-pillar-tag">04 · SAMUDERA KEPRI</span>
+            <h3 data-i18n="c4_title">Media Samudera Kepri</h3>
+            <p data-i18n="c4_desc">Terhubung langsung ke portal berita resmi dan ruang komunitas pembaca, kontributor, serta pemeriksa fakta.</p>
+          </div>
+          <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer" data-i18n="c4_link">Kunjungi samuderakepri.co.id &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-section" id="modul">
+      <div class="sk-sec-head">
+        <div class="sk-sec-kicker" data-i18n="m_dir_kicker">PETA HALAMAN &amp; SUB-MENU DEVELOPERS</div>
+        <h2 data-i18n="m_dir_title">Seluruh Modul yang Telah Disiapkan</h2>
+        <p data-i18n="m_dir_desc">Akses langsung ke portal publik, explorer, komunitas, NFT, serta empat sub-menu di bawah DEVELOPERS.</p>
+      </div>
+
+      <div class="sk-dir-grid">
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_portal_t">Portal Publik &amp; Registri</strong>
+            <span data-i18n="d_portal_d">Pencarian berita, pratinjau contentHash, dan daftar catatan terverifikasi.</span>
+          </div>
+          <a href="./frontend/public-portal.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_exp_t">Blockchain Explorer</strong>
+            <span data-i18n="d_exp_d">Verifikasi langsung verifyFact ke kontrak FactSeal dan saldo token MSK.</span>
+          </div>
+          <a href="./frontend/explorer.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_nft_t">NFT Arsip &amp; Bukti</strong>
+            <span data-i18n="d_nft_d">Koleksi edisi arsip berita dan pemeriksa metadata kontrak NFT ERC-721.</span>
+          </div>
+          <a href="./frontend/nft.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong data-i18n="d_comm_t">Komunitas Samudera Kepri</strong>
+            <span data-i18n="d_comm_d">Kanal komunitas pembaca, kontributor, pemeriksa fakta, dan rubrik media.</span>
+          </div>
+          <a href="./frontend/community.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · docs</strong>
+            <span data-i18n="d_docs_d">Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.</span>
+          </div>
+          <a href="./frontend/docs.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · Whitepaper.pdf</strong>
+            <span data-i18n="d_wp_d">Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri &amp; Indonesia di kanan).</span>
+          </div>
+          <a href="./frontend/whitepaper.pdf" target="_blank" rel="noopener noreferrer" data-i18n="open_pdf">Buka PDF &nearr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · faucet</strong>
+            <span data-i18n="d_faucet_d">Pemeriksa saldo Sepolia ETH &amp; MSK serta rujukan faucet lingkungan uji.</span>
+          </div>
+          <a href="./frontend/faucet.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>DEVELOPERS · report-abuse</strong>
+            <span data-i18n="d_abuse_d">Formulir pelaporan penyalahgunaan tautan, ketidaksesuaian arsip, atau isu keamanan.</span>
+          </div>
+          <a href="./frontend/report-abuse.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+      </div>
+    </section>
+
+    <section class="sk-section">
+      <div class="sk-sec-head">
+        <div class="sk-sec-kicker" data-i18n="k_kicker">PARAMETER KONTRAK &amp; MIGRASI</div>
+        <h2 data-i18n="k_title">Alamat Kontrak Aktif (Tahap Persiapan ETH)</h2>
+      </div>
+      <table class="sk-table">
+        <tr><td data-i18n="t_net">Jaringan Uji Saat Ini</td><td>Ethereum Sepolia (Chain ID: 11155111)</td></tr>
+        <tr><td data-i18n="t_seal">Kontrak FactSeal</td><td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td></tr>
+        <tr><td data-i18n="t_msk">Kontrak Token MSK</td><td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td></tr>
+        <tr><td data-i18n="t_ver">Verifikator Utama</td><td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td></tr>
+      </table>
+    </section>
+  </main>
+
+  <footer class="sk-footer-shell">
+    <div class="sk-footer-inner">
+      <div class="sk-footer-grid">
+        <div>
+          <a href="./index.html" class="sk-footer-brand-row">
+            <img src="./public/assets/aistudio/icon250_ef33c0f4.webp" onerror="this.onerror=null;this.src='./icon250.webp';" alt="Logo Media Samudera Kepri" referrerpolicy="no-referrer" />
+            <div>
+              <span class="sk-footer-brand-name">SAMUDERA KEPRI</span>
+              <span class="sk-footer-brand-entity">PT Media Samudera Kepri</span>
+            </div>
+          </a>
+          <p class="sk-footer-desc" data-i18n="ft_desc">
+            Ekosistem transparansi jurnalistik, penyegelan integritas berita berbasis blockchain (FactSeal), token MSK, dan sertifikat arsip NFT dari Indonesia untuk dunia.
+          </p>
+          <div class="sk-footer-lead">
+            <span data-i18n="ft_lead_role">Founder &amp; Pemimpin Redaksi:</span>
+            <strong>Ronny Paslan</strong>
+          </div>
+        </div>
+
+        <div class="sk-footer-col">
+          <h4 data-i18n="ft_col_eco">Ekosistem</h4>
+          <ul class="sk-footer-list">
+            <li><a href="./index.html" data-i18n="nav_home">BERANDA</a></li>
+            <li><a href="./frontend/public-portal.html" data-i18n="ft_portal">Portal Publik &amp; FactSeal</a></li>
+            <li><a href="./frontend/explorer.html" data-i18n="ft_explorer">Blockchain Explorer</a></li>
+            <li><a href="./frontend/nft.html" data-i18n="ft_nft">NFT Arsip &amp; Bukti</a></li>
+            <li><a href="./frontend/community.html" data-i18n="ft_comm">Komunitas</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-footer-col">
+          <h4>DEVELOPERS</h4>
+          <ul class="sk-footer-list">
+            <li><a href="./frontend/docs.html">docs</a></li>
+            <li><a href="./frontend/Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Whitepaper.pdf</a></li>
+            <li><a href="./frontend/faucet.html">faucet</a></li>
+            <li><a href="./frontend/report-abuse.html">report-abuse</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-footer-col">
+          <h4 data-i18n="ft_col_net">Jaringan &amp; Portal</h4>
+          <ul class="sk-footer-list">
+            <li><a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">samuderakepri.co.id &nearr;</a></li>
+            <li><a href="https://sepolia.etherscan.io/address/0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033" target="_blank" rel="noopener noreferrer">FactSeal Etherscan &nearr;</a></li>
+            <li><a href="https://sepolia.etherscan.io/token/0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d" target="_blank" rel="noopener noreferrer">Token MSK Etherscan &nearr;</a></li>
+            <li><a href="https://github.com/SAMUDERAKEPRI/samudera-kepri-fact-seal" target="_blank" rel="noopener noreferrer">GitHub Repository &nearr;</a></li>
+          </ul>
+          <div class="sk-footer-net-pill">
+            <span class="sk-footer-net-dot" aria-hidden="true"></span>
+            <span data-i18n="ft_net_pill">Sepolia Testnet · Chain ID 11155111</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sk-footer-divider"></div>
+
+      <div class="sk-footer-meta-bar">
+        <div>
+          &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">PT Media Samudera Kepri</a> &middot; <span data-i18n="ft_rights">Hak cipta dilindungi.</span>
+        </div>
+        <div>
+          <span data-i18n="ft_sig">Coin MSK · FactSeal News · Archive NFT · Media</span>
+        </div>
+      </div>
+
+      <div class="sk-wordmark-stage" aria-label="Samudera Kepri">
+        <span class="sk-wordmark-eyebrow" data-i18n="ft_eyebrow">EKOSISTEM TRANSPARANSI JURNALISTIK WEB3</span>
+        <span class="sk-wordmark-text">SAMUDERA KEPRI</span>
+        <div class="sk-wordmark-underline"></div>
+      </div>
     </div>
-
-    <main class="sk-main">
-      <section class="sk-hero sk-seal-shimmer">
-        <div class="sk-hero-top">
-          <div class="sk-hero-copy">
-            <div class="sk-stage-pill" data-i18n="hero_pill">
-              PERSIAPAN MENUJU ETHEREUM ASLI · AKTIF DI SEPOLIA (CHAIN ID 11155111)
-            </div>
-            <h1 data-i18n="hero_title">Ekosistem Coin MSK, Berita Blockchain, NFT &amp; Media Samudera Kepri</h1>
-            <p data-i18n="hero_desc">
-              Platform transparansi khas Media Samudera Kepri yang menyatukan token ekosistem MSK, penyegelan integritas artikel berita berbasis blockchain, arsip sertifikat/NFT, serta kanal jurnalistik publik.
-            </p>
-            <div class="sk-hero-btns">
-              <a href="./frontend/public-portal.html" class="sk-btn-main" data-i18n="btn_registry">Registri Berita Blockchain</a>
-              <a href="./frontend/explorer.html" class="sk-btn-gold" data-i18n="btn_explorer">Buka Explorer</a>
-              <a href="./frontend/nft.html" class="sk-btn-gold" data-i18n="btn_nft">Galeri &amp; Bukti NFT</a>
-              <a href="./frontend/community.html" class="sk-btn-gold" data-i18n="btn_comm">Komunitas</a>
-            </div>
-          </div>
-
-          <div class="sk-coin-box">
-            <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
-            <div>
-              <strong>COIN SAMUDERA KEPRI (MSK)</strong>
-              <span data-i18n="coin_sub">Tahap Uji Sistem · Siap Migrasi ETH</span>
-            </div>
-          </div>
-        </div>
-
-        <div class="sk-metrics">
-          <div class="sk-metric">
-            <small data-i18n="m_coin">TOKEN / COIN</small>
-            <strong>SamuderaKepriToken (MSK)</strong>
-          </div>
-          <div class="sk-metric">
-            <small data-i18n="m_net">JARINGAN SAAT INI</small>
-            <strong>Ethereum Sepolia (11155111)</strong>
-          </div>
-          <div class="sk-metric">
-            <small data-i18n="m_sealed">DATA BERITA TERSEGEL</small>
-            <strong id="sk-idx-sealed">Memuat...</strong>
-          </div>
-          <div class="sk-metric">
-            <small data-i18n="m_block">BLOK TERBARU</small>
-            <strong id="sk-idx-block">Memuat...</strong>
-          </div>
-        </div>
-      </section>
-
-      <section class="sk-section sk-reveal" id="pilar">
-        <div class="sk-sec-head">
-          <div class="sk-sec-kicker" data-i18n="p_kicker">4 PILAR UTAMA PROYEK</div>
-          <h2 data-i18n="p_title">Struktur Inti Ekosistem Samudera Kepri</h2>
-          <p data-i18n="p_desc">Dirancang dengan identitas sendiri sebelum seluruh modul dirampungkan dan dipindahkan ke sistem Ethereum asli.</p>
-        </div>
-
-        <div class="sk-pillars">
-          <div class="sk-pillar">
-            <div>
-              <span class="sk-pillar-tag">01 · NEWS BLOCKCHAIN</span>
-              <h3 data-i18n="c1_title">Berita Berbasis Blockchain</h3>
-              <p data-i18n="c1_desc">Setiap berita investigasi, gelar fakta, dan arsip penting disegel sidik jari hash agar keasliannya dapat dicek publik.</p>
-            </div>
-            <a href="./frontend/public-portal.html" data-i18n="c1_link">Buka Registri Berita &rarr;</a>
-          </div>
-
-          <div class="sk-pillar">
-            <div>
-              <span class="sk-pillar-tag">02 · MSK COIN</span>
-              <h3 data-i18n="c2_title">Coin Samudera Kepri (MSK)</h3>
-              <p data-i18n="c2_desc">Aset token ekosistem proyek untuk mendukung transparansi, apresiasi komunitas, dan utilitas digital Samudera Kepri.</p>
-            </div>
-            <a href="./frontend/explorer.html" data-i18n="c2_link">Cek Saldo &amp; Kontrak MSK &rarr;</a>
-          </div>
-
-          <div class="sk-pillar">
-            <div>
-              <span class="sk-pillar-tag">03 · ARCHIVE NFT</span>
-              <h3 data-i18n="c3_title">NFT Arsip &amp; Bukti Liputan</h3>
-              <p data-i18n="c3_desc">Representasi sertifikat digital dan koleksi NFT edisi khusus dari dokumentasi serta arsip fakta terpilih.</p>
-            </div>
-            <a href="./frontend/nft.html" data-i18n="c3_link">Lihat Modul NFT &rarr;</a>
-          </div>
-
-          <div class="sk-pillar">
-            <div>
-              <span class="sk-pillar-tag">04 · SAMUDERA KEPRI</span>
-              <h3 data-i18n="c4_title">Media Samudera Kepri</h3>
-              <p data-i18n="c4_desc">Terhubung langsung ke portal berita resmi dan ruang komunitas pembaca, kontributor, serta pemeriksa fakta.</p>
-            </div>
-            <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer" data-i18n="c4_link">Kunjungi samuderakepri.co.id &rarr;</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="sk-section sk-reveal" id="modul">
-        <div class="sk-sec-head">
-          <div class="sk-sec-kicker" data-i18n="m_dir_kicker">PETA HALAMAN &amp; SUB-MENU</div>
-          <h2 data-i18n="m_dir_title">Seluruh Modul yang Telah Disiapkan</h2>
-          <p data-i18n="m_dir_desc">Akses langsung ke portal publik, explorer, komunitas, NFT, serta sub-menu LEARN dan DEVELOPERS.</p>
-        </div>
-
-        <div class="sk-dir-grid">
-          <div class="sk-dir-item">
-            <div>
-              <strong data-i18n="d_portal_t">Portal Publik &amp; Registri</strong>
-              <span data-i18n="d_portal_d">Pencarian berita, pratinjau contentHash, dan daftar catatan terverifikasi.</span>
-            </div>
-            <a href="./frontend/public-portal.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong data-i18n="d_exp_t">Blockchain Explorer</strong>
-              <span data-i18n="d_exp_d">Verifikasi langsung verifyFact ke kontrak FactSeal dan saldo token MSK.</span>
-            </div>
-            <a href="./frontend/explorer.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong data-i18n="d_nft_t">NFT Arsip &amp; Bukti</strong>
-              <span data-i18n="d_nft_d">Koleksi edisi arsip berita dan pemeriksa metadata kontrak NFT ERC-721.</span>
-            </div>
-            <a href="./frontend/nft.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong data-i18n="d_comm_t">Komunitas Samudera Kepri</strong>
-              <span data-i18n="d_comm_d">Kanal komunitas pembaca, kontributor, pemeriksa fakta, dan rubrik media.</span>
-            </div>
-            <a href="./frontend/community.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong>LEARN · learn-hub</strong>
-              <span data-i18n="d_learnhub_d">Pusat edukasi konsep FactSeal, contentHash, koin MSK, dan NFT arsip.</span>
-            </div>
-            <a href="./frontend/learn-hub.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong>LEARN · blog</strong>
-              <span data-i18n="d_blog_d">Katalog berita samuderakepri.co.id yang sudah masuk sistem blockchain.</span>
-            </div>
-            <a href="./frontend/blog.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong>DEVELOPERS · docs</strong>
-              <span data-i18n="d_docs_d">Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.</span>
-            </div>
-            <a href="./frontend/docs.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong>DEVELOPERS · Whitepaper.pdf</strong>
-              <span data-i18n="d_wp_d">Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri &amp; Indonesia di kanan).</span>
-            </div>
-            <a href="./frontend/Whitepaper.pdf" target="_blank" rel="noopener noreferrer" data-i18n="open_pdf">Buka PDF &nearr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong>DEVELOPERS · faucet</strong>
-              <span data-i18n="d_faucet_d">Pemeriksa saldo Sepolia ETH &amp; MSK serta rujukan faucet lingkungan uji.</span>
-            </div>
-            <a href="./frontend/faucet.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-
-          <div class="sk-dir-item">
-            <div>
-              <strong>DEVELOPERS · report-abuse</strong>
-              <span data-i18n="d_abuse_d">Formulir pelaporan penyalahgunaan tautan, ketidaksesuaian arsip, atau isu keamanan.</span>
-            </div>
-            <a href="./frontend/report-abuse.html" data-i18n="go_link">Buka Halaman &rarr;</a>
-          </div>
-        </div>
-      </section>
-
-      <section class="sk-section sk-reveal">
-        <div class="sk-sec-head">
-          <div class="sk-sec-kicker" data-i18n="k_kicker">PARAMETER KONTRAK &amp; MIGRASI</div>
-          <h2 data-i18n="k_title">Alamat Kontrak Aktif (Tahap Persiapan ETH)</h2>
-        </div>
-        <table class="sk-table">
-          <tr><td data-i18n="t_net">Jaringan Uji Saat Ini</td><td>Ethereum Sepolia (Chain ID: 11155111)</td></tr>
-          <tr><td data-i18n="t_seal">Kontrak FactSeal</td><td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td></tr>
-          <tr><td data-i18n="t_msk">Kontrak Token MSK</td><td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td></tr>
-          <tr><td data-i18n="t_ver">Verifikator Utama</td><td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td></tr>
-        </table>
-      </section>
-    </main>
-
-    <div id="sk-footer-mount" data-root="true"></div>
-  </div>
+  </footer>
 
   <script src="https://cdn.jsdelivr.net/npm/ethers@6.13.2/dist/ethers.umd.min.js"></script>
-  <script src="./frontend/sk-bokeh-motion.js" defer></script>
-  <script src="./frontend/sk-footer.js" defer></script>
   <script>
     (function () {
       const I18N = {
@@ -908,9 +1233,9 @@
           c4_title: "Media Samudera Kepri",
           c4_desc: "Terhubung langsung ke portal berita resmi dan ruang komunitas pembaca, kontributor, serta pemeriksa fakta.",
           c4_link: "Kunjungi samuderakepri.co.id →",
-          m_dir_kicker: "PETA HALAMAN & SUB-MENU",
+          m_dir_kicker: "PETA HALAMAN & SUB-MENU DEVELOPERS",
           m_dir_title: "Seluruh Modul yang Telah Disiapkan",
-          m_dir_desc: "Akses langsung ke portal publik, explorer, komunitas, NFT, serta sub-menu LEARN dan DEVELOPERS.",
+          m_dir_desc: "Akses langsung ke portal publik, explorer, komunitas, NFT, serta empat sub-menu di bawah DEVELOPERS.",
           d_portal_t: "Portal Publik & Registri",
           d_portal_d: "Pencarian berita, pratinjau contentHash, dan daftar catatan terverifikasi.",
           d_exp_t: "Blockchain Explorer",
@@ -919,8 +1244,6 @@
           d_nft_d: "Koleksi edisi arsip berita dan pemeriksa metadata kontrak NFT ERC-721.",
           d_comm_t: "Komunitas Samudera Kepri",
           d_comm_d: "Kanal komunitas pembaca, kontributor, pemeriksa fakta, dan rubrik media.",
-          d_learnhub_d: "Pusat edukasi konsep FactSeal, contentHash, koin MSK, dan NFT arsip.",
-          d_blog_d: "Katalog berita samuderakepri.co.id yang sudah masuk sistem blockchain.",
           d_docs_d: "Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.",
           d_wp_d: "Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri & Indonesia di kanan).",
           d_faucet_d: "Pemeriksa saldo Sepolia ETH & MSK serta rujukan faucet lingkungan uji.",
@@ -932,7 +1255,19 @@
           t_net: "Jaringan Uji Saat Ini",
           t_seal: "Kontrak FactSeal",
           t_msk: "Kontrak Token MSK",
-          t_ver: "Verifikator Utama"
+          t_ver: "Verifikator Utama",
+          ft_desc: "Ekosistem transparansi jurnalistik, penyegelan integritas berita berbasis blockchain (FactSeal), token MSK, dan sertifikat arsip NFT dari Indonesia untuk dunia.",
+          ft_lead_role: "Founder & Pemimpin Redaksi:",
+          ft_col_eco: "Ekosistem",
+          ft_portal: "Portal Publik & FactSeal",
+          ft_explorer: "Blockchain Explorer",
+          ft_nft: "NFT Arsip & Bukti",
+          ft_comm: "Komunitas",
+          ft_col_net: "Jaringan & Portal",
+          ft_net_pill: "Sepolia Testnet · Chain ID 11155111",
+          ft_rights: "Hak cipta dilindungi.",
+          ft_sig: "Coin MSK · FactSeal News · Archive NFT · Media",
+          ft_eyebrow: "EKOSISTEM TRANSPARANSI JURNALISTIK WEB3"
         },
         en: {
           nav_home: "HOME",
@@ -967,9 +1302,9 @@
           c4_title: "Media Samudera Kepri",
           c4_desc: "Connected directly to the official news portal and community space for readers, contributors, and fact checkers.",
           c4_link: "Visit samuderakepri.co.id →",
-          m_dir_kicker: "PAGE DIRECTORY & SUB-MENU",
+          m_dir_kicker: "PAGE DIRECTORY & DEVELOPERS SUB-MENU",
           m_dir_title: "All Prepared Ecosystem Modules",
-          m_dir_desc: "Direct access to the public portal, explorer, community, NFTs, and LEARN & DEVELOPERS sub-menus.",
+          m_dir_desc: "Direct access to the public portal, explorer, community, NFTs, and all four DEVELOPERS sub-menu items.",
           d_portal_t: "Public Portal & Registry",
           d_portal_d: "News search, contentHash preview, and verified archive list.",
           d_exp_t: "Blockchain Explorer",
@@ -978,8 +1313,6 @@
           d_nft_d: "Curated archive editions and ERC-721 NFT metadata inspector.",
           d_comm_t: "Samudera Kepri Community",
           d_comm_d: "Community hub for readers, contributors, fact checkers, and media desks.",
-          d_learnhub_d: "Education hub for FactSeal, contentHash, MSK coin, and archive NFTs.",
-          d_blog_d: "Samuderakepri.co.id articles recorded on the blockchain system.",
           d_docs_d: "Technical ecosystem docs, 4 pillars, code examples, and ETH migration path.",
           d_wp_d: "Bilingual whitepaper PDF (English on the left & Indonesian on the right).",
           d_faucet_d: "Sepolia ETH & MSK balance checker and testnet faucet references.",
@@ -991,7 +1324,19 @@
           t_net: "Current Test Network",
           t_seal: "FactSeal Contract",
           t_msk: "MSK Token Contract",
-          t_ver: "Primary Verifier"
+          t_ver: "Primary Verifier",
+          ft_desc: "A journalistic transparency ecosystem uniting blockchain news integrity sealing (FactSeal), MSK token utility, and archive proof NFTs from Indonesia to the world.",
+          ft_lead_role: "Founder & Chief Editor:",
+          ft_col_eco: "Ecosystem",
+          ft_portal: "Public Portal & FactSeal",
+          ft_explorer: "Blockchain Explorer",
+          ft_nft: "Archive & Proof NFTs",
+          ft_comm: "Community",
+          ft_col_net: "Network & Portals",
+          ft_net_pill: "Sepolia Testnet · Chain ID 11155111",
+          ft_rights: "All rights reserved.",
+          ft_sig: "MSK Coin · FactSeal News · Archive NFT · Media",
+          ft_eyebrow: "WEB3 JOURNALISTIC TRANSPARENCY ECOSYSTEM"
         }
       };
 
@@ -1016,16 +1361,23 @@
         const dd = document.getElementById(ddId);
         const btn = document.getElementById(btnId);
         if (!dd || !btn) return;
+        const closeOthers = () => {
+          document.querySelectorAll(".sk-dropdown").forEach((other) => {
+            if (other !== dd) {
+              other.classList.remove("open");
+              const ob = other.querySelector(".sk-dd-trigger");
+              if (ob) ob.setAttribute("aria-expanded", "false");
+            }
+          });
+        };
+        dd.addEventListener("mouseenter", closeOthers);
         btn.addEventListener("click", (e) => {
           e.stopPropagation();
-          document.querySelectorAll(".sk-dropdown").forEach((other) => {
-            if (other !== dd) other.classList.remove("open");
-          });
+          closeOthers();
           const isOpen = dd.classList.toggle("open");
           btn.setAttribute("aria-expanded", String(isOpen));
         });
       }
-
       setupDropdown("sk-learn-dropdown", "sk-learn-btn");
       setupDropdown("sk-dev-dropdown", "sk-dev-btn");
       document.addEventListener("click", () => {
@@ -1066,5 +1418,6 @@
       loadMetrics();
     })();
   </script>
+  <script src="./frontend/sk-bokeh-motion.js" defer></script>
 </body>
 </html>

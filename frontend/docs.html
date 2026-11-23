@@ -7,6 +7,7 @@
   <link rel="preconnect" href="https://fonts.googleapis.com" />
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
   <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./sk-bokeh-motion.css" />
   <style>
     :root {
       --navy-base: #060f1d;
@@ -31,7 +32,6 @@
 
     html {
       scroll-behavior: smooth;
-      overflow-x: hidden;
     }
 
     body {
@@ -45,7 +45,6 @@
       min-height: 100vh;
       line-height: 1.65;
       overflow-x: hidden;
-      width: 100%;
     }
 
     /* Top Navigation Bar (Seragam dengan index.html) */
@@ -54,12 +53,10 @@
       top: 14px;
       z-index: 60;
       padding: 0 14px;
-      width: 100%;
     }
 
     .sk-navbar {
       max-width: 1140px;
-      width: 100%;
       margin: 0 auto;
       background: rgba(10, 25, 47, 0.92);
       backdrop-filter: blur(14px);
@@ -81,7 +78,6 @@
       gap: 10px;
       text-decoration: none;
       color: #ffffff;
-      min-width: 0;
     }
 
     .sk-brand img {
@@ -91,7 +87,6 @@
       object-fit: cover;
       border: 1.5px solid var(--gold);
       background: #ffffff;
-      flex-shrink: 0;
     }
 
     .sk-brand-title {
@@ -116,7 +111,6 @@
       align-items: center;
       gap: 18px;
       flex-wrap: wrap;
-      min-width: 0;
     }
 
     .sk-nav > a,
@@ -155,6 +149,7 @@
       top: calc(100% + 8px);
       left: 0;
       min-width: 220px;
+      max-width: calc(100vw - 32px);
       background: #081528;
       border: 1px solid rgba(234, 179, 8, 0.42);
       border-radius: 12px;
@@ -163,9 +158,34 @@
       z-index: 80;
     }
 
+    .sk-dd-menu::before {
+      content: "";
+      position: absolute;
+      left: 0;
+      right: 0;
+      top: -10px;
+      height: 10px;
+    }
+
     .sk-dropdown.open .sk-dd-menu,
     .sk-dropdown:hover .sk-dd-menu {
       display: block;
+    }
+
+    @media (max-width: 640px) {
+      .sk-navbar {
+        position: relative;
+      }
+      .sk-dropdown {
+        position: static;
+      }
+      .sk-dd-menu {
+        left: 0;
+        right: 0;
+        top: calc(100% + 8px);
+        min-width: 0;
+        max-width: 100%;
+      }
     }
 
     .sk-dd-menu a {
@@ -198,7 +218,6 @@
       display: flex;
       align-items: center;
       gap: 10px;
-      flex-wrap: wrap;
     }
 
     .sk-lang-switch {
@@ -240,80 +259,114 @@
 
     /* Main Container */
     .sk-main {
-      max-width: 1140px;
-      width: 100%;
-      margin: 22px auto 0;
-      padding: 0 14px 56px;
-      overflow-x: hidden;
+      max-width: 1200px;
+      margin: 24px auto 0;
+      padding: 0 18px 56px;
     }
 
+    /* Docs Hero Header */
     .sk-hero {
-      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
-      border: 1px solid rgba(234, 179, 8, 0.42);
+      background: linear-gradient(128deg, #2e1065 0%, #581c87 34%, #0a192f 74%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.38);
       border-radius: 18px;
-      padding: 28px 24px;
-      margin-bottom: 22px;
-      display: flex;
-      justify-content: space-between;
+      padding: 28px 28px;
+      margin-bottom: 24px;
+      display: grid;
+      grid-template-columns: minmax(0, 1fr) auto;
       align-items: center;
-      gap: 20px;
-      flex-wrap: wrap;
-      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.46);
-      max-width: 100%;
+      gap: 24px;
+      box-shadow: 0 16px 36px rgba(0, 0, 0, 0.42);
     }
 
-    .sk-hero > div:first-child {
+    .sk-hero-copy {
       min-width: 0;
-      flex: 1 1 320px;
     }
 
-    .sk-stage-pill {
-      display: inline-block;
-      font-size: 11px;
-      font-weight: 800;
-      letter-spacing: 0.06em;
+    .sk-hero-kicker {
+      display: flex;
+      align-items: center;
+      flex-wrap: wrap;
+      gap: 8px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11.5px;
+      font-weight: 700;
+      letter-spacing: 0.1em;
       text-transform: uppercase;
       color: var(--gold-soft);
-      background: rgba(6, 15, 29, 0.62);
-      border: 1px solid rgba(234, 179, 8, 0.35);
-      padding: 4px 11px;
-      border-radius: 999px;
       margin-bottom: 10px;
-      max-width: 100%;
     }
 
     .sk-hero h1 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: clamp(1.65rem, 3.6vw, 2.35rem);
+      font-size: clamp(1.7rem, 3.3vw, 2.4rem);
       font-weight: 800;
-      line-height: 1.15;
+      line-height: 1.14;
       color: #ffffff;
-      margin-bottom: 8px;
-      overflow-wrap: anywhere;
+      margin-bottom: 10px;
+      text-wrap: balance;
     }
 
     .sk-hero p {
-      font-size: 13.5px;
-      color: #f1f5f9;
-      max-width: 640px;
-      overflow-wrap: anywhere;
+      font-size: 14px;
+      color: #e2e8f0;
+      max-width: 68ch;
+      line-height: 1.65;
+    }
+
+    .sk-hero-actions {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 10px;
+      margin-top: 16px;
+    }
+
+    .sk-hero-btn {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      padding: 9px 15px;
+      border-radius: 9px;
+      font-size: 12.5px;
+      font-weight: 700;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: transform 0.18s ease, border-color 0.18s ease, background 0.18s ease;
+    }
+
+    .sk-hero-btn:hover {
+      transform: translateY(-1px);
+    }
+
+    .sk-hero-btn-primary {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-hero-btn-ghost {
+      background: rgba(6, 15, 29, 0.68);
+      border: 1px solid rgba(52, 211, 153, 0.38);
+      color: #f8fafc;
+    }
+
+    .sk-hero-btn-ghost:hover {
+      border-color: var(--emerald-bright);
+      color: var(--emerald-bright);
     }
 
     .sk-coin-box {
       display: flex;
       align-items: center;
-      gap: 12px;
-      background: rgba(6, 15, 29, 0.58);
-      border: 1px solid rgba(234, 179, 8, 0.5);
+      gap: 14px;
+      background: rgba(6, 15, 29, 0.68);
+      border: 1px solid rgba(234, 179, 8, 0.44);
       border-radius: 14px;
-      padding: 11px 16px;
-      max-width: 100%;
-      flex-shrink: 0;
+      padding: 14px 18px;
+      min-width: 248px;
     }
 
     .sk-coin-box img {
-      width: 60px;
-      height: 60px;
+      width: 56px;
+      height: 56px;
       border-radius: 50%;
       object-fit: cover;
       border: 2px solid var(--gold);
@@ -323,64 +376,54 @@
 
     .sk-coin-box strong {
       display: block;
-      font-size: 13px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 13.5px;
+      letter-spacing: 0.03em;
       color: var(--gold-soft);
+      margin-bottom: 2px;
     }
 
     .sk-coin-box span {
       display: block;
-      font-size: 11.5px;
-      color: #e2e8f0;
+      font-size: 12px;
+      color: #cbd5e1;
+      font-variant-numeric: tabular-nums;
     }
 
-    /* Docs Two-Column Shell (min-width: 0 mencegah overflow grid) */
+    /* Docs Two-Column Shell */
     .sk-docs-shell {
       display: grid;
-      grid-template-columns: minmax(0, 260px) minmax(0, 1fr);
-      gap: 20px;
+      grid-template-columns: 272px minmax(0, 1fr);
+      gap: 24px;
       align-items: start;
-      width: 100%;
-      max-width: 100%;
-    }
-
-    @media (max-width: 860px) {
-      .sk-docs-shell {
-        grid-template-columns: minmax(0, 1fr);
-      }
     }
 
     .sk-sidebar {
       position: sticky;
-      top: 86px;
+      top: 90px;
       background: var(--prussian-card);
       border: 1px solid var(--line-soft);
       border-radius: 16px;
       padding: 18px;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.32);
       min-width: 0;
-      max-width: 100%;
-    }
-
-    @media (max-width: 860px) {
-      .sk-sidebar {
-        position: static;
-      }
     }
 
     .sk-search-box {
-      margin-bottom: 14px;
+      position: relative;
+      margin-bottom: 16px;
     }
 
     .sk-search-box input {
       width: 100%;
-      max-width: 100%;
-      padding: 9px 11px;
-      border-radius: 8px;
-      border: 1px solid rgba(148, 163, 184, 0.35);
-      background: rgba(6, 15, 29, 0.85);
+      padding: 10px 32px 10px 12px;
+      border-radius: 9px;
+      border: 1px solid rgba(148, 163, 184, 0.32);
+      background: rgba(6, 15, 29, 0.88);
       color: #f8fafc;
-      font-size: 12.5px;
+      font-size: 13px;
       font-family: inherit;
+      transition: border-color 0.18s ease;
     }
 
     .sk-search-box input:focus {
@@ -388,8 +431,38 @@
       border-color: var(--emerald-bright);
     }
 
+    .sk-search-clear {
+      display: none;
+      position: absolute;
+      right: 8px;
+      top: 50%;
+      transform: translateY(-50%);
+      width: 22px;
+      height: 22px;
+      border-radius: 6px;
+      border: none;
+      background: rgba(148, 163, 184, 0.18);
+      color: #e2e8f0;
+      font-size: 14px;
+      line-height: 1;
+      cursor: pointer;
+    }
+
+    .sk-search-clear.visible {
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .sk-search-meta {
+      margin-top: 6px;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      min-height: 16px;
+    }
+
     .sk-side-group {
-      margin-bottom: 14px;
+      margin-bottom: 16px;
     }
 
     .sk-side-group:last-child {
@@ -397,170 +470,348 @@
     }
 
     .sk-side-title {
-      font-size: 10.5px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
       font-weight: 800;
-      letter-spacing: 0.08em;
+      letter-spacing: 0.09em;
       text-transform: uppercase;
       color: var(--gold-soft);
-      margin-bottom: 6px;
+      margin-bottom: 8px;
+      padding: 0 8px;
     }
 
     .sk-side-links {
       list-style: none;
       display: flex;
       flex-direction: column;
-      gap: 4px;
+      gap: 3px;
     }
 
     .sk-side-links a {
-      display: block;
-      padding: 7px 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      padding: 8px 10px;
       border-radius: 8px;
       color: #cbd5e1;
       text-decoration: none;
       font-size: 13px;
       font-weight: 500;
-      transition: background 0.15s ease, color 0.15s ease;
-      overflow-wrap: anywhere;
+      transition: background 0.16s ease, color 0.16s ease;
     }
 
     .sk-side-links a:hover {
-      background: rgba(16, 185, 129, 0.14);
+      background: rgba(16, 185, 129, 0.12);
+      color: #ffffff;
+    }
+
+    .sk-side-links a.active {
+      background: rgba(16, 185, 129, 0.18);
+      color: var(--emerald-bright);
+      font-weight: 600;
+    }
+
+    .sk-side-num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      color: var(--text-muted);
+      font-variant-numeric: tabular-nums;
+      flex-shrink: 0;
+    }
+
+    .sk-side-links a.active .sk-side-num {
+      color: var(--gold-soft);
+    }
+
+    .sk-side-divider {
+      height: 1px;
+      background: var(--line-soft);
+      margin: 14px 0;
+    }
+
+    .sk-side-quick {
+      display: flex;
+      flex-direction: column;
+      gap: 6px;
+      padding: 0 8px;
+    }
+
+    .sk-side-quick a {
+      font-size: 12.5px;
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-weight: 600;
+      display: inline-flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sk-side-quick a:hover {
       color: var(--emerald-bright);
     }
 
+    /* Unified Documentation Surface */
     .sk-docs-content {
-      display: flex;
-      flex-direction: column;
-      gap: 20px;
       min-width: 0;
-      max-width: 100%;
-    }
-
-    .sk-doc-card {
       background: var(--prussian-card);
       border: 1px solid var(--line-soft);
-      border-radius: 16px;
-      padding: 22px;
-      box-shadow: 0 12px 26px rgba(0, 0, 0, 0.34);
+      border-radius: 18px;
+      padding: 30px 32px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.34);
+    }
+
+    .sk-doc-section {
+      scroll-margin-top: 96px;
+      padding: 28px 0;
+      border-bottom: 1px solid var(--line-soft);
       min-width: 0;
-      max-width: 100%;
-      overflow: hidden;
     }
 
-    .sk-doc-card h2 {
+    .sk-doc-section:first-child {
+      padding-top: 4px;
+    }
+
+    .sk-doc-section:last-of-type {
+      border-bottom: none;
+      padding-bottom: 10px;
+    }
+
+    .sk-sec-eyebrow {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11.5px;
+      font-weight: 700;
+      color: var(--emerald-bright);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin-bottom: 6px;
+    }
+
+    .sk-doc-section h2 {
       font-family: 'Space Grotesk', sans-serif;
-      font-size: 19px;
-      color: var(--gold-soft);
-      margin-bottom: 8px;
-      overflow-wrap: anywhere;
+      font-size: clamp(1.2rem, 2.2vw, 1.48rem);
+      font-weight: 800;
+      color: #ffffff;
+      margin-bottom: 10px;
+      line-height: 1.25;
+      text-wrap: balance;
     }
 
-    .sk-doc-card p {
-      font-size: 13.5px;
-      color: #e2e8f0;
-      margin-bottom: 12px;
-      overflow-wrap: anywhere;
+    .sk-doc-lead {
+      font-size: 14.5px;
+      color: #cbd5e1;
+      line-height: 1.7;
+      max-width: 72ch;
+      margin-bottom: 18px;
     }
 
-    .sk-doc-card p:last-child {
+    .sk-doc-lead:last-child {
       margin-bottom: 0;
     }
 
+    /* Section 1 Summary Metrics Strip */
+    .sk-spec-strip {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 12px;
+      margin-top: 16px;
+      padding: 16px;
+      border-radius: 12px;
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+    }
+
+    .sk-spec-item {
+      min-width: 0;
+      padding-right: 10px;
+      border-right: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .sk-spec-item:last-child {
+      border-right: none;
+      padding-right: 0;
+    }
+
+    .sk-spec-label {
+      display: block;
+      font-size: 11.5px;
+      color: var(--text-muted);
+      margin-bottom: 4px;
+    }
+
+    .sk-spec-val {
+      display: block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: var(--gold-soft);
+      font-variant-numeric: tabular-nums;
+    }
+
+    /* Section 2 Pillar Grid (2x2 clean hairline layout) */
     .sk-pillar-grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-      gap: 12px;
-      margin-top: 10px;
-      max-width: 100%;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 14px;
     }
 
     .sk-pillar {
-      background: rgba(6, 15, 29, 0.78);
-      border: 1px solid rgba(52, 211, 153, 0.24);
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 10px;
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.18);
       border-radius: 12px;
-      padding: 14px;
-      min-width: 0;
+      padding: 18px;
+      transition: border-color 0.18s ease;
+    }
+
+    .sk-pillar:hover {
+      border-color: rgba(52, 211, 153, 0.42);
+    }
+
+    .sk-pillar-index {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--emerald-bright);
+      margin-bottom: 4px;
     }
 
     .sk-pillar h3 {
-      font-size: 14.5px;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 15.5px;
+      font-weight: 700;
       color: #ffffff;
-      margin-bottom: 4px;
-      overflow-wrap: anywhere;
+      margin-bottom: 6px;
     }
 
     .sk-pillar p {
-      font-size: 12.5px;
-      color: var(--text-muted);
+      font-size: 13.5px;
+      color: #cbd5e1;
+      line-height: 1.55;
       margin: 0;
-      overflow-wrap: anywhere;
+    }
+
+    .sk-pillar-link {
+      align-self: flex-start;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--gold-soft);
+      text-decoration: none;
+    }
+
+    .sk-pillar-link:hover {
+      color: var(--emerald-bright);
+      text-decoration: underline;
+    }
+
+    /* Section 3 Contract Parameter Table */
+    .sk-table-wrap {
+      width: 100%;
+      min-width: 0;
+      border-radius: 12px;
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      background: rgba(6, 15, 29, 0.72);
+      overflow: hidden;
     }
 
     .sk-table {
       width: 100%;
-      max-width: 100%;
       border-collapse: collapse;
-      font-size: 13px;
-      table-layout: fixed;
+      font-size: 13.5px;
+    }
+
+    .sk-table tr {
+      border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+    }
+
+    .sk-table tr:last-child {
+      border-bottom: none;
+    }
+
+    .sk-table th,
+    .sk-table td {
+      padding: 12px 16px;
+      text-align: left;
+      vertical-align: middle;
+    }
+
+    .sk-table th {
+      width: 210px;
+      font-size: 12.5px;
+      font-weight: 700;
+      color: var(--gold-soft);
+      background: rgba(10, 25, 47, 0.45);
     }
 
     .sk-table td {
-      padding: 9px 10px;
-      border-bottom: 1px solid rgba(148, 163, 184, 0.15);
-      overflow-wrap: anywhere;
-      word-break: break-word;
+      color: #f1f5f9;
+    }
+
+    .sk-addr-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sk-mono-val {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 12.5px;
+      font-variant-numeric: tabular-nums;
+      word-break: break-all;
       color: #e2e8f0;
     }
 
-    .sk-table td:first-child {
-      width: 36%;
-      font-weight: 700;
-      color: var(--gold-soft);
+    .sk-row-actions {
+      display: inline-flex;
+      align-items: center;
+      gap: 8px;
+      flex-shrink: 0;
     }
 
-    .sk-table td:last-child {
-      width: 64%;
+    .sk-mini-btn {
+      background: rgba(10, 25, 47, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.34);
+      color: #e2e8f0;
+      font-size: 11.5px;
+      font-weight: 600;
+      padding: 5px 10px;
+      border-radius: 6px;
+      cursor: pointer;
+      text-decoration: none;
+      white-space: nowrap;
+      transition: border-color 0.16s ease, color 0.16s ease;
     }
 
-    @media (max-width: 540px) {
-      .sk-table,
-      .sk-table tbody,
-      .sk-table tr,
-      .sk-table td {
-        display: block;
-        width: 100% !important;
-      }
-
-      .sk-table td:first-child {
-        padding-bottom: 2px;
-        border-bottom: none;
-      }
-
-      .sk-table td:last-child {
-        padding-top: 2px;
-      }
+    .sk-mini-btn:hover {
+      border-color: var(--emerald-bright);
+      color: var(--emerald-bright);
     }
 
+    /* Section 4 Code Block */
     .sk-code-box {
-      background: rgba(6, 15, 29, 0.92);
+      background: rgba(6, 15, 29, 0.94);
       border: 1px solid rgba(234, 179, 8, 0.32);
       border-radius: 12px;
       overflow: hidden;
-      margin-top: 10px;
-      max-width: 100%;
+      margin-top: 12px;
+      min-width: 0;
     }
 
     .sk-code-head {
       display: flex;
       justify-content: space-between;
       align-items: center;
-      gap: 8px;
-      flex-wrap: wrap;
-      padding: 8px 12px;
-      background: rgba(10, 25, 47, 0.9);
+      gap: 12px;
+      padding: 10px 14px;
+      background: rgba(10, 25, 47, 0.92);
       border-bottom: 1px solid rgba(148, 163, 184, 0.16);
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 800;
       letter-spacing: 0.05em;
       color: var(--emerald-bright);
@@ -570,11 +821,12 @@
       background: rgba(6, 15, 29, 0.85);
       border: 1px solid rgba(234, 179, 8, 0.45);
       color: var(--gold-soft);
-      font-size: 11px;
+      font-size: 11.5px;
       font-weight: 700;
-      padding: 4px 10px;
-      border-radius: 6px;
+      padding: 6px 12px;
+      border-radius: 7px;
       cursor: pointer;
+      white-space: nowrap;
     }
 
     .sk-copy-btn:hover {
@@ -583,39 +835,498 @@
     }
 
     pre {
-      padding: 14px;
+      padding: 16px;
       overflow-x: auto;
-      max-width: 100%;
-      width: 100%;
-      font-size: 12px;
-      line-height: 1.55;
+      font-size: 12.5px;
+      line-height: 1.6;
       color: #e2e8f0;
       font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
-      white-space: pre-wrap;
-      overflow-wrap: anywhere;
-    }
-
-    .sk-footer {
-      text-align: center;
-      font-size: 12.5px;
-      color: var(--text-muted);
-      padding: 24px 14px 36px;
-      border-top: 1px solid var(--line-soft);
+      font-variant-numeric: tabular-nums;
       max-width: 100%;
-      overflow-wrap: anywhere;
     }
 
-    .sk-footer a {
+    /* Section 5 Roadmap Steps */
+    .sk-roadmap-grid {
+      display: grid;
+      grid-template-columns: repeat(3, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 16px;
+    }
+
+    .sk-step-box {
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(148, 163, 184, 0.18);
+      border-radius: 12px;
+      padding: 16px;
+    }
+
+    .sk-step-num {
+      font-family: ui-monospace, SFMono-Regular, Menlo, Consolas, monospace;
+      font-size: 11px;
+      font-weight: 700;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .sk-step-box h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14.5px;
+      color: #ffffff;
+      margin-bottom: 5px;
+    }
+
+    .sk-step-box p {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.55;
+    }
+
+    /* Docs Empty Search State */
+    .sk-empty-state {
+      display: none;
+      text-align: center;
+      padding: 40px 20px;
+      border: 1px dashed rgba(148, 163, 184, 0.3);
+      border-radius: 14px;
+      background: rgba(6, 15, 29, 0.55);
+    }
+
+    .sk-empty-state.visible {
+      display: block;
+    }
+
+    .sk-empty-state h3 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      color: #ffffff;
+      margin-bottom: 6px;
+    }
+
+    .sk-empty-state p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      margin-bottom: 14px;
+    }
+
+    .sk-reset-btn {
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      border: none;
+      border-radius: 8px;
+      padding: 9px 16px;
+      font-size: 12.5px;
+      font-weight: 800;
+      cursor: pointer;
+    }
+
+    /* Bottom Docs Next/Prev Navigation */
+    .sk-docs-pager {
+      display: grid;
+      grid-template-columns: repeat(2, minmax(0, 1fr));
+      gap: 14px;
+      margin-top: 24px;
+      padding-top: 22px;
+      border-top: 1px solid var(--line-soft);
+    }
+
+    .sk-pager-link {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      padding: 14px 16px;
+      border-radius: 12px;
+      background: rgba(6, 15, 29, 0.68);
+      border: 1px solid rgba(148, 163, 184, 0.2);
+      text-decoration: none;
+      transition: border-color 0.18s ease, transform 0.18s ease;
+    }
+
+    .sk-pager-link:hover {
+      border-color: var(--gold);
+      transform: translateY(-1px);
+    }
+
+    .sk-pager-link.next {
+      text-align: right;
+    }
+
+    .sk-pager-dir {
+      font-size: 11px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--emerald-bright);
+    }
+
+    .sk-pager-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 14.5px;
+      font-weight: 700;
+      color: #ffffff;
+    }
+
+    @media (max-width: 920px) {
+      .sk-hero {
+        grid-template-columns: minmax(0, 1fr);
+        padding: 22px 20px;
+      }
+      .sk-coin-box {
+        width: 100%;
+      }
+      .sk-docs-shell {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 18px;
+      }
+      .sk-sidebar {
+        position: static;
+      }
+      .sk-docs-content {
+        padding: 22px 18px;
+      }
+      .sk-spec-strip,
+      .sk-roadmap-grid {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .sk-spec-item {
+        border-right: none;
+        border-bottom: 1px solid rgba(148, 163, 184, 0.14);
+        padding-right: 0;
+        padding-bottom: 10px;
+      }
+      .sk-spec-item:last-child {
+        border-bottom: none;
+        padding-bottom: 0;
+      }
+    }
+
+    @media (max-width: 640px) {
+      .sk-pillar-grid,
+      .sk-docs-pager {
+        grid-template-columns: minmax(0, 1fr);
+      }
+      .sk-pager-link.next {
+        text-align: left;
+      }
+      .sk-table tr,
+      .sk-table th,
+      .sk-table td {
+        display: block;
+        width: 100%;
+      }
+      .sk-table th {
+        padding: 10px 14px 4px;
+      }
+      .sk-table td {
+        padding: 4px 14px 12px;
+      }
+    }
+
+    /* === SAMUDERA KEPRI ICONIC FOOTER & DISPLAY WORDMARK === */
+    .sk-footer-shell {
+      position: relative;
+      margin-top: 44px;
+      background:
+        radial-gradient(ellipse 60% 55% at 15% 100%, rgba(16, 185, 129, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 55% 55% at 50% 95%, rgba(234, 179, 8, 0.11) 0%, transparent 72%),
+        radial-gradient(ellipse 60% 55% at 85% 100%, rgba(112, 26, 117, 0.22) 0%, transparent 70%),
+        linear-gradient(180deg, rgba(10, 25, 47, 0.72) 0%, #060f1d 38%, #040a14 100%);
+      border-top: 1px solid rgba(234, 179, 8, 0.28);
+      overflow: hidden;
+      width: 100%;
+    }
+
+    .sk-footer-shell::before {
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 2px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        rgba(52, 211, 153, 0.75) 24%,
+        rgba(253, 224, 71, 0.9) 50%,
+        rgba(192, 132, 252, 0.75) 76%,
+        transparent 100%
+      );
+      pointer-events: none;
+    }
+
+    .sk-footer-inner {
+      max-width: 1140px;
+      margin: 0 auto;
+      padding: 40px 16px 24px;
+      min-width: 0;
+    }
+
+    .sk-footer-grid {
+      display: grid;
+      grid-template-columns: minmax(0, 1.5fr) repeat(3, minmax(0, 1fr));
+      gap: 28px;
+      padding-bottom: 28px;
+    }
+
+    .sk-footer-brand-row {
+      display: flex;
+      align-items: center;
+      gap: 11px;
+      margin-bottom: 12px;
+      text-decoration: none;
+      color: #ffffff;
+    }
+
+    .sk-footer-brand-row img {
+      width: 38px;
+      height: 38px;
+      border-radius: 10px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .sk-footer-brand-name {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15px;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      color: #ffffff;
+      display: block;
+      line-height: 1.15;
+    }
+
+    .sk-footer-brand-entity {
+      font-size: 11.5px;
+      font-weight: 600;
+      color: var(--gold-soft);
+      display: block;
+    }
+
+    .sk-footer-desc {
+      font-size: 13px;
+      color: #cbd5e1;
+      line-height: 1.6;
+      max-width: 390px;
+      margin-bottom: 12px;
+    }
+
+    .sk-footer-lead {
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: #e2e8f0;
+      background: rgba(6, 15, 29, 0.72);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      border-radius: 8px;
+      padding: 6px 11px;
+    }
+
+    .sk-footer-lead strong {
+      color: var(--emerald-bright);
+      font-weight: 700;
+    }
+
+    .sk-footer-col h4 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.1em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 12px;
+    }
+
+    .sk-footer-list {
+      list-style: none;
+      display: flex;
+      flex-direction: column;
+      gap: 8px;
+    }
+
+    .sk-footer-list a {
+      color: #cbd5e1;
+      text-decoration: none;
+      font-size: 13px;
+      font-weight: 500;
+      transition: color 0.18s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 6px;
+    }
+
+    .sk-footer-list a:hover {
+      color: var(--emerald-bright);
+    }
+
+    .sk-footer-net-pill {
+      display: inline-flex;
+      align-items: center;
+      gap: 7px;
+      margin-top: 10px;
+      padding: 6px 10px;
+      border-radius: 8px;
+      background: rgba(16, 185, 129, 0.12);
+      border: 1px solid rgba(52, 211, 153, 0.35);
+      color: #a7f3d0;
+      font-size: 11.5px;
+      font-weight: 700;
+    }
+
+    .sk-footer-net-dot {
+      width: 7px;
+      height: 7px;
+      border-radius: 50%;
+      background: var(--emerald-bright);
+      box-shadow: 0 0 8px rgba(52, 211, 153, 0.9);
+      flex-shrink: 0;
+    }
+
+    .sk-footer-divider {
+      height: 1px;
+      background: linear-gradient(
+        90deg,
+        rgba(148, 163, 184, 0.08) 0%,
+        rgba(52, 211, 153, 0.38) 28%,
+        rgba(253, 224, 71, 0.52) 50%,
+        rgba(192, 132, 252, 0.38) 72%,
+        rgba(148, 163, 184, 0.08) 100%
+      );
+      margin: 4px 0 18px;
+    }
+
+    .sk-footer-meta-bar {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 12px;
+      flex-wrap: wrap;
+      font-size: 12px;
+      color: var(--text-muted);
+      margin-bottom: 18px;
+    }
+
+    .sk-footer-meta-bar a {
       color: var(--gold-soft);
       text-decoration: none;
+      font-weight: 600;
+    }
+
+    .sk-footer-meta-bar a:hover {
+      text-decoration: underline;
+    }
+
+    .sk-wordmark-stage {
+      position: relative;
+      width: 100%;
+      min-width: 0;
+      padding: 14px 4px 10px;
+      text-align: center;
+      border-radius: 16px;
+      background:
+        radial-gradient(ellipse 52% 70% at 50% 60%, rgba(112, 26, 117, 0.22) 0%, transparent 72%),
+        radial-gradient(ellipse 40% 60% at 20% 70%, rgba(16, 185, 129, 0.14) 0%, transparent 70%),
+        radial-gradient(ellipse 40% 60% at 80% 70%, rgba(234, 179, 8, 0.12) 0%, transparent 70%);
+      overflow: hidden;
+      user-select: none;
+    }
+
+    .sk-wordmark-eyebrow {
+      display: inline-block;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(9px, 1.3vw, 11.5px);
+      font-weight: 700;
+      letter-spacing: 0.26em;
+      text-transform: uppercase;
+      color: #cbd5e1;
+      margin-bottom: 6px;
+      opacity: 0.9;
+    }
+
+    .sk-wordmark-text {
+      display: block;
+      width: 100%;
+      max-width: 100%;
+      min-width: 0;
+      margin: 0 auto;
+      font-family: 'Space Grotesk', system-ui, sans-serif;
+      font-weight: 800;
+      font-size: clamp(1.75rem, 8.6vw, 7.3rem);
+      line-height: 0.94;
+      letter-spacing: -0.025em;
+      text-transform: uppercase;
+      white-space: nowrap;
+      background: linear-gradient(
+        96deg,
+        #34d399 0%,
+        #6ee7b7 18%,
+        #fde047 46%,
+        #eab308 62%,
+        #c084fc 82%,
+        #e879f9 100%
+      );
+      -webkit-background-clip: text;
+      background-clip: text;
+      color: transparent;
+      -webkit-text-fill-color: transparent;
+      filter:
+        drop-shadow(0 6px 22px rgba(234, 179, 8, 0.18))
+        drop-shadow(0 0 16px rgba(52, 211, 153, 0.16));
+    }
+
+    .sk-wordmark-underline {
+      width: min(440px, 68%);
+      height: 3px;
+      margin: 12px auto 0;
+      border-radius: 999px;
+      background: linear-gradient(
+        90deg,
+        transparent 0%,
+        #34d399 22%,
+        #fde047 50%,
+        #c084fc 78%,
+        transparent 100%
+      );
+      opacity: 0.85;
+    }
+
+    @media (max-width: 860px) {
+      .sk-footer-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+      }
+    }
+
+    @media (max-width: 540px) {
+      .sk-footer-inner {
+        padding: 30px 14px 18px;
+      }
+      .sk-footer-grid {
+        grid-template-columns: minmax(0, 1fr);
+        gap: 20px;
+      }
+      .sk-wordmark-eyebrow {
+        letter-spacing: 0.16em;
+      }
     }
   </style>
 </head>
 <body>
+  <div class="sk-bokeh-layer" aria-hidden="true">
+    <div class="sk-bokeh-horizon"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--emerald"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--magenta"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--gold"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--archipelago"></div>
+    <div class="sk-bokeh-beacon sk-bokeh-beacon--seal"></div>
+    <div class="sk-bokeh-beacon sk-bokeh-beacon--coin"></div>
+  </div>
   <div class="sk-header-wrap">
     <header class="sk-navbar">
       <a href="../index.html" class="sk-brand">
-        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+        <img src="../public/assets/aistudio/icon250_ef33c0f4.webp" onerror="this.onerror=null;this.src='../icon250.webp';" alt="Logo Media Samudera Kepri" referrerpolicy="no-referrer" />
         <div>
           <span class="sk-brand-title">SAMUDERA KEPRI</span>
           <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
@@ -627,6 +1338,23 @@
         <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
         <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
         <a href="./community.html" data-i18n="nav_community">KOMUNITAS</a>
+
+        <div class="sk-dropdown" id="sk-learn-dropdown">
+          <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
+            <span>LEARN</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./learn-hub.html" role="menuitem">
+              <span>learn-hub</span>
+              <span class="sk-dd-tag">HUB</span>
+            </a>
+            <a href="./blog.html" role="menuitem">
+              <span>blog</span>
+              <span class="sk-dd-tag">ON-CHAIN</span>
+            </a>
+          </div>
+        </div>
 
         <div class="sk-dropdown" id="sk-dev-dropdown">
           <button type="button" class="sk-dd-trigger active" id="sk-dev-btn" aria-expanded="false">
@@ -666,103 +1394,191 @@
 
   <main class="sk-main">
     <section class="sk-hero">
-      <div>
-        <div class="sk-stage-pill" data-i18n="d_pill">DEVELOPERS SUB-MENU · DOKUMENTASI RESMI</div>
+      <div class="sk-hero-copy">
+        <div class="sk-hero-kicker">
+          <span data-i18n="d_kicker">DEVELOPERS</span>
+          <span aria-hidden="true">/</span>
+          <span data-i18n="d_kicker_sub">DOKUMENTASI RESMI EKOSISTEM</span>
+        </div>
         <h1 data-i18n="d_title">Dokumentasi Ekosistem Samudera Kepri</h1>
         <p data-i18n="d_desc">
           Panduan teknis penyegelan integritas berita berbasis blockchain (FactSeal), token ekosistem MSK, sertifikat/NFT arsip, serta alur persiapan sebelum migrasi ke sistem Ethereum asli.
         </p>
+        <div class="sk-hero-actions">
+          <a href="./Whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="sk-hero-btn sk-hero-btn-primary" data-i18n="d_act_wp">Buka Whitepaper.pdf &nearr;</a>
+          <a href="./explorer.html" class="sk-hero-btn sk-hero-btn-ghost" data-i18n="d_act_exp">Buka Explorer</a>
+          <a href="./faucet.html" class="sk-hero-btn sk-hero-btn-ghost" data-i18n="d_act_faucet">Uji Faucet</a>
+        </div>
       </div>
 
       <div class="sk-coin-box">
-        <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/con-samuderakepri.png" alt="Coin Samudera Kepri MSK" />
+        <img src="../public/assets/aistudio/con_samuderakepri_aaafc179.png" onerror="this.onerror=null;this.src='../con%20samuderakepri.png';" alt="Coin Samudera Kepri MSK" referrerpolicy="no-referrer" />
         <div>
           <strong>DOCS · MSK &amp; FACTSEAL</strong>
-          <span data-i18n="d_coin_sub">Sepolia · Siap Migrasi ETH</span>
+          <span data-i18n="d_coin_sub">Sepolia · Chain ID 11155111</span>
+          <span data-i18n="d_coin_lead">Founder: Ronny Paslan</span>
         </div>
       </div>
     </section>
 
     <div class="sk-docs-shell">
-      <aside class="sk-sidebar">
+      <aside class="sk-sidebar" aria-label="Navigasi Dokumentasi">
         <div class="sk-search-box">
-          <input type="text" id="sk-doc-filter" placeholder="Cari topik dokumentasi..." />
+          <input type="text" id="sk-doc-filter" placeholder="Cari topik dokumentasi..." data-i18n-placeholder="search_ph" />
+          <button type="button" class="sk-search-clear" id="sk-doc-clear" aria-label="Reset pencarian">&times;</button>
+          <div class="sk-search-meta" id="sk-search-meta"></div>
         </div>
 
         <div class="sk-side-group">
           <div class="sk-side-title" data-i18n="sb_g1">FONDASI EKOSISTEM</div>
           <ul class="sk-side-links">
-            <li><a href="#pengantar" data-i18n="sb_l1">Pengantar Proyek</a></li>
-            <li><a href="#empat-pilar" data-i18n="sb_l2">4 Pilar Utama</a></li>
-            <li><a href="#alamat-kontrak" data-i18n="sb_l3">Alamat Kontrak</a></li>
+            <li><a href="#pengantar" class="active"><span data-i18n="sb_l1">Pengantar Proyek</span><span class="sk-side-num">01</span></a></li>
+            <li><a href="#empat-pilar"><span data-i18n="sb_l2">4 Pilar Utama</span><span class="sk-side-num">02</span></a></li>
+            <li><a href="#alamat-kontrak"><span data-i18n="sb_l3">Alamat Kontrak</span><span class="sk-side-num">03</span></a></li>
           </ul>
         </div>
 
         <div class="sk-side-group">
           <div class="sk-side-title" data-i18n="sb_g2">INTEGRASI &amp; MIGRASI</div>
           <ul class="sk-side-links">
-            <li><a href="#verifikasi-hash" data-i18n="sb_l4">Verifikasi Hash (ethers.js)</a></li>
-            <li><a href="#migrasi-eth" data-i18n="sb_l5">Jalur Migrasi Ethereum Asli</a></li>
+            <li><a href="#verifikasi-hash"><span data-i18n="sb_l4">Verifikasi Hash (ethers.js)</span><span class="sk-side-num">04</span></a></li>
+            <li><a href="#migrasi-eth"><span data-i18n="sb_l5">Jalur Migrasi Ethereum Asli</span><span class="sk-side-num">05</span></a></li>
           </ul>
+        </div>
+
+        <div class="sk-side-divider"></div>
+
+        <div class="sk-side-group">
+          <div class="sk-side-title" data-i18n="sb_g3">RUJUKAN CEPAT</div>
+          <div class="sk-side-quick">
+            <a href="./Whitepaper.pdf" target="_blank" rel="noopener noreferrer"><span>Whitepaper.pdf</span><span>&nearr;</span></a>
+            <a href="./public-portal.html"><span data-i18n="ft_portal">Portal Publik &amp; FactSeal</span><span>&rarr;</span></a>
+            <a href="./report-abuse.html"><span>report-abuse</span><span>&rarr;</span></a>
+          </div>
         </div>
       </aside>
 
       <div class="sk-docs-content" id="sk-doc-sections">
-        <article class="sk-doc-card" id="pengantar">
+        <section class="sk-doc-section" id="pengantar">
+          <div class="sk-sec-eyebrow" data-i18n="sec1_eye">Bagian 01 · Arsitektur Dasar</div>
           <h2 data-i18n="sec1_t">1. Pengantar Proyek</h2>
-          <p data-i18n="sec1_p">
+          <p class="sk-doc-lead" data-i18n="sec1_p">
             Proyek ini dikembangkan dengan identitas khas Media Samudera Kepri untuk menghubungkan transparansi jurnalistik dengan pencatatan bukti digital di jaringan EVM. Saat ini seluruh fitur diuji secara terstruktur di jaringan Ethereum Sepolia (Chain ID: 11155111) sebelum dipindahkan ke sistem Ethereum asli.
           </p>
-        </article>
-
-        <article class="sk-doc-card" id="empat-pilar">
-          <h2 data-i18n="sec2_t">2. Empat Pilar Utama Sistem</h2>
-          <p data-i18n="sec2_p">Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:</p>
-          <div class="sk-pillar-grid">
-            <div class="sk-pillar">
-              <h3 data-i18n="p1_t">Berita Berbasis Blockchain</h3>
-              <p data-i18n="p1_d">Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.</p>
+          <div class="sk-spec-strip">
+            <div class="sk-spec-item">
+              <span class="sk-spec-label" data-i18n="sp1_l">Entitas Media</span>
+              <span class="sk-spec-val">PT Media Samudera Kepri</span>
             </div>
-            <div class="sk-pillar">
-              <h3 data-i18n="p2_t">Coin Samudera Kepri (MSK)</h3>
-              <p data-i18n="p2_d">Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.</p>
+            <div class="sk-spec-item">
+              <span class="sk-spec-label" data-i18n="sp2_l">Standar Sidik Jari</span>
+              <span class="sk-spec-val">SHA-256 / bytes32</span>
             </div>
-            <div class="sk-pillar">
-              <h3 data-i18n="p3_t">NFT Arsip &amp; Bukti</h3>
-              <p data-i18n="p3_d">Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.</p>
-            </div>
-            <div class="sk-pillar">
-              <h3 data-i18n="p4_t">Media Samudera Kepri</h3>
-              <p data-i18n="p4_d">Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.</p>
+            <div class="sk-spec-item">
+              <span class="sk-spec-label" data-i18n="sp3_l">Jaringan Aktif</span>
+              <span class="sk-spec-val">Sepolia (11155111)</span>
             </div>
           </div>
-        </article>
+        </section>
 
-        <article class="sk-doc-card" id="alamat-kontrak">
+        <section class="sk-doc-section" id="empat-pilar">
+          <div class="sk-sec-eyebrow" data-i18n="sec2_eye">Bagian 02 · Struktur Ekosistem</div>
+          <h2 data-i18n="sec2_t">2. Empat Pilar Utama Sistem</h2>
+          <p class="sk-doc-lead" data-i18n="sec2_p">Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:</p>
+          <div class="sk-pillar-grid">
+            <div class="sk-pillar">
+              <div>
+                <div class="sk-pillar-index">01 · FACTSEAL</div>
+                <h3 data-i18n="p1_t">Berita Berbasis Blockchain</h3>
+                <p data-i18n="p1_d">Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.</p>
+              </div>
+              <a href="./public-portal.html" class="sk-pillar-link" data-i18n="p1_link">Buka Portal Publik &rarr;</a>
+            </div>
+            <div class="sk-pillar">
+              <div>
+                <div class="sk-pillar-index">02 · MSK TOKEN</div>
+                <h3 data-i18n="p2_t">Coin Samudera Kepri (MSK)</h3>
+                <p data-i18n="p2_d">Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.</p>
+              </div>
+              <a href="./explorer.html" class="sk-pillar-link" data-i18n="p2_link">Buka Explorer &rarr;</a>
+            </div>
+            <div class="sk-pillar">
+              <div>
+                <div class="sk-pillar-index">03 · ARCHIVE NFT</div>
+                <h3 data-i18n="p3_t">NFT Arsip &amp; Bukti</h3>
+                <p data-i18n="p3_d">Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.</p>
+              </div>
+              <a href="./nft.html" class="sk-pillar-link" data-i18n="p3_link">Buka Modul NFT &rarr;</a>
+            </div>
+            <div class="sk-pillar">
+              <div>
+                <div class="sk-pillar-index">04 · MEDIA PORTAL</div>
+                <h3 data-i18n="p4_t">Media Samudera Kepri</h3>
+                <p data-i18n="p4_d">Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.</p>
+              </div>
+              <a href="./community.html" class="sk-pillar-link" data-i18n="p4_link">Buka Komunitas &rarr;</a>
+            </div>
+          </div>
+        </section>
+
+        <section class="sk-doc-section" id="alamat-kontrak">
+          <div class="sk-sec-eyebrow" data-i18n="sec3_eye">Bagian 03 · Parameter On-Chain</div>
           <h2 data-i18n="sec3_t">3. Alamat Kontrak &amp; Parameter Aktif</h2>
-          <table class="sk-table">
-            <tr>
-              <td data-i18n="tbl_net">Jaringan Uji Saat Ini</td>
-              <td>Ethereum Sepolia (Chain ID: 11155111)</td>
-            </tr>
-            <tr>
-              <td data-i18n="tbl_seal">Kontrak FactSeal</td>
-              <td>0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</td>
-            </tr>
-            <tr>
-              <td data-i18n="tbl_msk">Kontrak Token MSK</td>
-              <td>0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</td>
-            </tr>
-            <tr>
-              <td data-i18n="tbl_ver">Verifikator Utama</td>
-              <td>0x7f8684CE32BC602D01B431c1f064f3838dF580eF</td>
-            </tr>
-          </table>
-        </article>
+          <p class="sk-doc-lead" data-i18n="sec3_p">Gunakan parameter resmi di bawah ini saat menghubungkan antarmuka pembacaan atau skrip audit pada jaringan uji Sepolia:</p>
+          <div class="sk-table-wrap">
+            <table class="sk-table">
+              <tbody>
+                <tr>
+                  <th scope="row" data-i18n="tbl_net">Jaringan Uji Saat Ini</th>
+                  <td>
+                    <span class="sk-mono-val">Ethereum Sepolia (Chain ID: 11155111)</span>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" data-i18n="tbl_seal">Kontrak FactSeal</th>
+                  <td>
+                    <div class="sk-addr-row">
+                      <span class="sk-mono-val">0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033</span>
+                      <div class="sk-row-actions">
+                        <button type="button" class="sk-mini-btn sk-copy-addr" data-copy="0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033" data-i18n="btn_copy_short">Salin</button>
+                        <a href="https://sepolia.etherscan.io/address/0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033" target="_blank" rel="noopener noreferrer" class="sk-mini-btn">Etherscan &nearr;</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" data-i18n="tbl_msk">Kontrak Token MSK</th>
+                  <td>
+                    <div class="sk-addr-row">
+                      <span class="sk-mono-val">0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d</span>
+                      <div class="sk-row-actions">
+                        <button type="button" class="sk-mini-btn sk-copy-addr" data-copy="0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d" data-i18n="btn_copy_short">Salin</button>
+                        <a href="https://sepolia.etherscan.io/token/0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d" target="_blank" rel="noopener noreferrer" class="sk-mini-btn">Etherscan &nearr;</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+                <tr>
+                  <th scope="row" data-i18n="tbl_ver">Verifikator Utama</th>
+                  <td>
+                    <div class="sk-addr-row">
+                      <span class="sk-mono-val">0x7f8684CE32BC602D01B431c1f064f3838dF580eF</span>
+                      <div class="sk-row-actions">
+                        <button type="button" class="sk-mini-btn sk-copy-addr" data-copy="0x7f8684CE32BC602D01B431c1f064f3838dF580eF" data-i18n="btn_copy_short">Salin</button>
+                        <a href="https://sepolia.etherscan.io/address/0x7f8684CE32BC602D01B431c1f064f3838dF580eF" target="_blank" rel="noopener noreferrer" class="sk-mini-btn">Etherscan &nearr;</a>
+                      </div>
+                    </div>
+                  </td>
+                </tr>
+              </tbody>
+            </table>
+          </div>
+        </section>
 
-        <article class="sk-doc-card" id="verifikasi-hash">
+        <section class="sk-doc-section" id="verifikasi-hash">
+          <div class="sk-sec-eyebrow" data-i18n="sec4_eye">Bagian 04 · Integrasi SDK</div>
           <h2 data-i18n="sec4_t">4. Contoh Pembacaan Status Fakta (verifyFact)</h2>
-          <p data-i18n="sec4_p">Contoh pembacaan keaslian hash berita menggunakan ethers.js v6:</p>
+          <p class="sk-doc-lead" data-i18n="sec4_p">Contoh pembacaan keaslian hash berita menggunakan ethers.js v6:</p>
           <div class="sk-code-box">
             <div class="sk-code-head">
               <span>JAVASCRIPT · ETHERS V6</span>
@@ -780,20 +1596,126 @@ const contract = new ethers.Contract(FACT_SEAL_ADDR, ABI, provider);
 const total = await contract.totalSealed();
 console.log("Total data tersegel:", total.toString());</pre>
           </div>
-        </article>
+        </section>
 
-        <article class="sk-doc-card" id="migrasi-eth">
+        <section class="sk-doc-section" id="migrasi-eth">
+          <div class="sk-sec-eyebrow" data-i18n="sec5_eye">Bagian 05 · Peta Jalan</div>
           <h2 data-i18n="sec5_t">5. Jalur Menuju Sistem Ethereum Asli</h2>
-          <p data-i18n="sec5_p">
+          <p class="sk-doc-lead" data-i18n="sec5_p">
             Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli.
           </p>
-        </article>
+          <div class="sk-roadmap-grid">
+            <div class="sk-step-box">
+              <div class="sk-step-num" data-i18n="rm1_tag">TAHAP 01</div>
+              <h3 data-i18n="rm1_t">Uji Publik Sepolia</h3>
+              <p data-i18n="rm1_d">Pengujian pencatatan FactSeal, distribusi faucet uji, dan verifikasi antarmuka dwibahasa.</p>
+            </div>
+            <div class="sk-step-box">
+              <div class="sk-step-num" data-i18n="rm2_tag">TAHAP 02</div>
+              <h3 data-i18n="rm2_t">Audit &amp; Konsolidasi</h3>
+              <p data-i18n="rm2_d">Penyelarasan ABI kontrak pintar, metadata NFT arsip, dan keamanan akses verifikator.</p>
+            </div>
+            <div class="sk-step-box">
+              <div class="sk-step-num" data-i18n="rm3_tag">TAHAP 03</div>
+              <h3 data-i18n="rm3_t">Migrasi Ethereum Asli</h3>
+              <p data-i18n="rm3_d">Peluncuran alamat kontrak produksi dan sinkronisasi penuh dengan portal samuderakepri.co.id.</p>
+            </div>
+          </div>
+        </section>
+
+        <div class="sk-empty-state" id="sk-doc-empty">
+          <h3 data-i18n="empty_t">Topik dokumentasi tidak ditemukan</h3>
+          <p data-i18n="empty_d">Tidak ada bagian yang cocok dengan kata kunci pencarian Anda.</p>
+          <button type="button" class="sk-reset-btn" id="sk-doc-reset" data-i18n="empty_btn">Reset Pencarian</button>
+        </div>
+
+        <nav class="sk-docs-pager" aria-label="Navigasi Lanjutan Dokumentasi">
+          <a href="./Whitepaper.pdf" target="_blank" rel="noopener noreferrer" class="sk-pager-link">
+            <span class="sk-pager-dir" data-i18n="pg_prev_dir">Dokumen Resmi</span>
+            <span class="sk-pager-title" data-i18n="pg_prev_t">Whitepaper.pdf (ID &amp; EN) &nearr;</span>
+          </a>
+          <a href="./faucet.html" class="sk-pager-link next">
+            <span class="sk-pager-dir" data-i18n="pg_next_dir">Sub-menu Berikutnya</span>
+            <span class="sk-pager-title" data-i18n="pg_next_t">Faucet &amp; Pemeriksa Saldo &rarr;</span>
+          </a>
+        </nav>
       </div>
     </div>
   </main>
 
-  <footer class="sk-footer">
-    &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">Media Samudera Kepri</a> &middot; Developers Docs · Coin MSK · FactSeal · NFT
+  <footer class="sk-footer-shell">
+    <div class="sk-footer-inner">
+      <div class="sk-footer-grid">
+        <div>
+          <a href="../index.html" class="sk-footer-brand-row">
+            <img src="../public/assets/aistudio/icon250_ef33c0f4.webp" onerror="this.onerror=null;this.src='../icon250.webp';" alt="Logo Media Samudera Kepri" referrerpolicy="no-referrer" />
+            <div>
+              <span class="sk-footer-brand-name">SAMUDERA KEPRI</span>
+              <span class="sk-footer-brand-entity">PT Media Samudera Kepri</span>
+            </div>
+          </a>
+          <p class="sk-footer-desc" data-i18n="ft_desc">
+            Ekosistem transparansi jurnalistik, penyegelan integritas berita berbasis blockchain (FactSeal), token MSK, dan sertifikat arsip NFT dari Indonesia untuk dunia.
+          </p>
+          <div class="sk-footer-lead">
+            <span data-i18n="ft_lead_role">Founder &amp; Pemimpin Redaksi:</span>
+            <strong>Ronny Paslan</strong>
+          </div>
+        </div>
+
+        <div class="sk-footer-col">
+          <h4 data-i18n="ft_col_eco">Ekosistem</h4>
+          <ul class="sk-footer-list">
+            <li><a href="../index.html" data-i18n="nav_home">BERANDA</a></li>
+            <li><a href="./public-portal.html" data-i18n="ft_portal">Portal Publik &amp; FactSeal</a></li>
+            <li><a href="./explorer.html" data-i18n="ft_explorer">Blockchain Explorer</a></li>
+            <li><a href="./nft.html" data-i18n="ft_nft">NFT Arsip &amp; Bukti</a></li>
+            <li><a href="./community.html" data-i18n="ft_comm">Komunitas</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-footer-col">
+          <h4>DEVELOPERS</h4>
+          <ul class="sk-footer-list">
+            <li><a href="./docs.html">docs</a></li>
+            <li><a href="./Whitepaper.pdf" target="_blank" rel="noopener noreferrer">Whitepaper.pdf</a></li>
+            <li><a href="./faucet.html">faucet</a></li>
+            <li><a href="./report-abuse.html">report-abuse</a></li>
+          </ul>
+        </div>
+
+        <div class="sk-footer-col">
+          <h4 data-i18n="ft_col_net">Jaringan &amp; Portal</h4>
+          <ul class="sk-footer-list">
+            <li><a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">samuderakepri.co.id &nearr;</a></li>
+            <li><a href="https://sepolia.etherscan.io/address/0xbAED3a7fb42736d6597145FAE88b3c9a00d5a033" target="_blank" rel="noopener noreferrer">FactSeal Etherscan &nearr;</a></li>
+            <li><a href="https://sepolia.etherscan.io/token/0x0DeF176EF6Bb5Ec6F7F398C367FdA58e9A522a1d" target="_blank" rel="noopener noreferrer">Token MSK Etherscan &nearr;</a></li>
+            <li><a href="https://github.com/SAMUDERAKEPRI/samudera-kepri-fact-seal" target="_blank" rel="noopener noreferrer">GitHub Repository &nearr;</a></li>
+          </ul>
+          <div class="sk-footer-net-pill">
+            <span class="sk-footer-net-dot" aria-hidden="true"></span>
+            <span data-i18n="ft_net_pill">Sepolia Testnet · Chain ID 11155111</span>
+          </div>
+        </div>
+      </div>
+
+      <div class="sk-footer-divider"></div>
+
+      <div class="sk-footer-meta-bar">
+        <div>
+          &copy; 2026 <a href="https://www.samuderakepri.co.id/" target="_blank" rel="noopener noreferrer">PT Media Samudera Kepri</a> &middot; <span data-i18n="ft_rights">Hak cipta dilindungi.</span>
+        </div>
+        <div>
+          <span data-i18n="ft_sig">Developers Docs · Coin MSK · FactSeal · NFT</span>
+        </div>
+      </div>
+
+      <div class="sk-wordmark-stage" aria-label="Samudera Kepri">
+        <span class="sk-wordmark-eyebrow" data-i18n="ft_eyebrow">EKOSISTEM TRANSPARANSI JURNALISTIK WEB3</span>
+        <span class="sk-wordmark-text">SAMUDERA KEPRI</span>
+        <div class="sk-wordmark-underline"></div>
+      </div>
+    </div>
   </footer>
 
   <script>
@@ -805,10 +1727,16 @@ console.log("Total data tersegel:", total.toString());</pre>
           nav_coin_nft: "COIN MSK & NFT",
           nav_community: "KOMUNITAS",
           cta_portal: "PORTAL PUBLIK",
-          d_pill: "DEVELOPERS SUB-MENU · DOKUMENTASI RESMI",
+          d_kicker: "DEVELOPERS",
+          d_kicker_sub: "DOKUMENTASI RESMI EKOSISTEM",
           d_title: "Dokumentasi Ekosistem Samudera Kepri",
           d_desc: "Panduan teknis penyegelan integritas berita berbasis blockchain (FactSeal), token ekosistem MSK, sertifikat/NFT arsip, serta alur persiapan sebelum migrasi ke sistem Ethereum asli.",
-          d_coin_sub: "Sepolia · Siap Migrasi ETH",
+          d_act_wp: "Buka Whitepaper.pdf \u2197",
+          d_act_exp: "Buka Explorer",
+          d_act_faucet: "Uji Faucet",
+          d_coin_sub: "Sepolia · Chain ID 11155111",
+          d_coin_lead: "Founder: Ronny Paslan",
+          search_ph: "Cari topik dokumentasi...",
           sb_g1: "FONDASI EKOSISTEM",
           sb_l1: "Pengantar Proyek",
           sb_l2: "4 Pilar Utama",
@@ -816,28 +1744,73 @@ console.log("Total data tersegel:", total.toString());</pre>
           sb_g2: "INTEGRASI & MIGRASI",
           sb_l4: "Verifikasi Hash (ethers.js)",
           sb_l5: "Jalur Migrasi Ethereum Asli",
+          sb_g3: "RUJUKAN CEPAT",
+          sec1_eye: "Bagian 01 · Arsitektur Dasar",
           sec1_t: "1. Pengantar Proyek",
           sec1_p: "Proyek ini dikembangkan dengan identitas khas Media Samudera Kepri untuk menghubungkan transparansi jurnalistik dengan pencatatan bukti digital di jaringan EVM. Saat ini seluruh fitur diuji secara terstruktur di jaringan Ethereum Sepolia (Chain ID: 11155111) sebelum dipindahkan ke sistem Ethereum asli.",
+          sp1_l: "Entitas Media",
+          sp2_l: "Standar Sidik Jari",
+          sp3_l: "Jaringan Aktif",
+          sec2_eye: "Bagian 02 · Struktur Ekosistem",
           sec2_t: "2. Empat Pilar Utama Sistem",
           sec2_p: "Setiap komponen dirancang saling melengkapi agar dapat diaudit publik secara terbuka:",
           p1_t: "Berita Berbasis Blockchain",
           p1_d: "Penyegelan contentHash (bytes32) untuk arsip berita, gelar fakta, dan investigasi.",
+          p1_link: "Buka Portal Publik \u2192",
           p2_t: "Coin Samudera Kepri (MSK)",
           p2_d: "Token ekosistem untuk mendukung partisipasi, apresiasi, dan transparansi komunitas.",
+          p2_link: "Buka Explorer \u2192",
           p3_t: "NFT Arsip & Bukti",
           p3_d: "Sertifikat digital dan koleksi NFT arsip edisi khusus milik ekosistem Samudera Kepri.",
+          p3_link: "Buka Modul NFT \u2192",
           p4_t: "Media Samudera Kepri",
           p4_d: "Integrasi rujukan publikasi ke samuderakepri.co.id serta portal komunitas.",
+          p4_link: "Buka Komunitas \u2192",
+          sec3_eye: "Bagian 03 · Parameter On-Chain",
           sec3_t: "3. Alamat Kontrak & Parameter Aktif",
+          sec3_p: "Gunakan parameter resmi di bawah ini saat menghubungkan antarmuka pembacaan atau skrip audit pada jaringan uji Sepolia:",
           tbl_net: "Jaringan Uji Saat Ini",
           tbl_seal: "Kontrak FactSeal",
           tbl_msk: "Kontrak Token MSK",
           tbl_ver: "Verifikator Utama",
+          btn_copy_short: "Salin",
+          sec4_eye: "Bagian 04 · Integrasi SDK",
           sec4_t: "4. Contoh Pembacaan Status Fakta (verifyFact)",
           sec4_p: "Contoh pembacaan keaslian hash berita menggunakan ethers.js v6:",
           btn_copy: "Salin Kode",
+          sec5_eye: "Bagian 05 · Peta Jalan",
           sec5_t: "5. Jalur Menuju Sistem Ethereum Asli",
-          sec5_p: "Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli."
+          sec5_p: "Seluruh halaman, alur verifikasi berita, modul NFT, dan utilitas coin MSK disempurnakan terlebih dahulu di lingkungan uji. Setelah seluruh komponen teruji matang dan siap, konfigurasi jaringan, alamat kontrak, serta rujukan resmi akan dimigrasikan ke sistem Ethereum asli.",
+          rm1_tag: "TAHAP 01",
+          rm1_t: "Uji Publik Sepolia",
+          rm1_d: "Pengujian pencatatan FactSeal, distribusi faucet uji, dan verifikasi antarmuka dwibahasa.",
+          rm2_tag: "TAHAP 02",
+          rm2_t: "Audit & Konsolidasi",
+          rm2_d: "Penyelarasan ABI kontrak pintar, metadata NFT arsip, dan keamanan akses verifikator.",
+          rm3_tag: "TAHAP 03",
+          rm3_t: "Migrasi Ethereum Asli",
+          rm3_d: "Peluncuran alamat kontrak produksi dan sinkronisasi penuh dengan portal samuderakepri.co.id.",
+          empty_t: "Topik dokumentasi tidak ditemukan",
+          empty_d: "Tidak ada bagian yang cocok dengan kata kunci pencarian Anda.",
+          empty_btn: "Reset Pencarian",
+          pg_prev_dir: "Dokumen Resmi",
+          pg_prev_t: "Whitepaper.pdf (ID & EN) \u2197",
+          pg_next_dir: "Sub-menu Berikutnya",
+          pg_next_t: "Faucet & Pemeriksa Saldo \u2192",
+          copied_label: "Tersalin!",
+          match_suffix: "bagian cocok",
+          ft_desc: "Ekosistem transparansi jurnalistik, penyegelan integritas berita berbasis blockchain (FactSeal), token MSK, dan sertifikat arsip NFT dari Indonesia untuk dunia.",
+          ft_lead_role: "Founder & Pemimpin Redaksi:",
+          ft_col_eco: "Ekosistem",
+          ft_portal: "Portal Publik & FactSeal",
+          ft_explorer: "Blockchain Explorer",
+          ft_nft: "NFT Arsip & Bukti",
+          ft_comm: "Komunitas",
+          ft_col_net: "Jaringan & Portal",
+          ft_net_pill: "Sepolia Testnet · Chain ID 11155111",
+          ft_rights: "Hak cipta dilindungi.",
+          ft_sig: "Developers Docs · Coin MSK · FactSeal · NFT",
+          ft_eyebrow: "EKOSISTEM TRANSPARANSI JURNALISTIK WEB3"
         },
         en: {
           nav_home: "HOME",
@@ -845,10 +1818,16 @@ console.log("Total data tersegel:", total.toString());</pre>
           nav_coin_nft: "MSK COIN & NFT",
           nav_community: "COMMUNITY",
           cta_portal: "PUBLIC PORTAL",
-          d_pill: "DEVELOPERS SUB-MENU · OFFICIAL DOCUMENTATION",
+          d_kicker: "DEVELOPERS",
+          d_kicker_sub: "OFFICIAL ECOSYSTEM DOCUMENTATION",
           d_title: "Samudera Kepri Ecosystem Documentation",
           d_desc: "Technical guide for blockchain news integrity sealing (FactSeal), MSK ecosystem token, archive NFTs/certificates, and preparation workflows before migrating to the live Ethereum system.",
-          d_coin_sub: "Sepolia · ETH Migration Ready",
+          d_act_wp: "Open Whitepaper.pdf \u2197",
+          d_act_exp: "Open Explorer",
+          d_act_faucet: "Test Faucet",
+          d_coin_sub: "Sepolia · Chain ID 11155111",
+          d_coin_lead: "Founder: Ronny Paslan",
+          search_ph: "Search documentation topics...",
           sb_g1: "ECOSYSTEM FOUNDATION",
           sb_l1: "Project Introduction",
           sb_l2: "4 Core Pillars",
@@ -856,76 +1835,218 @@ console.log("Total data tersegel:", total.toString());</pre>
           sb_g2: "INTEGRATION & MIGRATION",
           sb_l4: "Hash Verification (ethers.js)",
           sb_l5: "Live Ethereum Migration Path",
+          sb_g3: "QUICK REFERENCES",
+          sec1_eye: "Section 01 · Base Architecture",
           sec1_t: "1. Project Introduction",
           sec1_p: "This project is built with Media Samudera Kepri's signature identity to connect journalistic transparency with digital proof records on EVM networks. All features are currently tested on Ethereum Sepolia (Chain ID: 11155111) prior to migration to the live Ethereum system.",
+          sp1_l: "Media Entity",
+          sp2_l: "Fingerprint Standard",
+          sp3_l: "Active Network",
+          sec2_eye: "Section 02 · Ecosystem Structure",
           sec2_t: "2. Four Core System Pillars",
           sec2_p: "Each component is designed to complement one another for open public auditability:",
           p1_t: "Blockchain-Based News",
           p1_d: "Cryptographic contentHash (bytes32) sealing for news archives, fact hearings, and investigations.",
+          p1_link: "Open Public Portal \u2192",
           p2_t: "Samudera Kepri Coin (MSK)",
           p2_d: "Ecosystem utility token supporting participation, appreciation, and community transparency.",
+          p2_link: "Open Explorer \u2192",
           p3_t: "Archive NFT & Proof",
           p3_d: "Digital certificates and special-edition archive NFTs belonging to the Samudera Kepri ecosystem.",
+          p3_link: "Open NFT Module \u2192",
           p4_t: "Media Samudera Kepri",
           p4_d: "Publication integration with samuderakepri.co.id and the community portal.",
+          p4_link: "Open Community \u2192",
+          sec3_eye: "Section 03 · On-Chain Parameters",
           sec3_t: "3. Active Contract Addresses & Parameters",
+          sec3_p: "Use the official parameters below when connecting verification interfaces or audit scripts on the Sepolia test network:",
           tbl_net: "Current Test Network",
           tbl_seal: "FactSeal Contract",
           tbl_msk: "MSK Token Contract",
           tbl_ver: "Primary Verifier",
+          btn_copy_short: "Copy",
+          sec4_eye: "Section 04 · SDK Integration",
           sec4_t: "4. Fact Status Read Example (verifyFact)",
           sec4_p: "Sample script to read news hash authenticity using ethers.js v6:",
           btn_copy: "Copy Code",
+          sec5_eye: "Section 05 · Roadmap",
           sec5_t: "5. Path to the Live Ethereum System",
-          sec5_p: "All interfaces, news verification flows, NFT modules, and MSK coin utilities are refined in the test environment first. Once fully verified, network settings, contract addresses, and official references will migrate to the live Ethereum system."
+          sec5_p: "All interfaces, news verification flows, NFT modules, and MSK coin utilities are refined in the test environment first. Once fully verified, network settings, contract addresses, and official references will migrate to the live Ethereum system.",
+          rm1_tag: "PHASE 01",
+          rm1_t: "Sepolia Public Test",
+          rm1_d: "Testing FactSeal notarization, testnet faucet checks, and bilingual interface verification.",
+          rm2_tag: "PHASE 02",
+          rm2_t: "Audit & Consolidation",
+          rm2_d: "Aligning smart contract ABIs, archive NFT metadata, and verifier access controls.",
+          rm3_tag: "PHASE 03",
+          rm3_t: "Live Ethereum Migration",
+          rm3_d: "Deploying production contract addresses and full synchronization with samuderakepri.co.id.",
+          empty_t: "No matching documentation topics",
+          empty_d: "No sections matched your search keyword.",
+          empty_btn: "Reset Search",
+          pg_prev_dir: "Official Document",
+          pg_prev_t: "Whitepaper.pdf (ID & EN) \u2197",
+          pg_next_dir: "Next Sub-menu",
+          pg_next_t: "Faucet & Balance Checker \u2192",
+          copied_label: "Copied!",
+          match_suffix: "matching sections",
+          ft_desc: "A journalistic transparency ecosystem uniting blockchain news integrity sealing (FactSeal), MSK token utility, and archive proof NFTs from Indonesia to the world.",
+          ft_lead_role: "Founder & Chief Editor:",
+          ft_col_eco: "Ecosystem",
+          ft_portal: "Public Portal & FactSeal",
+          ft_explorer: "Blockchain Explorer",
+          ft_nft: "Archive & Proof NFTs",
+          ft_comm: "Community",
+          ft_col_net: "Network & Portals",
+          ft_net_pill: "Sepolia Testnet · Chain ID 11155111",
+          ft_rights: "All rights reserved.",
+          ft_sig: "Developers Docs · MSK Coin · FactSeal · NFT",
+          ft_eyebrow: "WEB3 JOURNALISTIC TRANSPARENCY ECOSYSTEM"
         }
       };
 
+      let currentLang = "id";
+
       function applyLang(lang) {
-        const dict = I18N[lang] || I18N.id;
-        document.documentElement.lang = lang;
+        currentLang = I18N[lang] ? lang : "id";
+        const dict = I18N[currentLang];
+        document.documentElement.lang = currentLang;
         document.querySelectorAll("[data-i18n]").forEach((el) => {
           const k = el.getAttribute("data-i18n");
           if (dict[k]) el.textContent = dict[k];
         });
-        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
-          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        document.querySelectorAll("[data-i18n-placeholder]").forEach((el) => {
+          const k = el.getAttribute("data-i18n-placeholder");
+          if (dict[k]) el.setAttribute("placeholder", dict[k]);
         });
-        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === currentLang);
+        });
+        try { localStorage.setItem("sk_lang", currentLang); } catch (e) {}
+        runDocFilter();
       }
 
       document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
         btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
       });
 
-      const dd = document.getElementById("sk-dev-dropdown");
-      const ddBtn = document.getElementById("sk-dev-btn");
-      ddBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isOpen = dd.classList.toggle("open");
-        ddBtn.setAttribute("aria-expanded", String(isOpen));
-      });
+      function setupDropdown(ddId, btnId) {
+        const dd = document.getElementById(ddId);
+        const btn = document.getElementById(btnId);
+        if (!dd || !btn) return;
+        const closeOthers = () => {
+          document.querySelectorAll(".sk-dropdown").forEach((other) => {
+            if (other !== dd) {
+              other.classList.remove("open");
+              const ob = other.querySelector(".sk-dd-trigger");
+              if (ob) ob.setAttribute("aria-expanded", "false");
+            }
+          });
+        };
+        dd.addEventListener("mouseenter", closeOthers);
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          closeOthers();
+          const isOpen = dd.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+      setupDropdown("sk-learn-dropdown", "sk-learn-btn");
+      setupDropdown("sk-dev-dropdown", "sk-dev-btn");
       document.addEventListener("click", () => {
-        dd.classList.remove("open");
-        ddBtn.setAttribute("aria-expanded", "false");
-      });
-
-      const filterInput = document.getElementById("sk-doc-filter");
-      filterInput.addEventListener("input", function () {
-        const q = this.value.trim().toLowerCase();
-        document.querySelectorAll("#sk-doc-sections .sk-doc-card").forEach((card) => {
-          const match = !q || card.textContent.toLowerCase().includes(q);
-          card.style.display = match ? "" : "none";
+        document.querySelectorAll(".sk-dropdown").forEach((dd) => {
+          dd.classList.remove("open");
+          const b = dd.querySelector(".sk-dd-trigger");
+          if (b) b.setAttribute("aria-expanded", "false");
         });
       });
 
+      const filterInput = document.getElementById("sk-doc-filter");
+      const clearBtn = document.getElementById("sk-doc-clear");
+      const searchMeta = document.getElementById("sk-search-meta");
+      const emptyBox = document.getElementById("sk-doc-empty");
+      const resetBtn = document.getElementById("sk-doc-reset");
+      const sections = Array.from(document.querySelectorAll("#sk-doc-sections .sk-doc-section"));
+
+      function runDocFilter() {
+        const q = filterInput.value.trim().toLowerCase();
+        let visibleCount = 0;
+        sections.forEach((sec) => {
+          const match = !q || sec.textContent.toLowerCase().includes(q);
+          sec.style.display = match ? "" : "none";
+          if (match) visibleCount += 1;
+        });
+        clearBtn.classList.toggle("visible", q.length > 0);
+        emptyBox.classList.toggle("visible", q.length > 0 && visibleCount === 0);
+        if (q.length > 0) {
+          const dict = I18N[currentLang] || I18N.id;
+          searchMeta.textContent = visibleCount + " " + dict.match_suffix;
+        } else {
+          searchMeta.textContent = "";
+        }
+      }
+
+      filterInput.addEventListener("input", runDocFilter);
+      clearBtn.addEventListener("click", () => {
+        filterInput.value = "";
+        runDocFilter();
+        filterInput.focus();
+      });
+      resetBtn.addEventListener("click", () => {
+        filterInput.value = "";
+        runDocFilter();
+        filterInput.focus();
+      });
+
+      const sideLinks = Array.from(document.querySelectorAll(".sk-side-links a[href^='#']"));
+      function setActiveSideLink(id) {
+        sideLinks.forEach((a) => {
+          a.classList.toggle("active", a.getAttribute("href") === "#" + id);
+        });
+      }
+
+      sideLinks.forEach((a) => {
+        a.addEventListener("click", () => {
+          const id = a.getAttribute("href").slice(1);
+          setActiveSideLink(id);
+        });
+      });
+
+      if ("IntersectionObserver" in window) {
+        const observer = new IntersectionObserver(
+          (entries) => {
+            entries.forEach((entry) => {
+              if (entry.isIntersecting) {
+                setActiveSideLink(entry.target.id);
+              }
+            });
+          },
+          { rootMargin: "-20% 0px -65% 0px", threshold: 0 }
+        );
+        sections.forEach((sec) => observer.observe(sec));
+      }
+
+      function copyWithFeedback(btn, text) {
+        if (!navigator.clipboard) return;
+        navigator.clipboard.writeText(text).then(() => {
+          const dict = I18N[currentLang] || I18N.id;
+          const orig = btn.textContent;
+          btn.textContent = dict.copied_label || "Copied!";
+          setTimeout(() => {
+            const key = btn.getAttribute("data-i18n");
+            btn.textContent = (key && dict[key]) ? dict[key] : orig;
+          }, 1500);
+        });
+      }
+
       const copyBtn = document.getElementById("sk-copy-code");
       copyBtn.addEventListener("click", function () {
-        const code = document.getElementById("sk-code-sample").textContent;
-        navigator.clipboard.writeText(code).then(() => {
-          const orig = this.textContent;
-          this.textContent = "Tersalin!";
-          setTimeout(() => { this.textContent = orig; }, 1600);
+        copyWithFeedback(this, document.getElementById("sk-code-sample").textContent);
+      });
+
+      document.querySelectorAll(".sk-copy-addr").forEach((btn) => {
+        btn.addEventListener("click", function () {
+          copyWithFeedback(this, this.getAttribute("data-copy") || "");
         });
       });
 
@@ -934,5 +2055,6 @@ console.log("Total data tersegel:", total.toString());</pre>
       applyLang(savedLang);
     })();
   </script>
+  <script src="./sk-bokeh-motion.js" defer></script>
 </body>
 </html>

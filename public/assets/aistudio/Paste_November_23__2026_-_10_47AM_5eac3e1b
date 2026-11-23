@@ -1,0 +1,1847 @@
+PERAN & ARAHAN DESAIN
+Anda adalah Lead Web3 UI/UX Designer untuk ekosistem proyek Samudera Kepri (Coin MSK, FactSeal, Archive NFT, dan Media Samudera Kepri) milik Ronny Paslan (PT Media Samudera Kepri / samuderakepri.co.id; selalu tulis nama "Ronny Paslan" tanpa gelar "S.Sos"). Fokus saat ini adalah merancang dan menyempurnakan desain dua halaman baru di bawah menu navigasi LEARN pada repositori GitHub (SAMUDERAKEPRI/samudera-kepri-fact-seal):
+1. frontend/learn-hub.html — pusat edukasi konsep FactSeal, contentHash (bytes32), koin MSK, sertifikat/NFT arsip, dan alur menuju arsip berita samuderakepri.co.id yang sudah tercatat di blockchain.
+2. frontend/blog.html — katalog berita dan laporan dari samuderakepri.co.id yang sudah masuk/tercatat ke sistem blockchain, lengkap dengan pencarian/filter, tampilan contentHash, tombol verifikasi on-chain, serta tautan ke artikel asli di samuderakepri.co.id.
+
+IDENTITAS & KARAKTER VISUAL WAJIB
+- Palet warna: Prussian navy (#0A192F / #060F1D) sebagai dasar, emerald green (#10B981 / #34D399), aksen emas (#EAB308 / #FDE047), dan sentuhan ungu/magenta (#2E1065 / #701A75).
+- Tipografi: Space Grotesk untuk judul/display/wordmark dan Inter untuk teks bacaan, dengan kontras tajam dan hierarki yang jelas.
+- Nuansa gerak & cahaya: bokeh lembut khas Samudera Kepri, transisi halus, serta bagian bawah yang terhubung dengan pre-footer, footer, dan wordmark "SAMUDERA KEPRI".
+- Anti-overflow & konsistensi: responsif di mobile dan desktop tanpa overflow horizontal, serta mempertahankan navigasi (termasuk dropdown LEARN dengan sub-menu learn-hub & blog, serta dropdown DEVELOPERS), sakelar bahasa (ID | EN), dan jalur berkas yang konsisten.
+
+ATURAN KERJA
+- Jelaskan terlebih dahulu arah perbaikan desain secara singkat dan terstruktur sebelum menerapkan perubahan visual/kode.
+- Jaga agar fungsionalitas, jalur berkas, dan teks/nama tetap akurat dan konsisten.
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Hub — Samudera Kepri (MSK · FactSeal · NFT · Media)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./sk-bokeh-motion.css" />
+  <link rel="stylesheet" href="./sk-footer.css" />
+  <style>
+    :root {
+      --navy-base: #060f1d;
+      --prussian: #0a192f;
+      --prussian-card: rgba(10, 25, 47, 0.88);
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --gold: #eab308;
+      --gold-soft: #fde047;
+      --purple-kepri: #2e1065;
+      --magenta-kepri: #701a75;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --line-soft: rgba(148, 163, 184, 0.18);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 52%, #050c16 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .sk-header-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 60;
+      padding: 0 14px;
+    }
+
+    .sk-navbar {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
+    }
+
+    .sk-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      min-width: 0;
+    }
+
+    .sk-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .sk-brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .sk-brand-sub {
+      font-size: 10.5px;
+      color: var(--gold-soft);
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+    .sk-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .sk-nav > a,
+    .sk-dd-trigger {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      padding: 6px 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .sk-nav > a:hover,
+    .sk-dd-trigger:hover {
+      color: var(--gold-soft);
+    }
+
+    .sk-dropdown {
+      position: relative;
+    }
+
+    .sk-dd-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      background: #081528;
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.58);
+      z-index: 80;
+    }
+
+    .sk-dropdown.open .sk-dd-menu,
+    .sk-dropdown:hover .sk-dd-menu {
+      display: block;
+    }
+
+    .sk-dd-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sk-dd-menu a:hover {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-soft);
+    }
+
+    .sk-dd-tag {
+      font-size: 10px;
+      color: var(--emerald-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sk-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sk-lang-switch {
+      display: inline-flex;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    .sk-lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-lang-btn.active {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-portal-cta {
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .sk-main {
+      max-width: 1140px;
+      margin: 22px auto 0;
+      padding: 0 14px 20px;
+    }
+
+    .sk-banner {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 26px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .sk-kicker {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .sk-banner h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.35rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-banner p {
+      font-size: 14px;
+      color: #f1f5f9;
+      max-width: 720px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .sk-card {
+      background: var(--prussian-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      min-width: 0;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+    }
+
+    .sk-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--emerald-bright);
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.32);
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .sk-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      overflow-wrap: anywhere;
+    }
+
+    .sk-card a {
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .sk-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sk-bokeh-layer" aria-hidden="true">
+    <div class="sk-bokeh-orb sk-bokeh-orb--emerald"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--magenta"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--gold"></div>
+  </div>
+
+  <div class="sk-above-bokeh sk-motion-shell">
+    <div class="sk-header-wrap">
+      <header class="sk-navbar">
+        <a href="../index.html" class="sk-brand">
+          <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+          <div>
+            <span class="sk-brand-title">SAMUDERA KEPRI</span>
+            <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+          </div>
+        </a>
+
+        <nav class="sk-nav" aria-label="Navigasi Utama">
+          <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+          <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+          <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+          <a href="./community.html" data-i18n="nav_community">KOMUNITAS</a>
+
+          <div class="sk-dropdown" id="sk-learn-dropdown">
+            <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
+              <span>LEARN</span>
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="sk-dd-menu" role="menu">
+              <a href="./learn-hub.html" role="menuitem">
+                <span>learn-hub</span>
+                <span class="sk-dd-tag">HUB</span>
+              </a>
+              <a href="./blog.html" role="menuitem">
+                <span>blog</span>
+                <span class="sk-dd-tag">ON-CHAIN</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sk-dropdown" id="sk-dev-dropdown">
+            <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
+              <span>DEVELOPERS</span>
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="sk-dd-menu" role="menu">
+              <a href="./docs.html" role="menuitem">
+                <span>docs</span>
+                <span class="sk-dd-tag">GUIDE</span>
+              </a>
+              <a href="./Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+                <span>Whitepaper.pdf</span>
+                <span class="sk-dd-tag">PDF</span>
+              </a>
+              <a href="./faucet.html" role="menuitem">
+                <span>faucet</span>
+                <span class="sk-dd-tag">TEST</span>
+              </a>
+              <a href="./report-abuse.html" role="menuitem">
+                <span>report-abuse</span>
+                <span class="sk-dd-tag">SAFETY</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sk-right-tools">
+          <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
+            <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+            <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="./public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
+        </div>
+      </header>
+    </div>
+
+    <main class="sk-main">
+      <section class="sk-banner sk-seal-shimmer">
+        <div class="sk-kicker" data-i18n="lh_kicker">LEARN HUB · SAMUDERA KEPRI</div>
+        <h1 data-i18n="lh_title">Pusat Edukasi Berita Blockchain, FactSeal, Koin MSK &amp; NFT</h1>
+        <p data-i18n="lh_desc">
+          Pelajari bagaimana Media Samudera Kepri menyegel sidik jari integritas berita, mengelola koin ekosistem MSK, menerbitkan sertifikat/NFT arsip, serta menghubungkan liputan ke catatan blockchain.
+        </p>
+      </section>
+
+      <section class="sk-grid sk-reveal">
+        <article class="sk-card">
+          <div>
+            <span class="sk-badge">01 · FACTSEAL &amp; HASH</span>
+            <h2 data-i18n="lh_c1_t">Penyegelan Integritas Berita</h2>
+            <p data-i18n="lh_c1_d">
+              Setiap naskah atau arsip penting diubah menjadi sidik jari hash (bytes32) agar perubahan isi setelah penyegelan dapat terdeteksi publik.
+            </p>
+          </div>
+          <a href="./public-portal.html" data-i18n="lh_c1_l">Buka Portal &amp; Registri &rarr;</a>
+        </article>
+
+        <article class="sk-card">
+          <div>
+            <span class="sk-badge">02 · BLOG ON-CHAIN</span>
+            <h2 data-i18n="lh_c2_t">Berita Samudera Kepri di Blockchain</h2>
+            <p data-i18n="lh_c2_d">
+              Telusuri artikel dan laporan dari samuderakepri.co.id yang telah dicatat ke sistem blockchain beserta referensi verifikasinya.
+            </p>
+          </div>
+          <a href="./blog.html" data-i18n="lh_c2_l">Buka Blog Berita On-Chain &rarr;</a>
+        </article>
+
+        <article class="sk-card">
+          <div>
+            <span class="sk-badge">03 · COIN MSK &amp; NFT</span>
+            <h2 data-i18n="lh_c3_t">Token MSK &amp; Arsip Sertifikat NFT</h2>
+            <p data-i18n="lh_c3_d">
+              Pahami peran koin ekosistem MSK serta koleksi/bukti arsip NFT pada jaringan uji Sepolia menjelang migrasi Ethereum.
+            </p>
+          </div>
+          <a href="./nft.html" data-i18n="lh_c3_l">Lihat Modul Coin MSK &amp; NFT &rarr;</a>
+        </article>
+      </section>
+    </main>
+
+    <div id="sk-footer-mount" data-root="false"></div>
+  </div>
+
+  <script src="./sk-bokeh-motion.js" defer></script>
+  <script src="./sk-footer.js" defer></script>
+  <script>
+    (function () {
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          lh_kicker: "LEARN HUB · SAMUDERA KEPRI",
+          lh_title: "Pusat Edukasi Berita Blockchain, FactSeal, Koin MSK & NFT",
+          lh_desc: "Pelajari bagaimana Media Samudera Kepri menyegel sidik jari integritas berita, mengelola koin ekosistem MSK, menerbitkan sertifikat/NFT arsip, serta menghubungkan liputan ke catatan blockchain.",
+          lh_c1_t: "Penyegelan Integritas Berita",
+          lh_c1_d: "Setiap naskah atau arsip penting diubah menjadi sidik jari hash (bytes32) agar perubahan isi setelah penyegelan dapat terdeteksi publik.",
+          lh_c1_l: "Buka Portal & Registri →",
+          lh_c2_t: "Berita Samudera Kepri di Blockchain",
+          lh_c2_d: "Telusuri artikel dan laporan dari samuderakepri.co.id yang telah dicatat ke sistem blockchain beserta referensi verifikasinya.",
+          lh_c2_l: "Buka Blog Berita On-Chain →",
+          lh_c3_t: "Token MSK & Arsip Sertifikat NFT",
+          lh_c3_d: "Pahami peran koin ekosistem MSK serta koleksi/bukti arsip NFT pada jaringan uji Sepolia menjelang migrasi Ethereum.",
+          lh_c3_l: "Lihat Modul Coin MSK & NFT →"
+        },
+        en: {
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          lh_kicker: "LEARN HUB · SAMUDERA KEPRI",
+          lh_title: "Education Hub for Blockchain News, FactSeal, MSK Coin & NFTs",
+          lh_desc: "Learn how Media Samudera Kepri seals news integrity fingerprints, manages the MSK ecosystem coin, issues archive NFTs/certificates, and links reporting to blockchain records.",
+          lh_c1_t: "News Integrity Sealing",
+          lh_c1_d: "Articles and key archives are hashed into bytes32 fingerprints so post-seal alterations can be checked publicly.",
+          lh_c1_l: "Open Portal & Registry →",
+          lh_c2_t: "Samudera Kepri News On-Chain",
+          lh_c2_d: "Explore articles and reports from samuderakepri.co.id recorded on the blockchain system with verification references.",
+          lh_c2_l: "Open On-Chain News Blog →",
+          lh_c3_t: "MSK Token & Archive NFTs",
+          lh_c3_d: "Understand the MSK ecosystem coin and archive NFT proofs on Sepolia ahead of Ethereum migration.",
+          lh_c3_l: "Explore MSK Coin & NFT →"
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key]) el.textContent = dict[key];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      function setupDropdown(ddId, btnId) {
+        const dd = document.getElementById(ddId);
+        const btn = document.getElementById(btnId);
+        if (!dd || !btn) return;
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document.querySelectorAll(".sk-dropdown").forEach((other) => {
+            if (other !== dd) other.classList.remove("open");
+          });
+          const isOpen = dd.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      setupDropdown("sk-learn-dropdown", "sk-learn-btn");
+      setupDropdown("sk-dev-dropdown", "sk-dev-btn");
+      document.addEventListener("click", () => {
+        document.querySelectorAll(".sk-dropdown").forEach((dd) => {
+          dd.classList.remove("open");
+          const b = dd.querySelector(".sk-dd-trigger");
+          if (b) b.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Learn Hub — Samudera Kepri (MSK · FactSeal · NFT · Media)</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./sk-bokeh-motion.css" />
+  <link rel="stylesheet" href="./sk-footer.css" />
+  <style>
+    :root {
+      --navy-base: #060f1d;
+      --prussian: #0a192f;
+      --prussian-card: rgba(10, 25, 47, 0.88);
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --gold: #eab308;
+      --gold-soft: #fde047;
+      --purple-kepri: #2e1065;
+      --magenta-kepri: #701a75;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --line-soft: rgba(148, 163, 184, 0.18);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 52%, #050c16 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .sk-header-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 60;
+      padding: 0 14px;
+    }
+
+    .sk-navbar {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
+    }
+
+    .sk-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      min-width: 0;
+    }
+
+    .sk-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .sk-brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .sk-brand-sub {
+      font-size: 10.5px;
+      color: var(--gold-soft);
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+    .sk-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .sk-nav > a,
+    .sk-dd-trigger {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      padding: 6px 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .sk-nav > a:hover,
+    .sk-dd-trigger:hover {
+      color: var(--gold-soft);
+    }
+
+    .sk-dropdown {
+      position: relative;
+    }
+
+    .sk-dd-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      background: #081528;
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.58);
+      z-index: 80;
+    }
+
+    .sk-dropdown.open .sk-dd-menu,
+    .sk-dropdown:hover .sk-dd-menu {
+      display: block;
+    }
+
+    .sk-dd-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sk-dd-menu a:hover {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-soft);
+    }
+
+    .sk-dd-tag {
+      font-size: 10px;
+      color: var(--emerald-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sk-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sk-lang-switch {
+      display: inline-flex;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    .sk-lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-lang-btn.active {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-portal-cta {
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .sk-main {
+      max-width: 1140px;
+      margin: 22px auto 0;
+      padding: 0 14px 20px;
+    }
+
+    .sk-banner {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 26px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .sk-kicker {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .sk-banner h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.35rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-banner p {
+      font-size: 14px;
+      color: #f1f5f9;
+      max-width: 720px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+      gap: 16px;
+      margin-bottom: 22px;
+    }
+
+    .sk-card {
+      background: var(--prussian-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 20px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      min-width: 0;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+    }
+
+    .sk-badge {
+      display: inline-block;
+      align-self: flex-start;
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--emerald-bright);
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.32);
+      padding: 3px 9px;
+      border-radius: 999px;
+      margin-bottom: 8px;
+    }
+
+    .sk-card h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 18px;
+      color: #ffffff;
+      margin-bottom: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-card p {
+      font-size: 13.5px;
+      color: var(--text-muted);
+      overflow-wrap: anywhere;
+    }
+
+    .sk-card a {
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 700;
+    }
+
+    .sk-card a:hover {
+      text-decoration: underline;
+    }
+  </style>
+</head>
+<body>
+  <div class="sk-bokeh-layer" aria-hidden="true">
+    <div class="sk-bokeh-orb sk-bokeh-orb--emerald"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--magenta"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--gold"></div>
+  </div>
+
+  <div class="sk-above-bokeh sk-motion-shell">
+    <div class="sk-header-wrap">
+      <header class="sk-navbar">
+        <a href="../index.html" class="sk-brand">
+          <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+          <div>
+            <span class="sk-brand-title">SAMUDERA KEPRI</span>
+            <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+          </div>
+        </a>
+
+        <nav class="sk-nav" aria-label="Navigasi Utama">
+          <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+          <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+          <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+          <a href="./community.html" data-i18n="nav_community">KOMUNITAS</a>
+
+          <div class="sk-dropdown" id="sk-learn-dropdown">
+            <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
+              <span>LEARN</span>
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="sk-dd-menu" role="menu">
+              <a href="./learn-hub.html" role="menuitem">
+                <span>learn-hub</span>
+                <span class="sk-dd-tag">HUB</span>
+              </a>
+              <a href="./blog.html" role="menuitem">
+                <span>blog</span>
+                <span class="sk-dd-tag">ON-CHAIN</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sk-dropdown" id="sk-dev-dropdown">
+            <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
+              <span>DEVELOPERS</span>
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="sk-dd-menu" role="menu">
+              <a href="./docs.html" role="menuitem">
+                <span>docs</span>
+                <span class="sk-dd-tag">GUIDE</span>
+              </a>
+              <a href="./Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+                <span>Whitepaper.pdf</span>
+                <span class="sk-dd-tag">PDF</span>
+              </a>
+              <a href="./faucet.html" role="menuitem">
+                <span>faucet</span>
+                <span class="sk-dd-tag">TEST</span>
+              </a>
+              <a href="./report-abuse.html" role="menuitem">
+                <span>report-abuse</span>
+                <span class="sk-dd-tag">SAFETY</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sk-right-tools">
+          <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
+            <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+            <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="./public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
+        </div>
+      </header>
+    </div>
+
+    <main class="sk-main">
+      <section class="sk-banner sk-seal-shimmer">
+        <div class="sk-kicker" data-i18n="lh_kicker">LEARN HUB · SAMUDERA KEPRI</div>
+        <h1 data-i18n="lh_title">Pusat Edukasi Berita Blockchain, FactSeal, Koin MSK &amp; NFT</h1>
+        <p data-i18n="lh_desc">
+          Pelajari bagaimana Media Samudera Kepri menyegel sidik jari integritas berita, mengelola koin ekosistem MSK, menerbitkan sertifikat/NFT arsip, serta menghubungkan liputan ke catatan blockchain.
+        </p>
+      </section>
+
+      <section class="sk-grid sk-reveal">
+        <article class="sk-card">
+          <div>
+            <span class="sk-badge">01 · FACTSEAL &amp; HASH</span>
+            <h2 data-i18n="lh_c1_t">Penyegelan Integritas Berita</h2>
+            <p data-i18n="lh_c1_d">
+              Setiap naskah atau arsip penting diubah menjadi sidik jari hash (bytes32) agar perubahan isi setelah penyegelan dapat terdeteksi publik.
+            </p>
+          </div>
+          <a href="./public-portal.html" data-i18n="lh_c1_l">Buka Portal &amp; Registri &rarr;</a>
+        </article>
+
+        <article class="sk-card">
+          <div>
+            <span class="sk-badge">02 · BLOG ON-CHAIN</span>
+            <h2 data-i18n="lh_c2_t">Berita Samudera Kepri di Blockchain</h2>
+            <p data-i18n="lh_c2_d">
+              Telusuri artikel dan laporan dari samuderakepri.co.id yang telah dicatat ke sistem blockchain beserta referensi verifikasinya.
+            </p>
+          </div>
+          <a href="./blog.html" data-i18n="lh_c2_l">Buka Blog Berita On-Chain &rarr;</a>
+        </article>
+
+        <article class="sk-card">
+          <div>
+            <span class="sk-badge">03 · COIN MSK &amp; NFT</span>
+            <h2 data-i18n="lh_c3_t">Token MSK &amp; Arsip Sertifikat NFT</h2>
+            <p data-i18n="lh_c3_d">
+              Pahami peran koin ekosistem MSK serta koleksi/bukti arsip NFT pada jaringan uji Sepolia menjelang migrasi Ethereum.
+            </p>
+          </div>
+          <a href="./nft.html" data-i18n="lh_c3_l">Lihat Modul Coin MSK &amp; NFT &rarr;</a>
+        </article>
+      </section>
+    </main>
+
+    <div id="sk-footer-mount" data-root="false"></div>
+  </div>
+
+  <script src="./sk-bokeh-motion.js" defer></script>
+  <script src="./sk-footer.js" defer></script>
+  <script>
+    (function () {
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          lh_kicker: "LEARN HUB · SAMUDERA KEPRI",
+          lh_title: "Pusat Edukasi Berita Blockchain, FactSeal, Koin MSK & NFT",
+          lh_desc: "Pelajari bagaimana Media Samudera Kepri menyegel sidik jari integritas berita, mengelola koin ekosistem MSK, menerbitkan sertifikat/NFT arsip, serta menghubungkan liputan ke catatan blockchain.",
+          lh_c1_t: "Penyegelan Integritas Berita",
+          lh_c1_d: "Setiap naskah atau arsip penting diubah menjadi sidik jari hash (bytes32) agar perubahan isi setelah penyegelan dapat terdeteksi publik.",
+          lh_c1_l: "Buka Portal & Registri →",
+          lh_c2_t: "Berita Samudera Kepri di Blockchain",
+          lh_c2_d: "Telusuri artikel dan laporan dari samuderakepri.co.id yang telah dicatat ke sistem blockchain beserta referensi verifikasinya.",
+          lh_c2_l: "Buka Blog Berita On-Chain →",
+          lh_c3_t: "Token MSK & Arsip Sertifikat NFT",
+          lh_c3_d: "Pahami peran koin ekosistem MSK serta koleksi/bukti arsip NFT pada jaringan uji Sepolia menjelang migrasi Ethereum.",
+          lh_c3_l: "Lihat Modul Coin MSK & NFT →"
+        },
+        en: {
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          lh_kicker: "LEARN HUB · SAMUDERA KEPRI",
+          lh_title: "Education Hub for Blockchain News, FactSeal, MSK Coin & NFTs",
+          lh_desc: "Learn how Media Samudera Kepri seals news integrity fingerprints, manages the MSK ecosystem coin, issues archive NFTs/certificates, and links reporting to blockchain records.",
+          lh_c1_t: "News Integrity Sealing",
+          lh_c1_d: "Articles and key archives are hashed into bytes32 fingerprints so post-seal alterations can be checked publicly.",
+          lh_c1_l: "Open Portal & Registry →",
+          lh_c2_t: "Samudera Kepri News On-Chain",
+          lh_c2_d: "Explore articles and reports from samuderakepri.co.id recorded on the blockchain system with verification references.",
+          lh_c2_l: "Open On-Chain News Blog →",
+          lh_c3_t: "MSK Token & Archive NFTs",
+          lh_c3_d: "Understand the MSK ecosystem coin and archive NFT proofs on Sepolia ahead of Ethereum migration.",
+          lh_c3_l: "Explore MSK Coin & NFT →"
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key]) el.textContent = dict[key];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      function setupDropdown(ddId, btnId) {
+        const dd = document.getElementById(ddId);
+        const btn = document.getElementById(btnId);
+        if (!dd || !btn) return;
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document.querySelectorAll(".sk-dropdown").forEach((other) => {
+            if (other !== dd) other.classList.remove("open");
+          });
+          const isOpen = dd.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      setupDropdown("sk-learn-dropdown", "sk-learn-btn");
+      setupDropdown("sk-dev-dropdown", "sk-dev-btn");
+      document.addEventListener("click", () => {
+        document.querySelectorAll(".sk-dropdown").forEach((dd) => {
+          dd.classList.remove("open");
+          const b = dd.querySelector(".sk-dd-trigger");
+          if (b) b.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
+    })();
+  </script>
+</body>
+</html>
+
+
+
+
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Blog Berita On-Chain — Samudera Kepri</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&family=Space+Grotesk:wght@700;800&display=swap" rel="stylesheet" />
+  <link rel="stylesheet" href="./sk-bokeh-motion.css" />
+  <link rel="stylesheet" href="./sk-footer.css" />
+  <style>
+    :root {
+      --navy-base: #060f1d;
+      --prussian: #0a192f;
+      --prussian-card: rgba(10, 25, 47, 0.88);
+      --emerald: #10b981;
+      --emerald-bright: #34d399;
+      --gold: #eab308;
+      --gold-soft: #fde047;
+      --purple-kepri: #2e1065;
+      --magenta-kepri: #701a75;
+      --text-main: #f8fafc;
+      --text-muted: #94a3b8;
+      --line-soft: rgba(148, 163, 184, 0.18);
+    }
+
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    html, body {
+      overflow-x: hidden;
+      scroll-behavior: smooth;
+    }
+
+    body {
+      font-family: 'Inter', system-ui, -apple-system, sans-serif;
+      background:
+        radial-gradient(circle at 12% 14%, rgba(16, 185, 129, 0.2) 0%, transparent 45%),
+        radial-gradient(circle at 88% 18%, rgba(112, 26, 117, 0.28) 0%, transparent 48%),
+        linear-gradient(180deg, #06101f 0%, #0a192f 52%, #050c16 100%);
+      color: var(--text-main);
+      min-height: 100vh;
+      line-height: 1.6;
+    }
+
+    .sk-header-wrap {
+      position: sticky;
+      top: 14px;
+      z-index: 60;
+      padding: 0 14px;
+    }
+
+    .sk-navbar {
+      max-width: 1140px;
+      margin: 0 auto;
+      background: rgba(10, 25, 47, 0.92);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 14px;
+      padding: 10px 16px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 12px;
+      box-shadow: 0 14px 32px rgba(0, 0, 0, 0.45);
+      flex-wrap: wrap;
+    }
+
+    .sk-brand {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      text-decoration: none;
+      color: #ffffff;
+      min-width: 0;
+    }
+
+    .sk-brand img {
+      width: 34px;
+      height: 34px;
+      border-radius: 8px;
+      object-fit: cover;
+      border: 1.5px solid var(--gold);
+      background: #ffffff;
+      flex-shrink: 0;
+    }
+
+    .sk-brand-title {
+      font-family: 'Space Grotesk', sans-serif;
+      font-weight: 800;
+      font-size: 15.5px;
+      letter-spacing: 0.04em;
+      text-transform: uppercase;
+      display: block;
+      line-height: 1.1;
+    }
+
+    .sk-brand-sub {
+      font-size: 10.5px;
+      color: var(--gold-soft);
+      letter-spacing: 0.05em;
+      display: block;
+    }
+
+    .sk-nav {
+      display: flex;
+      align-items: center;
+      gap: 18px;
+      flex-wrap: wrap;
+      min-width: 0;
+    }
+
+    .sk-nav > a,
+    .sk-dd-trigger {
+      color: #e2e8f0;
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      cursor: pointer;
+      background: transparent;
+      border: none;
+      font-family: inherit;
+      padding: 6px 2px;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      transition: color 0.2s ease;
+    }
+
+    .sk-nav > a:hover,
+    .sk-dd-trigger:hover {
+      color: var(--gold-soft);
+    }
+
+    .sk-dropdown {
+      position: relative;
+    }
+
+    .sk-dd-menu {
+      display: none;
+      position: absolute;
+      top: calc(100% + 8px);
+      left: 0;
+      min-width: 220px;
+      background: #081528;
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 12px;
+      padding: 8px;
+      box-shadow: 0 18px 36px rgba(0, 0, 0, 0.58);
+      z-index: 80;
+    }
+
+    .sk-dropdown.open .sk-dd-menu,
+    .sk-dropdown:hover .sk-dd-menu {
+      display: block;
+    }
+
+    .sk-dd-menu a {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 9px 12px;
+      border-radius: 8px;
+      color: #f8fafc;
+      text-decoration: none;
+      font-size: 12.5px;
+      font-weight: 600;
+      transition: background 0.15s ease, color 0.15s ease;
+    }
+
+    .sk-dd-menu a:hover {
+      background: rgba(16, 185, 129, 0.16);
+      color: var(--gold-soft);
+    }
+
+    .sk-dd-tag {
+      font-size: 10px;
+      color: var(--emerald-bright);
+      text-transform: uppercase;
+      letter-spacing: 0.05em;
+    }
+
+    .sk-right-tools {
+      display: flex;
+      align-items: center;
+      gap: 10px;
+      flex-wrap: wrap;
+    }
+
+    .sk-lang-switch {
+      display: inline-flex;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(234, 179, 8, 0.35);
+      border-radius: 8px;
+      padding: 2px;
+    }
+
+    .sk-lang-btn {
+      background: transparent;
+      border: none;
+      color: #cbd5e1;
+      font-size: 11px;
+      font-weight: 800;
+      padding: 5px 9px;
+      border-radius: 6px;
+      cursor: pointer;
+    }
+
+    .sk-lang-btn.active {
+      background: linear-gradient(135deg, var(--gold) 0%, #ca8a04 100%);
+      color: #090d16;
+    }
+
+    .sk-portal-cta {
+      background: linear-gradient(135deg, var(--emerald-bright) 0%, var(--emerald) 100%);
+      color: #03221e;
+      text-decoration: none;
+      font-size: 11.5px;
+      font-weight: 800;
+      letter-spacing: 0.05em;
+      text-transform: uppercase;
+      padding: 9px 14px;
+      border-radius: 8px;
+      white-space: nowrap;
+    }
+
+    .sk-main {
+      max-width: 1140px;
+      margin: 22px auto 0;
+      padding: 0 14px 20px;
+    }
+
+    .sk-banner {
+      background: linear-gradient(125deg, #2e1065 0%, #701a75 42%, #0a192f 78%, #064e3b 100%);
+      border: 1px solid rgba(234, 179, 8, 0.42);
+      border-radius: 18px;
+      padding: 26px 22px;
+      margin-bottom: 22px;
+      box-shadow: 0 18px 40px rgba(0, 0, 0, 0.45);
+    }
+
+    .sk-kicker {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 11px;
+      font-weight: 800;
+      letter-spacing: 0.08em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+      margin-bottom: 6px;
+    }
+
+    .sk-banner h1 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: clamp(1.6rem, 3.5vw, 2.35rem);
+      font-weight: 800;
+      color: #ffffff;
+      line-height: 1.15;
+      margin-bottom: 8px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-banner p {
+      font-size: 14px;
+      color: #f1f5f9;
+      max-width: 720px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-toolbar {
+      background: var(--prussian-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 14px;
+      margin-bottom: 18px;
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .sk-search {
+      flex: 1 1 260px;
+      min-width: 0;
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.28);
+      color: #ffffff;
+      border-radius: 8px;
+      padding: 9px 12px;
+      font-size: 13px;
+      font-family: inherit;
+    }
+
+    .sk-search::placeholder {
+      color: #64748b;
+    }
+
+    .sk-filter-group {
+      display: flex;
+      gap: 8px;
+      flex-wrap: wrap;
+    }
+
+    .sk-filter-btn {
+      background: rgba(6, 15, 29, 0.75);
+      border: 1px solid rgba(148, 163, 184, 0.26);
+      color: #e2e8f0;
+      font-size: 11.5px;
+      font-weight: 700;
+      padding: 7px 12px;
+      border-radius: 8px;
+      cursor: pointer;
+    }
+
+    .sk-filter-btn.active {
+      background: rgba(16, 185, 129, 0.18);
+      border-color: var(--emerald-bright);
+      color: var(--emerald-bright);
+    }
+
+    .sk-posts {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 16px;
+    }
+
+    .sk-post {
+      background: var(--prussian-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 16px;
+      padding: 18px;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+      gap: 12px;
+      min-width: 0;
+      box-shadow: 0 12px 28px rgba(0, 0, 0, 0.32);
+    }
+
+    .sk-post-top {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      gap: 8px;
+      flex-wrap: wrap;
+      margin-bottom: 6px;
+    }
+
+    .sk-cat {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 10.5px;
+      font-weight: 800;
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      color: var(--gold-soft);
+    }
+
+    .sk-status {
+      font-size: 10.5px;
+      font-weight: 700;
+      color: var(--emerald-bright);
+      background: rgba(16, 185, 129, 0.14);
+      border: 1px solid rgba(52, 211, 153, 0.3);
+      padding: 2px 8px;
+      border-radius: 999px;
+    }
+
+    .sk-post h2 {
+      font-family: 'Space Grotesk', sans-serif;
+      font-size: 17px;
+      color: #ffffff;
+      line-height: 1.3;
+      margin-bottom: 6px;
+      overflow-wrap: anywhere;
+    }
+
+    .sk-post p {
+      font-size: 13px;
+      color: var(--text-muted);
+      overflow-wrap: anywhere;
+    }
+
+    .sk-hash-box {
+      background: rgba(6, 15, 29, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.16);
+      border-radius: 8px;
+      padding: 8px 10px;
+      font-size: 11.5px;
+      color: #cbd5e1;
+      overflow-wrap: anywhere;
+      word-break: break-all;
+    }
+
+    .sk-post-actions {
+      display: flex;
+      gap: 10px;
+      flex-wrap: wrap;
+      align-items: center;
+      justify-content: space-between;
+      padding-top: 4px;
+    }
+
+    .sk-post-actions a {
+      color: var(--gold-soft);
+      text-decoration: none;
+      font-size: 12px;
+      font-weight: 700;
+    }
+
+    .sk-post-actions a:hover {
+      text-decoration: underline;
+    }
+
+    .sk-empty {
+      background: var(--prussian-card);
+      border: 1px solid var(--line-soft);
+      border-radius: 14px;
+      padding: 24px;
+      text-align: center;
+      color: var(--text-muted);
+      font-size: 13.5px;
+    }
+  </style>
+</head>
+<body>
+  <div class="sk-bokeh-layer" aria-hidden="true">
+    <div class="sk-bokeh-orb sk-bokeh-orb--emerald"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--magenta"></div>
+    <div class="sk-bokeh-orb sk-bokeh-orb--gold"></div>
+  </div>
+
+  <div class="sk-above-bokeh sk-motion-shell">
+    <div class="sk-header-wrap">
+      <header class="sk-navbar">
+        <a href="../index.html" class="sk-brand">
+          <img src="https://www.samuderakepri.co.id/wp-content/uploads/2026/11/icon250.webp" alt="Logo Media Samudera Kepri" />
+          <div>
+            <span class="sk-brand-title">SAMUDERA KEPRI</span>
+            <span class="sk-brand-sub">MSK · FACTSEAL · NFT · MEDIA</span>
+          </div>
+        </a>
+
+        <nav class="sk-nav" aria-label="Navigasi Utama">
+          <a href="../index.html" data-i18n="nav_home">BERANDA</a>
+          <a href="./public-portal.html" data-i18n="nav_news">BERITA &amp; FACTSEAL</a>
+          <a href="./nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
+          <a href="./community.html" data-i18n="nav_community">KOMUNITAS</a>
+
+          <div class="sk-dropdown" id="sk-learn-dropdown">
+            <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
+              <span>LEARN</span>
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="sk-dd-menu" role="menu">
+              <a href="./learn-hub.html" role="menuitem">
+                <span>learn-hub</span>
+                <span class="sk-dd-tag">HUB</span>
+              </a>
+              <a href="./blog.html" role="menuitem">
+                <span>blog</span>
+                <span class="sk-dd-tag">ON-CHAIN</span>
+              </a>
+            </div>
+          </div>
+
+          <div class="sk-dropdown" id="sk-dev-dropdown">
+            <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
+              <span>DEVELOPERS</span>
+              <span aria-hidden="true">&#9662;</span>
+            </button>
+            <div class="sk-dd-menu" role="menu">
+              <a href="./docs.html" role="menuitem">
+                <span>docs</span>
+                <span class="sk-dd-tag">GUIDE</span>
+              </a>
+              <a href="./Whitepaper.pdf" role="menuitem" target="_blank" rel="noopener noreferrer">
+                <span>Whitepaper.pdf</span>
+                <span class="sk-dd-tag">PDF</span>
+              </a>
+              <a href="./faucet.html" role="menuitem">
+                <span>faucet</span>
+                <span class="sk-dd-tag">TEST</span>
+              </a>
+              <a href="./report-abuse.html" role="menuitem">
+                <span>report-abuse</span>
+                <span class="sk-dd-tag">SAFETY</span>
+              </a>
+            </div>
+          </div>
+        </nav>
+
+        <div class="sk-right-tools">
+          <div class="sk-lang-switch" role="group" aria-label="Language Switcher">
+            <button type="button" class="sk-lang-btn active" data-lang="id">ID</button>
+            <button type="button" class="sk-lang-btn" data-lang="en">EN</button>
+          </div>
+          <a href="./public-portal.html" class="sk-portal-cta" data-i18n="cta_portal">PORTAL PUBLIK</a>
+        </div>
+      </header>
+    </div>
+
+    <main class="sk-main">
+      <section class="sk-banner sk-seal-shimmer">
+        <div class="sk-kicker" data-i18n="bl_kicker">BLOG BERITA ON-CHAIN · SAMUDERAKEPRI.CO.ID</div>
+        <h1 data-i18n="bl_title">Arsip Berita Samudera Kepri di Sistem Blockchain</h1>
+        <p data-i18n="bl_desc">
+          Kumpulan publikasi dan catatan liputan dari samuderakepri.co.id yang terhubung ke sistem penyegelan integritas dan verifikasi blockchain Samudera Kepri.
+        </p>
+      </section>
+
+      <div class="sk-toolbar">
+        <input
+          type="search"
+          id="sk-blog-search"
+          class="sk-search"
+          placeholder="Cari judul berita, topik, atau hash..."
+          aria-label="Cari berita on-chain"
+        />
+        <div class="sk-filter-group" role="group" aria-label="Filter kategori berita">
+          <button type="button" class="sk-filter-btn active" data-cat="all">Semua</button>
+          <button type="button" class="sk-filter-btn" data-cat="investigasi">Investigasi</button>
+          <button type="button" class="sk-filter-btn" data-cat="transparansi">Transparansi</button>
+          <button type="button" class="sk-filter-btn" data-cat="ekosistem">Ekosistem MSK</button>
+        </div>
+      </div>
+
+      <section class="sk-posts sk-reveal" id="sk-blog-list" aria-live="polite"></section>
+    </main>
+
+    <div id="sk-footer-mount" data-root="false"></div>
+  </div>
+
+  <script src="./sk-bokeh-motion.js" defer></script>
+  <script src="./sk-footer.js" defer></script>
+  <script>
+    (function () {
+      const POSTS = [
+        {
+          id: "sk-01",
+          cat: "transparansi",
+          catLabel: "TRANSPARANSI PUBLIK",
+          status: "ON-CHAIN SEALED",
+          title: "Penyegelan Arsip & Keterbukaan Informasi Publik di Kepulauan Riau",
+          excerpt: "Catatan dokumentasi publikasi samuderakepri.co.id yang dicatat sidik jari integritasnya agar mudah dirujuk kembali.",
+          hash: "0x8f4c2b9e7a10d3c65491e2b8a7d0f3c91248b6e5d7a1c3f8b2e4d6a9c1f3e5b7",
+          url: "https://www.samuderakepri.co.id/"
+        },
+        {
+          id: "sk-02",
+          cat: "investigasi",
+          catLabel: "GELAR FAKTA & INVESTIGASI",
+          status: "VERIFIED ARCHIVE",
+          title: "Jejak Dokumentasi & Verifikasi Fakta Lapangan Samudera Kepri",
+          excerpt: "Rujukan liputan investigatif dan gelar fakta yang disiapkan untuk pemeriksaan keaslian dokumen dan arsip.",
+          hash: "0x3c9e71a4d82b5f0691c3e7a2b5d8f1046c9e2a4f7b1d3e6a8c0f2b4d6e8a1c3f",
+          url: "https://www.samuderakepri.co.id/"
+        },
+        {
+          id: "sk-03",
+          cat: "ekosistem",
+          catLabel: "COIN MSK & EKOSISTEM",
+          status: "SEPOLIA PREP",
+          title: "Kesiapan Ekosistem Coin MSK, FactSeal & Arsip NFT Menuju Ethereum",
+          excerpt: "Ringkasan perkembangan modul ekosistem Samudera Kepri pada jaringan uji Sepolia sebelum migrasi lanjutan.",
+          hash: "0x6d1a4f8c2e5b9073a1d4f7c0e3b6a9d2f5c8e1b4d7a0c3f6e9b2d5a8c1f4e7b0",
+          url: "https://www.samuderakepri.co.id/"
+        }
+      ];
+
+      let activeCat = "all";
+      let searchQuery = "";
+
+      function renderPosts() {
+        const container = document.getElementById("sk-blog-list");
+        if (!container) return;
+
+        const q = searchQuery.trim().toLowerCase();
+        const filtered = POSTS.filter((p) => {
+          const matchCat = activeCat === "all" || p.cat === activeCat;
+          const matchQ =
+            !q ||
+            p.title.toLowerCase().includes(q) ||
+            p.excerpt.toLowerCase().includes(q) ||
+            p.hash.toLowerCase().includes(q);
+          return matchCat && matchQ;
+        });
+
+        if (!filtered.length) {
+          container.innerHTML = '<div class="sk-empty">Tidak ada catatan berita yang cocok dengan filter atau kata kunci.</div>';
+          return;
+        }
+
+        container.innerHTML = filtered
+          .map(
+            (p) =>
+              '<article class="sk-post">' +
+                '<div>' +
+                  '<div class="sk-post-top">' +
+                    '<span class="sk-cat">' + p.catLabel + '</span>' +
+                    '<span class="sk-status">' + p.status + '</span>' +
+                  '</div>' +
+                  '<h2>' + p.title + '</h2>' +
+                  '<p>' + p.excerpt + '</p>' +
+                '</div>' +
+                '<div class="sk-hash-box"><strong>contentHash:</strong> ' + p.hash + '</div>' +
+                '<div class="sk-post-actions">' +
+                  '<a href="./explorer.html?hash=' + encodeURIComponent(p.hash) + '">Cek di Explorer &rarr;</a>' +
+                  '<a href="' + p.url + '" target="_blank" rel="noopener noreferrer">Baca di samuderakepri.co.id &nearr;</a>' +
+                '</div>' +
+              '</article>'
+          )
+          .join("");
+      }
+
+      const searchInput = document.getElementById("sk-blog-search");
+      if (searchInput) {
+        searchInput.addEventListener("input", (e) => {
+          searchQuery = e.target.value || "";
+          renderPosts();
+        });
+      }
+
+      document.querySelectorAll(".sk-filter-btn").forEach((btn) => {
+        btn.addEventListener("click", () => {
+          activeCat = btn.getAttribute("data-cat") || "all";
+          document.querySelectorAll(".sk-filter-btn").forEach((b) => {
+            b.classList.toggle("active", b === btn);
+          });
+          renderPosts();
+        });
+      });
+
+      renderPosts();
+
+      const I18N = {
+        id: {
+          nav_home: "BERANDA",
+          nav_news: "BERITA & FACTSEAL",
+          nav_coin_nft: "COIN MSK & NFT",
+          nav_community: "KOMUNITAS",
+          cta_portal: "PORTAL PUBLIK",
+          bl_kicker: "BLOG BERITA ON-CHAIN · SAMUDERAKEPRI.CO.ID",
+          bl_title: "Arsip Berita Samudera Kepri di Sistem Blockchain",
+          bl_desc: "Kumpulan publikasi dan catatan liputan dari samuderakepri.co.id yang terhubung ke sistem penyegelan integritas dan verifikasi blockchain Samudera Kepri."
+        },
+        en: {
+          nav_home: "HOME",
+          nav_news: "NEWS & FACTSEAL",
+          nav_coin_nft: "MSK COIN & NFT",
+          nav_community: "COMMUNITY",
+          cta_portal: "PUBLIC PORTAL",
+          bl_kicker: "ON-CHAIN NEWS BLOG · SAMUDERAKEPRI.CO.ID",
+          bl_title: "Samudera Kepri News Archive on Blockchain",
+          bl_desc: "Publications and reporting records from samuderakepri.co.id connected to Samudera Kepri's integrity sealing and blockchain verification system."
+        }
+      };
+
+      function applyLang(lang) {
+        const dict = I18N[lang] || I18N.id;
+        document.documentElement.lang = lang;
+        document.querySelectorAll("[data-i18n]").forEach((el) => {
+          const key = el.getAttribute("data-i18n");
+          if (dict[key]) el.textContent = dict[key];
+        });
+        document.querySelectorAll(".sk-lang-btn").forEach((b) => {
+          b.classList.toggle("active", b.getAttribute("data-lang") === lang);
+        });
+        try { localStorage.setItem("sk_lang", lang); } catch (e) {}
+      }
+
+      document.querySelectorAll(".sk-lang-btn").forEach((btn) => {
+        btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
+      });
+
+      function setupDropdown(ddId, btnId) {
+        const dd = document.getElementById(ddId);
+        const btn = document.getElementById(btnId);
+        if (!dd || !btn) return;
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document.querySelectorAll(".sk-dropdown").forEach((other) => {
+            if (other !== dd) other.classList.remove("open");
+          });
+          const isOpen = dd.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      setupDropdown("sk-learn-dropdown", "sk-learn-btn");
+      setupDropdown("sk-dev-dropdown", "sk-dev-btn");
+      document.addEventListener("click", () => {
+        document.querySelectorAll(".sk-dropdown").forEach((dd) => {
+          dd.classList.remove("open");
+          const b = dd.querySelector(".sk-dd-trigger");
+          if (b) b.setAttribute("aria-expanded", "false");
+        });
+      });
+
+      let savedLang = "id";
+      try { savedLang = localStorage.getItem("sk_lang") || "id"; } catch (e) {}
+      applyLang(savedLang);
+    })();
+  </script>
+</body>
+</html>

@@ -1,81 +1,199 @@
-:root {
-  --sk-navy-base: #060f1d;
-  --sk-prussian: #0a192f;
-  --sk-emerald: #10b981;
-  --sk-emerald-bright: #34d399;
-  --sk-gold: #eab308;
-  --sk-gold-soft: #fde047;
-  --sk-purple: #2e1065;
-  --sk-magenta: #701a75;
+/* === SAMUDERA KEPRI SIGNATURE BOKEH & MOTION SYSTEM === */
+html,
+body {
+  overflow-x: hidden;
+  max-width: 100%;
 }
 
 .sk-bokeh-layer {
   position: fixed;
   inset: 0;
+  width: 100%;
+  height: 100%;
   z-index: 0;
   pointer-events: none;
   overflow: hidden;
+  contain: layout style paint;
+}
+
+.sk-bokeh-horizon {
+  position: absolute;
+  inset: -10% -15%;
+  background:
+    linear-gradient(
+      112deg,
+      transparent 16%,
+      rgba(16, 185, 129, 0.045) 38%,
+      rgba(234, 179, 8, 0.032) 52%,
+      rgba(112, 26, 117, 0.045) 68%,
+      transparent 86%
+    );
+  opacity: 0.72;
+  will-change: transform, opacity;
+  animation: sk-horizon-breathe 18s ease-in-out infinite alternate;
 }
 
 .sk-bokeh-orb {
   position: absolute;
-  border-radius: 999px;
-  filter: blur(76px);
-  opacity: 0.18;
-  will-change: transform;
-  transform: translate3d(0, 0, 0);
+  border-radius: 50%;
+  filter: blur(88px);
+  opacity: 0.34;
+  will-change: transform, opacity;
+  animation: sk-bokeh-drift 22s ease-in-out infinite alternate;
 }
 
 .sk-bokeh-orb--emerald {
-  width: clamp(240px, 34vw, 460px);
-  height: clamp(240px, 34vw, 460px);
-  top: -60px;
-  left: -80px;
-  background: radial-gradient(circle, var(--sk-emerald-bright) 0%, rgba(16, 185, 129, 0.15) 65%, transparent 100%);
-  animation: skBokehDriftA 22s ease-in-out infinite alternate;
+  width: min(540px, 68vw);
+  height: min(540px, 68vw);
+  top: -130px;
+  left: -120px;
+  background: radial-gradient(
+    circle,
+    rgba(16, 185, 129, 0.48) 0%,
+    rgba(52, 211, 153, 0.16) 44%,
+    rgba(16, 185, 129, 0) 74%
+  );
 }
 
 .sk-bokeh-orb--magenta {
-  width: clamp(260px, 38vw, 520px);
-  height: clamp(260px, 38vw, 520px);
-  top: 8%;
-  right: -110px;
-  background: radial-gradient(circle, #c084fc 0%, var(--sk-magenta) 55%, transparent 100%);
-  opacity: 0.16;
-  animation: skBokehDriftB 26s ease-in-out infinite alternate;
+  width: min(560px, 72vw);
+  height: min(560px, 72vw);
+  top: 14%;
+  right: -150px;
+  background: radial-gradient(
+    circle,
+    rgba(112, 26, 117, 0.52) 0%,
+    rgba(46, 16, 101, 0.24) 48%,
+    rgba(46, 16, 101, 0) 74%
+  );
+  animation-name: sk-bokeh-drift-alt;
+  animation-duration: 26s;
+  animation-delay: -7s;
 }
 
 .sk-bokeh-orb--gold {
-  width: clamp(190px, 26vw, 360px);
-  height: clamp(190px, 26vw, 360px);
-  bottom: 10%;
-  left: 22%;
-  background: radial-gradient(circle, var(--sk-gold-soft) 0%, rgba(234, 179, 8, 0.14) 65%, transparent 100%);
-  opacity: 0.11;
-  animation: skBokehDriftC 20s ease-in-out infinite alternate;
+  width: min(470px, 62vw);
+  height: min(470px, 62vw);
+  bottom: -150px;
+  left: 34%;
+  background: radial-gradient(
+    circle,
+    rgba(234, 179, 8, 0.28) 0%,
+    rgba(253, 224, 71, 0.1) 44%,
+    rgba(234, 179, 8, 0) 74%
+  );
+  animation-duration: 24s;
+  animation-delay: -12s;
 }
 
-@keyframes skBokehDriftA {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(38px, 28px, 0) scale(1.08); }
+.sk-bokeh-orb--archipelago {
+  width: min(380px, 52vw);
+  height: min(380px, 52vw);
+  top: 54%;
+  left: -90px;
+  background: radial-gradient(
+    circle,
+    rgba(52, 211, 153, 0.22) 0%,
+    rgba(234, 179, 8, 0.08) 48%,
+    rgba(10, 25, 47, 0) 74%
+  );
+  animation-name: sk-bokeh-drift-alt;
+  animation-duration: 29s;
+  animation-delay: -15s;
 }
 
-@keyframes skBokehDriftB {
-  0%   { transform: translate3d(0, 0, 0) scale(1); }
-  100% { transform: translate3d(-34px, 36px, 0) scale(1.06); }
+.sk-bokeh-beacon {
+  position: absolute;
+  border-radius: 50%;
+  filter: blur(20px);
+  opacity: 0.14;
+  will-change: transform, opacity;
+  animation: sk-beacon-pulse 15s ease-in-out infinite alternate;
 }
 
-@keyframes skBokehDriftC {
-  0%   { transform: translate3d(0, 0, 0) scale(0.96); }
-  100% { transform: translate3d(26px, -24px, 0) scale(1.05); }
+.sk-bokeh-beacon--seal {
+  width: min(260px, 42vw);
+  height: min(260px, 42vw);
+  top: 22%;
+  left: 16%;
+  border: 18px solid rgba(52, 211, 153, 0.24);
+  box-shadow: 0 0 36px rgba(16, 185, 129, 0.14);
 }
 
+.sk-bokeh-beacon--coin {
+  width: min(220px, 36vw);
+  height: min(220px, 36vw);
+  bottom: 18%;
+  right: 12%;
+  border: 14px solid rgba(253, 224, 71, 0.22);
+  box-shadow: 0 0 32px rgba(234, 179, 8, 0.12);
+  animation-delay: -6s;
+}
+
+@keyframes sk-bokeh-drift {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.3;
+  }
+  50% {
+    transform: translate3d(22px, -16px, 0) scale(1.06);
+    opacity: 0.38;
+  }
+  100% {
+    transform: translate3d(-16px, 20px, 0) scale(0.96);
+    opacity: 0.31;
+  }
+}
+
+@keyframes sk-bokeh-drift-alt {
+  0% {
+    transform: translate3d(0, 0, 0) scale(1);
+    opacity: 0.28;
+  }
+  50% {
+    transform: translate3d(-20px, 16px, 0) scale(1.05);
+    opacity: 0.36;
+  }
+  100% {
+    transform: translate3d(18px, -18px, 0) scale(0.95);
+    opacity: 0.29;
+  }
+}
+
+@keyframes sk-horizon-breathe {
+  0% {
+    transform: translate3d(-1.5%, 0, 0);
+    opacity: 0.56;
+  }
+  100% {
+    transform: translate3d(1.5%, -1%, 0);
+    opacity: 0.85;
+  }
+}
+
+@keyframes sk-beacon-pulse {
+  0% {
+    transform: translate3d(0, 0, 0) scale(0.94);
+    opacity: 0.1;
+  }
+  100% {
+    transform: translate3d(8px, -8px, 0) scale(1.06);
+    opacity: 0.18;
+  }
+}
+
+/* Foreground stacking above ambient bokeh (keeps sticky headers z-index: 50 untouched) */
+.sk-main,
+.sk-footer-shell,
+.sk-prefooter,
+#sk-public-portal,
+#sk-explorer,
 .sk-above-bokeh {
   position: relative;
   z-index: 1;
-  min-width: 0;
 }
 
+/* Signature FactSeal / Hero Shimmer Sweep */
 .sk-seal-shimmer {
   position: relative;
   overflow: hidden;
@@ -84,47 +202,202 @@
 .sk-seal-shimmer::after {
   content: "";
   position: absolute;
-  top: 0;
-  left: -120%;
-  width: 65%;
-  height: 100%;
+  inset: 0;
   background: linear-gradient(
     115deg,
-    transparent 0%,
-    rgba(253, 224, 71, 0.08) 45%,
-    rgba(52, 211, 153, 0.14) 52%,
-    transparent 100%
+    transparent 20%,
+    rgba(253, 224, 71, 0.085) 46%,
+    rgba(52, 211, 153, 0.085) 54%,
+    transparent 80%
   );
-  transform: skewX(-18deg);
+  transform: translateX(-115%);
+  animation: sk-shimmer-sweep 9.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
   pointer-events: none;
-  animation: skShimmerSweep 7.5s ease-in-out infinite;
 }
 
-@keyframes skShimmerSweep {
-  0%, 72% { left: -120%; }
-  100%    { left: 160%; }
+@keyframes sk-shimmer-sweep {
+  0%, 56% {
+    transform: translateX(-115%);
+  }
+  100% {
+    transform: translateX(118%);
+  }
 }
 
+/* Footer Giant Wordmark Shimmer & Accent Glow */
+.sk-wordmark-stage {
+  position: relative;
+  overflow: hidden;
+}
+
+.sk-wordmark-stage::after {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: linear-gradient(
+    108deg,
+    transparent 28%,
+    rgba(253, 224, 71, 0.09) 48%,
+    rgba(52, 211, 153, 0.09) 54%,
+    transparent 74%
+  );
+  transform: translateX(-115%);
+  animation: sk-shimmer-sweep 10.5s cubic-bezier(0.16, 1, 0.3, 1) infinite;
+  pointer-events: none;
+}
+
+.sk-wordmark-text {
+  background-size: 220% 100% !important;
+  animation: sk-wordmark-gleam 11s ease-in-out infinite;
+}
+
+.sk-wordmark-underline {
+  animation: sk-underline-breathe 6s ease-in-out infinite alternate;
+}
+
+@keyframes sk-wordmark-gleam {
+  0%, 100% {
+    background-position: 0% 50%;
+  }
+  50% {
+    background-position: 100% 50%;
+  }
+}
+
+@keyframes sk-underline-breathe {
+  0% {
+    opacity: 0.65;
+    transform: scaleX(0.94);
+  }
+  100% {
+    opacity: 0.96;
+    transform: scaleX(1.03);
+  }
+}
+
+/* MSK Coin & FactSeal Emblem Floating Buoyancy */
+.sk-coin-float {
+  will-change: transform;
+  animation: sk-coin-buoy 5.5s ease-in-out infinite alternate;
+  filter:
+    drop-shadow(0 6px 14px rgba(234, 179, 8, 0.24))
+    drop-shadow(0 0 12px rgba(52, 211, 153, 0.14));
+}
+
+@keyframes sk-coin-buoy {
+  0% {
+    transform: translate3d(0, 1.5px, 0);
+  }
+  100% {
+    transform: translate3d(0, -3.5px, 0);
+  }
+}
+
+/* Smooth Section & Card Entrance Reveals */
 .sk-reveal {
   opacity: 0;
-  transform: translateY(14px);
-  transition: opacity 0.55s ease, transform 0.55s ease;
+  transform: translate3d(0, 14px, 0);
+  transition:
+    opacity 0.45s cubic-bezier(0.16, 1, 0.3, 1) var(--sk-delay, 0ms),
+    transform 0.45s cubic-bezier(0.16, 1, 0.3, 1) var(--sk-delay, 0ms);
 }
 
 .sk-reveal.is-visible {
   opacity: 1;
-  transform: translateY(0);
+  transform: translate3d(0, 0, 0);
+}
+
+/* Crisp Responsive Micro-Hover Transitions (<= 200ms, compositor-friendly) */
+.sk-card,
+.sk-stat,
+.sk-stat-card,
+.sk-metric,
+.sk-panel,
+.sk-nft-card,
+.sk-doc-card,
+.sk-post-card,
+.sk-hub-card,
+.sk-comm-card,
+.sk-btn-main,
+.sk-btn-gold,
+.sk-hero-btn,
+.sk-portal-cta,
+.sk-pf-btn {
+  transition:
+    transform 0.18s cubic-bezier(0.16, 1, 0.3, 1),
+    border-color 0.18s ease,
+    box-shadow 0.2s ease,
+    filter 0.18s ease;
+}
+
+@media (hover: hover) {
+  .sk-card:hover,
+  .sk-stat:hover,
+  .sk-stat-card:hover,
+  .sk-metric:hover,
+  .sk-nft-card:hover,
+  .sk-doc-card:hover,
+  .sk-post-card:hover,
+  .sk-hub-card:hover,
+  .sk-comm-card:hover {
+    transform: translateY(-2px);
+    border-color: rgba(52, 211, 153, 0.46);
+    box-shadow: 0 12px 26px rgba(0, 0, 0, 0.36);
+  }
+
+  .sk-btn-main:hover,
+  .sk-btn-gold:hover,
+  .sk-hero-btn:hover,
+  .sk-portal-cta:hover,
+  .sk-pf-btn:hover {
+    transform: translateY(-1.5px);
+    filter: brightness(1.05);
+  }
+}
+
+@media (max-width: 640px) {
+  .sk-bokeh-orb {
+    filter: blur(62px);
+    opacity: 0.26;
+  }
+  .sk-bokeh-beacon {
+    display: none;
+  }
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .sk-bokeh-horizon,
   .sk-bokeh-orb,
-  .sk-seal-shimmer::after {
+  .sk-bokeh-beacon,
+  .sk-seal-shimmer::after,
+  .sk-wordmark-stage::after,
+  .sk-wordmark-text,
+  .sk-wordmark-underline,
+  .sk-coin-float {
     animation: none !important;
   }
 
   .sk-reveal {
     opacity: 1 !important;
     transform: none !important;
+    transition: none !important;
+  }
+
+  .sk-card,
+  .sk-stat,
+  .sk-stat-card,
+  .sk-metric,
+  .sk-panel,
+  .sk-nft-card,
+  .sk-doc-card,
+  .sk-post-card,
+  .sk-hub-card,
+  .sk-comm-card,
+  .sk-btn-main,
+  .sk-btn-gold,
+  .sk-hero-btn,
+  .sk-portal-cta,
+  .sk-pf-btn {
     transition: none !important;
   }
 }
