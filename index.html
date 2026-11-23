@@ -135,7 +135,7 @@
       color: var(--gold-soft);
     }
 
-    /* DEVELOPERS Dropdown Menu Only */
+    /* LEARN & DEVELOPERS Dropdown Menus */
     .sk-dropdown {
       position: relative;
     }
@@ -569,7 +569,25 @@
         <a href="./frontend/nft.html" data-i18n="nav_coin_nft">COIN MSK &amp; NFT</a>
         <a href="./frontend/community.html" data-i18n="nav_community">KOMUNITAS</a>
 
-        <!-- DEVELOPERS is a dropdown-only menu (not a standalone page) -->
+        <!-- LEARN dropdown menu -->
+        <div class="sk-dropdown" id="sk-learn-dropdown">
+          <button type="button" class="sk-dd-trigger" id="sk-learn-btn" aria-expanded="false">
+            <span>LEARN</span>
+            <span aria-hidden="true">&#9662;</span>
+          </button>
+          <div class="sk-dd-menu" role="menu">
+            <a href="./frontend/learn-hub.html" role="menuitem">
+              <span>learn-hub</span>
+              <span class="sk-dd-tag">HUB</span>
+            </a>
+            <a href="./frontend/blog.html" role="menuitem">
+              <span>blog</span>
+              <span class="sk-dd-tag">ON-CHAIN</span>
+            </a>
+          </div>
+        </div>
+
+        <!-- DEVELOPERS dropdown menu -->
         <div class="sk-dropdown" id="sk-dev-dropdown">
           <button type="button" class="sk-dd-trigger" id="sk-dev-btn" aria-expanded="false">
             <span>DEVELOPERS</span>
@@ -704,7 +722,7 @@
       <div class="sk-sec-head">
         <div class="sk-sec-kicker" data-i18n="m_dir_kicker">PETA HALAMAN &amp; SUB-MENU DEVELOPERS</div>
         <h2 data-i18n="m_dir_title">Seluruh Modul yang Telah Disiapkan</h2>
-        <p data-i18n="m_dir_desc">Akses langsung ke portal publik, explorer, komunitas, NFT, serta empat sub-menu di bawah DEVELOPERS.</p>
+        <p data-i18n="m_dir_desc">Akses langsung ke portal publik, explorer, komunitas, NFT, serta sub-menu LEARN dan DEVELOPERS.</p>
       </div>
 
       <div class="sk-dir-grid">
@@ -742,6 +760,22 @@
 
         <div class="sk-dir-item">
           <div>
+            <strong>LEARN · learn-hub</strong>
+            <span data-i18n="d_learnhub_d">Pusat edukasi konsep FactSeal, contentHash, koin MSK, dan NFT arsip.</span>
+          </div>
+          <a href="./frontend/learn-hub.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
+            <strong>LEARN · blog</strong>
+            <span data-i18n="d_blog_d">Katalog berita samuderakepri.co.id yang sudah masuk sistem blockchain.</span>
+          </div>
+          <a href="./frontend/blog.html" data-i18n="go_link">Buka Halaman &rarr;</a>
+        </div>
+
+        <div class="sk-dir-item">
+          <div>
             <strong>DEVELOPERS · docs</strong>
             <span data-i18n="d_docs_d">Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.</span>
           </div>
@@ -753,7 +787,7 @@
             <strong>DEVELOPERS · Whitepaper.pdf</strong>
             <span data-i18n="d_wp_d">Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri &amp; Indonesia di kanan).</span>
           </div>
-          <a href="./frontend/whitepaper.pdf" target="_blank" rel="noopener noreferrer" data-i18n="open_pdf">Buka PDF &nearr;</a>
+          <a href="./frontend/Whitepaper.pdf" target="_blank" rel="noopener noreferrer" data-i18n="open_pdf">Buka PDF &nearr;</a>
         </div>
 
         <div class="sk-dir-item">
@@ -831,7 +865,7 @@
           c4_link: "Kunjungi samuderakepri.co.id →",
           m_dir_kicker: "PETA HALAMAN & SUB-MENU DEVELOPERS",
           m_dir_title: "Seluruh Modul yang Telah Disiapkan",
-          m_dir_desc: "Akses langsung ke portal publik, explorer, komunitas, NFT, serta empat sub-menu di bawah DEVELOPERS.",
+          m_dir_desc: "Akses langsung ke portal publik, explorer, komunitas, NFT, serta sub-menu LEARN dan DEVELOPERS.",
           d_portal_t: "Portal Publik & Registri",
           d_portal_d: "Pencarian berita, pratinjau contentHash, dan daftar catatan terverifikasi.",
           d_exp_t: "Blockchain Explorer",
@@ -840,6 +874,8 @@
           d_nft_d: "Koleksi edisi arsip berita dan pemeriksa metadata kontrak NFT ERC-721.",
           d_comm_t: "Komunitas Samudera Kepri",
           d_comm_d: "Kanal komunitas pembaca, kontributor, pemeriksa fakta, dan rubrik media.",
+          d_learnhub_d: "Pusat edukasi konsep FactSeal, contentHash, koin MSK, dan NFT arsip.",
+          d_blog_d: "Katalog berita samuderakepri.co.id yang sudah masuk sistem blockchain.",
           d_docs_d: "Dokumentasi teknis ekosistem, 4 pilar, contoh kode, dan jalur migrasi ETH.",
           d_wp_d: "Dokumen whitepaper dwibahasa (Bahasa Inggris di kiri & Indonesia di kanan).",
           d_faucet_d: "Pemeriksa saldo Sepolia ETH & MSK serta rujukan faucet lingkungan uji.",
@@ -888,7 +924,7 @@
           c4_link: "Visit samuderakepri.co.id →",
           m_dir_kicker: "PAGE DIRECTORY & DEVELOPERS SUB-MENU",
           m_dir_title: "All Prepared Ecosystem Modules",
-          m_dir_desc: "Direct access to the public portal, explorer, community, NFTs, and all four DEVELOPERS sub-menu items.",
+          m_dir_desc: "Direct access to the public portal, explorer, community, NFTs, and LEARN & DEVELOPERS sub-menus.",
           d_portal_t: "Public Portal & Registry",
           d_portal_d: "News search, contentHash preview, and verified archive list.",
           d_exp_t: "Blockchain Explorer",
@@ -897,6 +933,8 @@
           d_nft_d: "Curated archive editions and ERC-721 NFT metadata inspector.",
           d_comm_t: "Samudera Kepri Community",
           d_comm_d: "Community hub for readers, contributors, fact checkers, and media desks.",
+          d_learnhub_d: "Education hub for FactSeal, contentHash, MSK coin, and archive NFTs.",
+          d_blog_d: "Samuderakepri.co.id articles recorded on the blockchain system.",
           d_docs_d: "Technical ecosystem docs, 4 pillars, code examples, and ETH migration path.",
           d_wp_d: "Bilingual whitepaper PDF (English on the left & Indonesian on the right).",
           d_faucet_d: "Sepolia ETH & MSK balance checker and testnet faucet references.",
@@ -929,16 +967,28 @@
         btn.addEventListener("click", () => applyLang(btn.getAttribute("data-lang")));
       });
 
-      const dd = document.getElementById("sk-dev-dropdown");
-      const ddBtn = document.getElementById("sk-dev-btn");
-      ddBtn.addEventListener("click", (e) => {
-        e.stopPropagation();
-        const isOpen = dd.classList.toggle("open");
-        ddBtn.setAttribute("aria-expanded", String(isOpen));
-      });
+      function setupDropdown(ddId, btnId) {
+        const dd = document.getElementById(ddId);
+        const btn = document.getElementById(btnId);
+        if (!dd || !btn) return;
+        btn.addEventListener("click", (e) => {
+          e.stopPropagation();
+          document.querySelectorAll(".sk-dropdown").forEach((other) => {
+            if (other !== dd) other.classList.remove("open");
+          });
+          const isOpen = dd.classList.toggle("open");
+          btn.setAttribute("aria-expanded", String(isOpen));
+        });
+      }
+
+      setupDropdown("sk-learn-dropdown", "sk-learn-btn");
+      setupDropdown("sk-dev-dropdown", "sk-dev-btn");
       document.addEventListener("click", () => {
-        dd.classList.remove("open");
-        ddBtn.setAttribute("aria-expanded", "false");
+        document.querySelectorAll(".sk-dropdown").forEach((dd) => {
+          dd.classList.remove("open");
+          const b = dd.querySelector(".sk-dd-trigger");
+          if (b) b.setAttribute("aria-expanded", "false");
+        });
       });
 
       let savedLang = "id";
